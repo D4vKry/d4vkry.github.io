@@ -10,8 +10,15 @@
 
 Para respetar estrictamente las normas de **Hack The Box**, no publico soluciones de máquinas que aún se encuentran activas en la plataforma.
 
-El *write-up* completo (detallando la explotación del CVE-2026-23744, el *port forwarding* con Chisel y la escalada a `root`) ya está documentado en mi bóveda privada. 
-
-Se publicará en esta URL de forma automática el mismo día que la máquina pase al estado **Retired**.
+El *write-up* completo ya está documentado en mi bóveda privada. Se publicará en esta URL de forma automática el mismo día que la máquina pase al estado **Retired**.
 
 ¡Vuelve pronto! 💀
+
+<br>
+
+---
+<div align="center">
+  <small>
+    © 2026 David Veiga (D4vKry). Este trabajo está distribuido bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank">CC BY-NC-SA 4.0</a>.
+  </small>
+</div>
