@@ -12,3 +12,4 @@ nav:
   - Inicio: index.md
   - Hack The Box - WriteUps:
     - 🔒 DevHub - Medium: HTB/DevHub/index.md
+    - 🔒 Connected - Easy: HTB/Connected/index.md
