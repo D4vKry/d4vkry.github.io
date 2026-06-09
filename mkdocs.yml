@@ -11,5 +11,7 @@ theme:
 nav:
   - Inicio: index.md
   - Hack The Box - WriteUps:
-    - 🔒 DevHub - Medium: HTB/DevHub/index.md
-    - 🔒 Connected - Easy: HTB/Connected/index.md
+    - Easy:
+      - 🔒 Connected - Easy: HTB/Easy/Connected/index.md
+    - Medium:
+      - 🔒 DevHub - Medium: HTB/Medium/DevHub/index.md
