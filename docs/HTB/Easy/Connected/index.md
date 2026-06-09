@@ -3,6 +3,7 @@
 **Machine** - Connected  
 **OS** - Linux  
 **Difficulty** - Easy  
+**Fecha** - 9/6/2026
 
 ---
 

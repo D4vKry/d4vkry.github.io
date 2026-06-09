@@ -3,6 +3,7 @@
 **Machine** - DevHub  
 **OS** - Linux  
 **Difficulty** - Medium  
+**Fecha** - 1/6/2026
 
 ---
 
