@@ -14,4 +14,5 @@ nav:
     - Easy:
       - 🔒 Connected - Easy: HTB/Easy/Connected/index.md
     - Medium:
+      - 🔒 Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
       - 🔒 DevHub - Medium: HTB/Medium/DevHub/index.md
