@@ -11,10 +11,10 @@ theme:
 nav:
   - Inicio: index.md
   - Hack The Box - WriteUps:
-    - Hard:
-      - 🔒 Nimbus - Linux: HTB/Hard/Nimbus/index.md
     - Easy:
       - 🔒 Connected - Easy: HTB/Easy/Connected/index.md
     - Medium:
       - 🔒 Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
       - 🔒 DevHub - Medium: HTB/Medium/DevHub/index.md
+    - Hard:
+      - 🔒 Nimbus - Linux: HTB/Hard/Nimbus/index.md
