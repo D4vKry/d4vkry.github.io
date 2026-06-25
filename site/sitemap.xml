@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://d4vkry.github.io/</loc>
-         <lastmod>2026-06-09</lastmod>
+         <lastmod>2026-06-17</lastmod>
     </url>
     <url>
          <loc>https://d4vkry.github.io/HTB/Easy/Connected/</loc>
-         <lastmod>2026-06-09</lastmod>
+         <lastmod>2026-06-17</lastmod>
+    </url>
+    <url>
+         <loc>https://d4vkry.github.io/HTB/Medium/Checkpoint/</loc>
+         <lastmod>2026-06-17</lastmod>
     </url>
     <url>
          <loc>https://d4vkry.github.io/HTB/Medium/DevHub/</loc>
-         <lastmod>2026-06-09</lastmod>
+         <lastmod>2026-06-17</lastmod>
     </url>
 </urlset>
