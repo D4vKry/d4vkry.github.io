@@ -14,7 +14,7 @@ Firefox es uno de los mejores navegadores FOSS que existe por varios motivos:
 
 Aun siendo muy buen navegador, este por defecto viene con una configuración de recolección de datos y telemetría que nos gustaría limitar y controlar al milímetro nosotros mismos desde las configuraciones de privacidad.
 
-### ¿Que telemetría envía exactamente Firefox por defecto?
+### ¿Qué telemetría envía exactamente Firefox por defecto?
 
 Al igual que la mayoría de navegadores, Firefox suele enviar el llamado "main ping", que se envía periódicamente y contiene varios datos de uso y entorno, entre ellos el Hardware, Sistema Operativo, métricas de sesión, ecosistema del navegador, motor de búsquedas y derivados.
 
@@ -22,7 +22,7 @@ También existe el "event ping", registrando interacciones específicas del usua
 
 Por otro lado tenemos "Crash ping" que hace un volcado de pila y el estado de la memoria cuando detecta que una pestaña se crashea.
 
-Por último, por defecto Firefox habilita la opción de instalar y ejecutar estudios de forma silenciosa para que contacte con los servidores regularmente para recibir configuraciones remotas y probar nuevas funciones. Aunque no es "telemetría" en el sentido estricto de analíticas, Firefox envía hashes de los sitios que visitar y de archivos que descargas a los servidores de Google Safe Browsing para comprobar si son maliciosos.
+Por último, por defecto Firefox habilita la opción de instalar y ejecutar estudios de forma silenciosa para que contacte con los servidores regularmente para recibir configuraciones remotas y probar nuevas funciones. Aunque no es "telemetría" en el sentido estricto de analíticas, Firefox envía hashes de los sitios que visitas y de archivos que descargas a los servidores de Google Safe Browsing para comprobar si son maliciosos.
 
 ‍
 
@@ -34,23 +34,23 @@ Si vas a proceder a seguir la guía del hardening teniendo un perfil de Firefox 
 
 Dependiendo de cómo hayas instalado Firefox, la ruta del perfil junto a las configuraciones varía:
 
-- **Nativo (apt/pacman...):**  `~/.mozilla/firefox/`
-- **Flatpak:**  `~/.var/app/org.mozilla.firefox/.mozilla/firefox/`
-- **Snap:**  `~/snap/firefox/common/.mozilla/firefox/`
+- **Nativo (apt/pacman...):**  `~/.mozilla/Firefox/`
+- **Flatpak:**  `~/.var/app/org.mozilla.Firefox/.mozilla/Firefox/`
+- **Snap:**  `~/snap/Firefox/common/.mozilla/Firefox/`
 
-Es fundamental asegurarse que Firefox está cerrado (`killall -9 firefox`)
+Es fundamental asegurarse que Firefox está cerrado (`killall -9 Firefox`).
 
-Debéis identificar en la ruta correspondiente vuestro perfil, que suele ser el perfil por defecto. Si no sabemos el perfil que tenemos podemos abrir firefox y en la barra de búsqueda poner `about:profiles`
+Debéis identificar en la ruta correspondiente vuestro perfil, que suele ser el perfil por defecto. Si no sabemos el perfil que tenemos podemos abrir Firefox y en la barra de búsqueda poner `about:profiles`
 
 ‍
 
 Una vez en la ruta, empaquetaremos el perfil completo usando tar, ya que mantiene permisos y enlaces simbólicos.
 
 ```bash
-tar -czvf ~/firefox_profile_backup.tar.gz ~/.mozilla/firefox/xxxxxx.default-release/
+tar -czvf ~/Firefox_profile_backup.tar.gz ~/.mozilla/Firefox/xxxxxx.default-release/
 
 # Opcionalmente copiarlo en un directorio dirigido
-cp -r ~/.mozilla/firefox/xxxxxx.default-release/ ~/copia_perfil_firefox/
+cp -r ~/.mozilla/Firefox/xxxxxx.default-release/ ~/copia_perfil_Firefox/
 ```
 
 ‍
@@ -71,21 +71,21 @@ Esto nos llevará a la respectiva carpeta de perfiles.
 
 Localizaremos la carpeta de nuestro perfil (si no sabes cual es, podéis hacer lo mismo que expliqué en la copia de linux).
 
-Copia la carpeta entera y pegala en una ubicación segura.
+Copia la carpeta entera y pégala en una ubicación segura.
 
-Aqui una alternativa rápida por PowerShell:
+Aquí una alternativa rápida por PowerShell:
 
 ```powershell
 Copy-Item -Path "$env:APPDATA\Mozilla\Firefox\Profiles\*.default-release" -Destination "$env:USERPROFILE\Desktop\Firefox_Backup" -Recurse
 ```
 
-Si después del hardening tenéis problemas con firefox, basta con borrar toda la carpeta de perfiles de firefox y pegar la copia que hicimos.
+Si después del hardening tenéis problemas con Firefox, basta con borrar toda la carpeta de perfiles de Firefox y pegar la copia que hicimos.
 
 ‍
 
 ## 2.- Hardening
 
-Para guiar el proceso, estaré usando una máquina virtual Debian recién instalada, el cual le instalaremos Firefox desde los paquetes APT para tener un perfil totalmente limpio. Este proceso es igual tanto en Linux como en WIndows.
+Para guiar el proceso, estaré usando una máquina virtual Debian recién instalada, el cual le instalaremos Firefox desde los paquetes APT para tener un perfil totalmente limpio. Este proceso es igual tanto en Lenux como en Windows.
 
 ‍
 
@@ -95,17 +95,17 @@ Antes de tocar los archivos de configuración, estableceremos una configuración
 
 #### 2.1.1.- Motor de búsqueda
 
-Empezaremos con el motor de búsqueda. En firefox el buscador predeterminado es Google, asi que haremos lo siguiente:
+Empezaremos con el motor de búsqueda. En Firefox el buscador predeterminado es Google, así que haremos lo siguiente:
 
 - Vamos a **Ajustes > Buscar**
 - En el apartado de "Buscador predeterminado" seleccionaremos DuckDuckGo
-- Como extra podéis desactivar el resto de buscadores que no uséis como bing, google, ebay...
+- Como extra podéis desactivar el resto de buscadores que no uséis como Bing, Google, Ebay...
 
 ![image](image-20260815205734-9l409f6.png)
 
 ‍
 
-(NOTA: si no deseáis usar duckduckgo por sus antiguas polémicas, Qwant es muy buen buscador privado sobre todo si eres de Europa, o Ecoisa).
+(NOTA: si no deseáis usar duckduckgo por sus antiguas polémicas, Qwant es muy buen buscador privado sobre todo si eres de Europa, o Ecosia).
 
 ‍
 
@@ -118,7 +118,7 @@ Por defecto, las peticiones DNS viajan en texto plano, permitiendo que tu ISP y 
 
 ![image](image-20260815205845-e5a8bgi.png)
 
-- Le damos a "Personalizado" y pondremos el siguiente proveedor: "`https://dns.quad9.net/dns-query`", asi estaremos usando el proveedor de Quad9, el cual va cifrado.
+- Le damos a "Personalizado" y pondremos el siguiente proveedor: "`https://dns.quad9.net/dns-query`", así estaremos usando el proveedor de Quad9, el cual va cifrado.
 
 ![image](image-20260815210030-vbn0cng.png)
 
@@ -136,7 +136,7 @@ O si lo prefieres puedes usar el DNS de Cloudflare que aunque no sea tan privado
 
 ![image](image-20260815210644-5o71upw.png)
 
-- Le damos a "Activar el modo solo-HTTPS en todas las ventanas
+- Le damos a "Activar el modo solo-HTTPS en todas las ventanas".
 
 ![image](image-20260815210722-t2dl3s3.png)
 
@@ -146,7 +146,7 @@ O si lo prefieres puedes usar el DNS de Cloudflare que aunque no sea tan privado
 
 Este archivo es el que contiene toda la configuración de nuestro perfil, el cual se estructura en módulos. Para que no tengáis que modificar módulo por módulo cada configuración he preparado un user.js el cual podéis descargar desde el siguiente enlace:
 
-[https://github.com/D4vKry/firefox-userjs/blob/main/user.js](https://github.com/D4vKry/firefox-userjs/blob/main/user.js)
+[https://github.com/D4vKry/Firefox-userjs/blob/main/user.js](https://github.com/D4vKry/Firefox-userjs/blob/main/user.js)
 
 Explicaremos punto por punto que configuración toca nuestro archivo:
 
@@ -204,7 +204,7 @@ WebRTC es una tecnología que permite la comunicación en tiempo real de datos e
 // ============================================================================
 // 3. WEBRTC Y FUGAS DE RED
 // ============================================================================
-// OPCCIÓN A: Deshabilitar WebRTC por completo (Rompe llamadas de voz/vídeo web)
+// OPCIÓN A: Deshabilitar WebRTC por completo (Rompe llamadas de voz/vídeo web)
 // user_pref("media.peerconnection.enabled", false);
 
 // OPCIÓN B: Restringir WebRTC para que pase por el proxy/VPN y no filtre IPs locales
@@ -220,7 +220,7 @@ user_pref("network.proxy.socks_remote_dns", true); // Fuerza a que las consultas
 
 #### 2.2.4.- Mitigación de Fingerprinting
 
-En lugar de intentar bloquear todos los scripts de rastreo, la siguiente directiva estandariza nuestro navegador para que parezca idéntico al de miles de otros usuarios para evitar Fingerptinting.
+En lugar de intentar bloquear todos los scripts de rastreo, la siguiente directiva estandariza nuestro navegador para que parezca idéntico al de miles de otros usuarios para evitar Fingerprinting.
 
 ```JavaScript
 // ============================================================================
@@ -266,9 +266,9 @@ También he incluido una opción comentada sobre deshabilitar la compilación Ju
 
 ‍
 
-#### 2.2.6.- Limpieza del la pestaña Home
+#### 2.2.6.- Limpieza de la pestaña Home
 
-Por último configuramos la página principal para quitar todos los patrocinios y widgets los cuales no prestamos atención y consumen recursos
+Por último configuramos la página principal para quitar todos los patrocinios y widgets los cuales no prestamos atención y consumen recursos.
 
 ```JavaScript
 // ============================================================================
@@ -288,19 +288,19 @@ user_pref("browser.newtabpage.activity-stream.system.showWeather", false);
 
 ‍
 
-Ahora para meter el user.js, denuevo, nos aseguraremos de que Firefox está 100% cerrado y entraremos a la carpeta de nuestro perfil el cual hicimos la copia, justo ahí pegaremos el user.js.
+Ahora para meter el user.js, de nuevo, nos aseguraremos de que Firefox está 100% cerrado y entraremos a la carpeta de nuestro perfil el cual hicimos la copia, justo ahí pegaremos el user.js.
 
 ![image](image-20260816181103-z7qo4or.png)
 
 ‍
 
-Abrimos Firefox y comprobamos que tenemos una interfaz mucha mas limpia sin pop ups.
+Abrimos Firefox y comprobamos que tenemos una interfaz mucha mas limpia sin pop-ups.
 
 ![image](image-20260816182655-h0ahmp0.png)
 
 ‍
 
-NOTA: como firefox actualiza constantemente los widgets es probable que aparezcan nuevos, por lo que es recomendable desactivarlo directamente desde el menú de abajo a la derecha com en la caputra.
+NOTA: como Firefox actualiza constantemente los widgets es probable que aparezcan nuevos, por lo que es recomendable desactivarlo directamente desde el menú de abajo a la derecha como en la caputra.
 
 ![image](image-20260816183134-wo90loz.png)
 
@@ -310,9 +310,9 @@ NOTA: como firefox actualiza constantemente los widgets es probable que aparezca
 
 En esta sección, personalmente, solo recomendaré instalar uBlock Origin
 
-[https://addons.mozilla.org/es-ES/firefox/addon/ublock-origin/](https://addons.mozilla.org/es-ES/firefox/addon/ublock-origin/)
+[https://addons.mozilla.org/es-ES/Firefox/addon/ublock-origin/](https://addons.mozilla.org/es-ES/Firefox/addon/ublock-origin/)
 
-Esta extensión bloquea anuncios, cookies y scripts inneccesarios que recopila información.
+Esta extensión bloquea anuncios, cookies y scripts innecesarios que recopilan información.
 
 También recomiendo encarecidamente no instalar una gran cantidad de extensiones, ya que lo que conseguimos es aumentar el Fingerprint, ampliar la superficie de ataques y ralentizar el navegador.
 
@@ -360,7 +360,7 @@ Para comprobar que todas las directivas que hemos aplicado en nuestro `user.js` 
 
 ![image](image-20260816185556-05elbos.png)
 
-Otros links done podéis comprobar la configuración de privacidad y seguridad:
+Otros links donde podéis comprobar la configuración de privacidad y seguridad:
 
 [https://browserleaks.com](https://browserleaks.com)
 
@@ -386,7 +386,7 @@ Si leer esta guía te ha parecido interesante pero crees que mantener un archivo
 
 ### Fuentes:
 
-[https://brainfucksec.github.io/firefox-hardening-guide](https://brainfucksec.github.io/firefox-hardening-guide)
+[https://brainfucksec.github.io/Firefox-hardening-guide](https://brainfucksec.github.io/Firefox-hardening-guide)
 
 [https://github.com/arkenfox/user.js](https://github.com/arkenfox/user.js)
 
@@ -394,9 +394,9 @@ Si leer esta guía te ha parecido interesante pero crees que mantener un archivo
 
 [https://wiki.archlinux.org/title/Firefox/Privacy](https://wiki.archlinux.org/title/Firefox/Privacy)
 
-[https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-firefox](https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-firefox)
+[https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-Firefox](https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-Firefox)
 
-[https://restoreprivacy.com/firefox-privacy/](https://restoreprivacy.com/firefox-privacy/)
+[https://restoreprivacy.com/Firefox-privacy/](https://restoreprivacy.com/Firefox-privacy/)
 
 <br>
 
