@@ -1,6 +1,4 @@
 site_name: D4vKry's Portfolio
-site_url: https://d4vkry.github.io/
-copyright: Copyright &copy; 2026 David Veiga (D4vKry). Licencia CC BY-NC-SA 4.0
 theme:
   name: material
   palette:
@@ -10,12 +8,14 @@ theme:
 
 nav:
   - Inicio: index.md
+  - Guías:
+      - Firefox Hardening: guias/firefox-hardening/index.md
   - Hack The Box - WriteUps:
-    - Easy:
-      - 🔒 Connected - Easy: HTB/Easy/Connected/index.md
-      - 🔒 Enigma - Linux: HTB/Easy/Enigma/index.md
-    - Medium:
-      - 🔒 Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
-      - 🔒 DevHub - Medium: HTB/Medium/DevHub/index.md
-    - Hard:
-      - 🔒 Nimbus - Linux: HTB/Hard/Nimbus/index.md
+      - Easy:
+          - Connected - Linux: HTB/Easy/Connected/index.md
+          - Enigma - Linux: HTB/Easy/Enigma/index.md
+      - Medium:
+          - Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
+          - DevHub - Linux: HTB/Medium/DevHub/index.md
+      - Hard:
+          - Nimbus - Linux: HTB/Hard/Nimbus/index.md
