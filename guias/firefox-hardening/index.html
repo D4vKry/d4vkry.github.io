@@ -1,0 +1,1670 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../HTB/Easy/Connected/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Firefox Hardening - D4vKry's Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#firefox-hardening" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="D4vKry&#39;s Portfolio" class="md-header__button md-logo" aria-label="D4vKry's Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            D4vKry's Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Firefox Hardening
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="D4vKry&#39;s Portfolio" class="md-nav__button md-logo" aria-label="D4vKry's Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    D4vKry's Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guías
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guías
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firefox Hardening
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firefox Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.- Introducción a Firefox y por qué es ideal para la privacidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.- Introducción a Firefox y por qué es ideal para la privacidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-telemetria-envia-exactamente-firefox-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Que telemetría envía exactamente Firefox por defecto?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendaciones-antes-de-seguir-la-guia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ RECOMENDACIONES ANTES DE SEGUIR LA GUÍA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ RECOMENDACIONES ANTES DE SEGUIR LA GUÍA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-copia-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.- Copia en Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-copia-en-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.- Copia en Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.- Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.- Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-configuracion-inicial-desde-la-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.- Configuración inicial desde la GUI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1.- Configuración inicial desde la GUI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-motor-de-busqueda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1.- Motor de búsqueda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-dns-sobre-https-doh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2.- DNS sobre HTTPS (DoH)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-modo-solo-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3.- Modo solo HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hardening-a-userjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Hardening a user.js
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Hardening a user.js">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-eliminar-la-telemetria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1.- Eliminar la Telemetría
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-fugas-de-metadatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2.- Fugas de metadatos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223-proteccion-de-identidad-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.3.- Protección de Identidad de Red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#224-mitigacion-de-fingerprinting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.4.- Mitigación de Fingerprinting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#225-reduccion-de-superficie-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.5.- Reducción de Superficie de Ataque
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#226-limpieza-del-la-pestana-home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.6.- Limpieza del la pestaña Home
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Extensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#231-configuracion-de-ublock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1.- Configuración de uBlock
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comprobacion-del-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.- Comprobación del Hardening
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-alternativas-y-proyectos-recomendados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.- Alternativas y Proyectos Recomendados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.- Alternativas y Proyectos Recomendados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funetes:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hack The Box - WriteUps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hack The Box - WriteUps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Easy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Easy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTB/Easy/Connected/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connected - Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTB/Easy/Enigma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enigma - Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medium
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Medium
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTB/Medium/Checkpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkpoint - Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTB/Medium/DevHub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevHub - Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HTB/Hard/Nimbus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nimbus - Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.- Introducción a Firefox y por qué es ideal para la privacidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.- Introducción a Firefox y por qué es ideal para la privacidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-telemetria-envia-exactamente-firefox-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Que telemetría envía exactamente Firefox por defecto?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendaciones-antes-de-seguir-la-guia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ RECOMENDACIONES ANTES DE SEGUIR LA GUÍA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ RECOMENDACIONES ANTES DE SEGUIR LA GUÍA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-copia-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.- Copia en Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-copia-en-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.- Copia en Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.- Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.- Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-configuracion-inicial-desde-la-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.- Configuración inicial desde la GUI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1.- Configuración inicial desde la GUI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-motor-de-busqueda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1.- Motor de búsqueda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-dns-sobre-https-doh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2.- DNS sobre HTTPS (DoH)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-modo-solo-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3.- Modo solo HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hardening-a-userjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Hardening a user.js
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Hardening a user.js">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-eliminar-la-telemetria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1.- Eliminar la Telemetría
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-fugas-de-metadatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2.- Fugas de metadatos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223-proteccion-de-identidad-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.3.- Protección de Identidad de Red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#224-mitigacion-de-fingerprinting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.4.- Mitigación de Fingerprinting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#225-reduccion-de-superficie-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.5.- Reducción de Superficie de Ataque
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#226-limpieza-del-la-pestana-home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.6.- Limpieza del la pestaña Home
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Extensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#231-configuracion-de-ublock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1.- Configuración de uBlock
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comprobacion-del-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.- Comprobación del Hardening
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-alternativas-y-proyectos-recomendados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.- Alternativas y Proyectos Recomendados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.- Alternativas y Proyectos Recomendados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funetes:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="firefox-hardening">Firefox Hardening</h1>
+<h2 id="1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad">1.- Introducción a Firefox y por qué es ideal para la privacidad</h2>
+<p><img alt="image" src="image-20260802215530-8vsbo9l.png" /></p>
+<p>Firefox es uno de los mejores navegadores FOSS que existe por varios motivos:</p>
+<ul>
+<li><strong>Independencia de Chromium:</strong>  Firefox usa su propio motor llamado Gecko, lo cual es muy importante tener en cuenta para evitar el monopolio de Chromium. Además permite evitar imposiciones de estándares implantados por Google.</li>
+<li><strong>Arquitectura modular:</strong>  A diferencia de otros navegadores, Firefox permite un control absoluto sobre directivas internas a través de editores de preferencias y archivos declarativos que modificaremos en esta guía.</li>
+<li><strong>Mitigación de Fingerprinting:</strong>  Integración de protecciones nativas derivadas del proyecto Tor Browser, que estandarizan HTML5, el agente de usuario, zonas horarias y métricas de pantalla para camuflar al usuario.</li>
+</ul>
+<p>‍</p>
+<p>Aun siendo muy buen navegador, este por defecto viene con una configuración de recolección de datos y telemetría que nos gustaría limitar y controlar al milímetro nosotros mismos desde las configuraciones de privacidad.</p>
+<h3 id="que-telemetria-envia-exactamente-firefox-por-defecto">¿Que telemetría envía exactamente Firefox por defecto?</h3>
+<p>Al igual que la mayoría de navegadores, Firefox suele enviar el llamado "main ping", que se envía periódicamente y contiene varios datos de uso y entorno, entre ellos el Hardware, Sistema Operativo, métricas de sesión, ecosistema del navegador, motor de búsquedas y derivados.</p>
+<p>También existe el "event ping", registrando interacciones específicas del usuario con la interfaz del navegador. Esto incluye clics, cambios de preferencias, uso de las DevTools...</p>
+<p>Por otro lado tenemos "Crash ping" que hace un volcado de pila y el estado de la memoria cuando detecta que una pestaña se crashea.</p>
+<p>Por último, por defecto Firefox habilita la opción de instalar y ejecutar estudios de forma silenciosa para que contacte con los servidores regularmente para recibir configuraciones remotas y probar nuevas funciones. Aunque no es "telemetría" en el sentido estricto de analíticas, Firefox envía hashes de los sitios que visitar y de archivos que descargas a los servidores de Google Safe Browsing para comprobar si son maliciosos.</p>
+<p>‍</p>
+<h2 id="recomendaciones-antes-de-seguir-la-guia">⚠️ RECOMENDACIONES ANTES DE SEGUIR LA GUÍA</h2>
+<p>Si vas a proceder a seguir la guía del hardening teniendo un perfil de Firefox existente, recomiendo encarecidamente crear una copia de seguridad del perfil por si en algún momento el hardening falla y necesitamos el perfil de vuelta.</p>
+<h3 id="1-copia-en-linux">1.- Copia en Linux</h3>
+<p>Dependiendo de cómo hayas instalado Firefox, la ruta del perfil junto a las configuraciones varía:</p>
+<ul>
+<li><strong>Nativo (apt/pacman...):</strong>  <code>~/.mozilla/firefox/</code></li>
+<li><strong>Flatpak:</strong>  <code>~/.var/app/org.mozilla.firefox/.mozilla/firefox/</code></li>
+<li><strong>Snap:</strong>  <code>~/snap/firefox/common/.mozilla/firefox/</code></li>
+</ul>
+<p>Es fundamental asegurarse que Firefox está cerrado (<code>killall -9 firefox</code>)</p>
+<p>Debéis identificar en la ruta correspondiente vuestro perfil, que suele ser el perfil por defecto. Si no sabemos el perfil que tenemos podemos abrir firefox y en la barra de búsqueda poner <code>about:profiles</code></p>
+<p>‍</p>
+<p>Una vez en la ruta, empaquetaremos el perfil completo usando tar, ya que mantiene permisos y enlaces simbólicos.</p>
+<pre><code class="language-bash">tar -czvf ~/firefox_profile_backup.tar.gz ~/.mozilla/firefox/xxxxxx.default-release/
+
+# Opcionalmente copiarlo en un directorio dirigido
+cp -r ~/.mozilla/firefox/xxxxxx.default-release/ ~/copia_perfil_firefox/
+</code></pre>
+<p>‍</p>
+<h3 id="2-copia-en-windows">2.- Copia en Windows</h3>
+<p>Verificar primero que Firefox está cerrado completamente, esto se puede ver desde el administrador de tareas (Ctrl + shift + Esc).</p>
+<p>Ahora presionaremos la combinación Windows + R para abrir el cuadro de "Ejecutar".</p>
+<p>Introduciremos la siguiente variable:</p>
+<pre><code class="language-bash">%APPDATA%\Mozilla\Firefox\Profiles\
+</code></pre>
+<p>Esto nos llevará a la respectiva carpeta de perfiles.</p>
+<p>Localizaremos la carpeta de nuestro perfil (si no sabes cual es, podéis hacer lo mismo que expliqué en la copia de linux).</p>
+<p>Copia la carpeta entera y pegala en una ubicación segura.</p>
+<p>Aqui una alternativa rápida por PowerShell:</p>
+<pre><code class="language-powershell">Copy-Item -Path &quot;$env:APPDATA\Mozilla\Firefox\Profiles\*.default-release&quot; -Destination &quot;$env:USERPROFILE\Desktop\Firefox_Backup&quot; -Recurse
+</code></pre>
+<p>Si después del hardening tenéis problemas con firefox, basta con borrar toda la carpeta de perfiles de firefox y pegar la copia que hicimos.</p>
+<p>‍</p>
+<h2 id="2-hardening">2.- Hardening</h2>
+<p>Para guiar el proceso, estaré usando una máquina virtual Debian recién instalada, el cual le instalaremos Firefox desde los paquetes APT para tener un perfil totalmente limpio. Este proceso es igual tanto en Linux como en WIndows.</p>
+<p>‍</p>
+<h3 id="21-configuracion-inicial-desde-la-gui">2.1.- Configuración inicial desde la GUI</h3>
+<p>Antes de tocar los archivos de configuración, estableceremos una configuración directamente desde los ajustes nativos de Firefox.</p>
+<h4 id="211-motor-de-busqueda">2.1.1.- Motor de búsqueda</h4>
+<p>Empezaremos con el motor de búsqueda. En firefox el buscador predeterminado es Google, asi que haremos lo siguiente:</p>
+<ul>
+<li>Vamos a <strong>Ajustes &gt; Buscar</strong></li>
+<li>En el apartado de "Buscador predeterminado" seleccionaremos DuckDuckGo</li>
+<li>Como extra podéis desactivar el resto de buscadores que no uséis como bing, google, ebay...</li>
+</ul>
+<p><img alt="image" src="image-20260815205734-9l409f6.png" /></p>
+<p>‍</p>
+<p>(NOTA: si no deseáis usar duckduckgo por sus antiguas polémicas, Qwant es muy buen buscador privado sobre todo si eres de Europa, o Ecoisa).</p>
+<p>‍</p>
+<h4 id="212-dns-sobre-https-doh">2.1.2.- DNS sobre HTTPS (DoH)</h4>
+<p>Por defecto, las peticiones DNS viajan en texto plano, permitiendo que tu ISP y cualquiera que esté en la red local pueda saber qué dominios visitas.</p>
+<ul>
+<li>Vamos a la pestaña de Privacidad y Seguridad</li>
+<li>Abajo de todo le damos a "DNS sobre HTTPS" y a ajustes avanzados</li>
+</ul>
+<p><img alt="image" src="image-20260815205845-e5a8bgi.png" /></p>
+<ul>
+<li>Le damos a "Personalizado" y pondremos el siguiente proveedor: "<code>https://dns.quad9.net/dns-query</code>", asi estaremos usando el proveedor de Quad9, el cual va cifrado.</li>
+</ul>
+<p><img alt="image" src="image-20260815210030-vbn0cng.png" /></p>
+<p>Otro proveedor muy bueno es Mullvad, el cual es con el siguiente URL:</p>
+<p>"<code>https://dns.mullvad.net/dns-query</code>"</p>
+<p>O si lo prefieres puedes usar el DNS de Cloudflare que aunque no sea tan privado como estos, es bastante rápido y mejor que el de Google y el de tu ISP.</p>
+<p>‍</p>
+<h4 id="213-modo-solo-https">2.1.3.- Modo solo HTTPS</h4>
+<ul>
+<li>En <strong>Privacidad &amp; Seguridad</strong>, vamos al final y configuración avanzada.</li>
+</ul>
+<p><img alt="image" src="image-20260815210644-5o71upw.png" /></p>
+<ul>
+<li>Le damos a "Activar el modo solo-HTTPS en todas las ventanas</li>
+</ul>
+<p><img alt="image" src="image-20260815210722-t2dl3s3.png" /></p>
+<p>‍</p>
+<h3 id="22-hardening-a-userjs">2.2 Hardening a user.js</h3>
+<p>Este archivo es el que contiene toda la configuración de nuestro perfil, el cual se estructura en módulos. Para que no tengáis que modificar módulo por módulo cada configuración he preparado un user.js el cual podéis descargar desde el siguiente enlace:</p>
+<p>https://github.com/D4vKry/firefox-userjs/blob/main/user.js</p>
+<p>Explicaremos punto por punto que configuración toca nuestro archivo:</p>
+<p>‍</p>
+<h4 id="221-eliminar-la-telemetria">2.2.1.- Eliminar la Telemetría</h4>
+<p>Mozilla usa "Normandy" para inyectar cambios de configuración remotos y "Shield" para estudios en segundo plano:</p>
+<pre><code class="language-JavaScript">// ============================================================================
+// 1. TELEMETRÍA, ESTUDIOS Y RECOLECCIÓN DE DATOS
+// ============================================================================
+// Desactiva el envío de datos de salud y uso general
+user_pref(&quot;datareporting.policy.dataSubmissionEnabled&quot;, false);
+user_pref(&quot;datareporting.healthreport.uploadEnabled&quot;, false);
+user_pref(&quot;toolkit.telemetry.unified&quot;, false);
+user_pref(&quot;toolkit.telemetry.enabled&quot;, false);
+user_pref(&quot;toolkit.telemetry.server&quot;, &quot;data:,&quot;); // Anula el endpoint de envío
+user_pref(&quot;toolkit.telemetry.archive.enabled&quot;, false);
+user_pref(&quot;toolkit.telemetry.bhrPing.enabled&quot;, false);
+user_pref(&quot;toolkit.telemetry.firstShutdownPing.enabled&quot;, false);
+// Bloquea los estudios de Normandy y Shield (Inyecciones remotas)
+user_pref(&quot;app.normandy.enabled&quot;, false);
+user_pref(&quot;app.normandy.api_url&quot;, &quot;&quot;);
+user_pref(&quot;app.shield.optoutstudies.enabled&quot;, false);
+// Desactiva los reportes de cuelgues (Crash Reports)
+user_pref(&quot;breakpad.reportURL&quot;, &quot;&quot;);
+user_pref(&quot;browser.tabs.crashReporting.sendReport&quot;, false);
+
+</code></pre>
+<h4 id="222-fugas-de-metadatos">2.2.2.- Fugas de metadatos</h4>
+<p>Con el fin de acelerar la navegación, Firefox intenta adivinar dónde vas a hacer clic, resolviendo peticiones DNS y precargando ciertos recursos. Esto al final significa que tu ip consulta con dominios que no solicitas, dejando un rastro en los servidores destino y en tu ISP:</p>
+<pre><code class="language-JavaScript">// ============================================================================
+// 2. PREFETCHING Y CONEXIONES ESPECULATIVAS
+// ============================================================================
+user_pref(&quot;network.prefetch-next&quot;, false); // Evita descargar webs enteras anticipadamente
+user_pref(&quot;network.dns.disablePrefetch&quot;, true); // Detiene la resolución DNS anticipada
+user_pref(&quot;network.predictor.enabled&quot;, false);
+user_pref(&quot;network.http.speculative-parallel-limit&quot;, 0);
+user_pref(&quot;browser.places.speculativeConnect.enabled&quot;, false); // Desactiva conexiones al pasar el ratón por encima de enlaces
+</code></pre>
+<p>‍</p>
+<h4 id="223-proteccion-de-identidad-de-red">2.2.3.- Protección de Identidad de Red</h4>
+<p>WebRTC es una tecnología que permite la comunicación en tiempo real de datos entre navegadores web y apps móviles. Es conocido por causar fugas de direcciones IP real incluso usando VPN, ya que usa UDP de forma directa. En el archivo dejo 2 opciones, la primera es deshabilitar completamente WebRTC, lo que puede llevar a romper cierto contenido en páginas, y la opción B que es la recomendada restringe cierta configuración para evitar filtraciones de red.</p>
+<pre><code class="language-JavaScript">// ============================================================================
+// 3. WEBRTC Y FUGAS DE RED
+// ============================================================================
+// OPCCIÓN A: Deshabilitar WebRTC por completo (Rompe llamadas de voz/vídeo web)
+// user_pref(&quot;media.peerconnection.enabled&quot;, false);
+
+// OPCIÓN B: Restringir WebRTC para que pase por el proxy/VPN y no filtre IPs locales
+user_pref(&quot;media.peerconnection.ice.default_address_only&quot;, true);
+user_pref(&quot;media.peerconnection.ice.proxy_only_if_behind_proxy&quot;, true);
+user_pref(&quot;media.peerconnection.ice.no_host&quot;, true);
+
+// Prevenir bypass de proxys
+user_pref(&quot;network.proxy.socks_remote_dns&quot;, true); // Fuerza a que las consultas DNS vayan por el túnel SOCKS
+</code></pre>
+<p>‍</p>
+<h4 id="224-mitigacion-de-fingerprinting">2.2.4.- Mitigación de Fingerprinting</h4>
+<p>En lugar de intentar bloquear todos los scripts de rastreo, la siguiente directiva estandariza nuestro navegador para que parezca idéntico al de miles de otros usuarios para evitar Fingerptinting.</p>
+<pre><code class="language-JavaScript">// ============================================================================
+// 4. RESISTENCIA AL FINGERPRINTING
+// ============================================================================
+user_pref(&quot;privacy.resistFingerprinting&quot;, true);
+// Fuerza el aislamiento dinámico de cookies y almacenamiento (dFPI)
+user_pref(&quot;network.cookie.cookieBehavior&quot;, 5); // 5 = Total Cookie Protection
+// Previene el rastreo a través del estado de la batería o el tipo de conexión
+user_pref(&quot;dom.battery.enabled&quot;, false);
+// Desactiva la API de Gamepad (usada frecuentemente para fingerprinting de hardware)
+user_pref(&quot;dom.gamepad.enabled&quot;, false);
+</code></pre>
+<p>‍</p>
+<h4 id="225-reduccion-de-superficie-de-ataque">2.2.5.- Reducción de Superficie de Ataque</h4>
+<p>Algunos Zero-Day suelen ocurrir en la compilación JIT del motor JavaScript o en las interacciones con los drivers de la tarjeta gráfica.</p>
+<pre><code class="language-JavaScript">// ============================================================================
+// 5. REDUCCIÓN DE SUPERFICIE DE ATAQUE
+// ============================================================================
+// Deshabilitar WebGL (Evita fingerprinting de GPU y vulnerabilidades de drivers gráficos)
+user_pref(&quot;webgl.disabled&quot;, true);
+// Evita que las páginas web manipulen el portapapeles de forma silenciosa
+user_pref(&quot;dom.event.clipboardevents.enabled&quot;, false);
+// Bloquea el acceso a la geolocalización a nivel de núcleo del navegador
+user_pref(&quot;geo.enabled&quot;, false);
+
+// --- SECCIÓN EXTREMA: Deshabilitar JIT (IonMonkey / Baseline) ---
+// ADVERTENCIA: Esto hace que Firefox sea significativamente más lento en sitios web pesados,
+// pero elimina clases enteras de vulnerabilidades de corrupción de memoria y ejecución de código.
+// user_pref(&quot;javascript.options.ion&quot;, false);
+// user_pref(&quot;javascript.options.baselinejit&quot;, false);
+// user_pref(&quot;javascript.options.wasm&quot;, false);
+</code></pre>
+<p>‍</p>
+<p>También he incluido una opción comentada sobre deshabilitar la compilación Just-In-Time, pero puede ralentizar bastante el navegador, por lo que solo lo recomiendo activar si se trata de casos específicos.</p>
+<p>‍</p>
+<h4 id="226-limpieza-del-la-pestana-home">2.2.6.- Limpieza del la pestaña Home</h4>
+<p>Por último configuramos la página principal para quitar todos los patrocinios y widgets los cuales no prestamos atención y consumen recursos</p>
+<pre><code class="language-JavaScript">// ============================================================================
+// 6. LIMPIEZA DE LA PÁGINA DE NUEVA PESTAÑA (ACTIVITY STREAM)
+// ============================================================================
+// Desactiva los accesos directos patrocinados (Amazon, Temu, etc.)
+user_pref(&quot;browser.newtabpage.activity-stream.showSponsored&quot;, false);
+user_pref(&quot;browser.newtabpage.activity-stream.showSponsoredTopSites&quot;, false);
+
+// Desactiva la sección de Pocket, el clima y otros feeds que consumen red
+user_pref(&quot;browser.newtabpage.activity-stream.feeds.section.topstories&quot;, false);
+user_pref(&quot;browser.newtabpage.activity-stream.feeds.topsites&quot;, false);
+user_pref(&quot;browser.newtabpage.activity-stream.feeds.weatherfeed&quot;, false);
+user_pref(&quot;browser.newtabpage.activity-stream.showWeather&quot;, false);
+user_pref(&quot;browser.newtabpage.activity-stream.system.showWeather&quot;, false);
+</code></pre>
+<p>‍</p>
+<p>Ahora para meter el user.js, denuevo, nos aseguraremos de que Firefox está 100% cerrado y entraremos a la carpeta de nuestro perfil el cual hicimos la copia, justo ahí pegaremos el user.js.</p>
+<p><img alt="image" src="image-20260816181103-z7qo4or.png" /></p>
+<p>‍</p>
+<p>Abrimos Firefox y comprobamos que tenemos una interfaz mucha mas limpia sin pop ups.</p>
+<p><img alt="image" src="image-20260816182655-h0ahmp0.png" /></p>
+<p>‍</p>
+<p>NOTA: como firefox actualiza constantemente los widgets es probable que aparezcan nuevos, por lo que es recomendable desactivarlo directamente desde el menú de abajo a la derecha com en la caputra.</p>
+<p><img alt="image" src="image-20260816183134-wo90loz.png" /></p>
+<p>‍</p>
+<h3 id="23-extensiones">2.3 Extensiones</h3>
+<p>En esta sección, personalmente, solo recomendaré instalar uBlock Origin</p>
+<p>https://addons.mozilla.org/es-ES/firefox/addon/ublock-origin/</p>
+<p>Esta extensión bloquea anuncios, cookies y scripts inneccesarios que recopila información.</p>
+<p>También recomiendo encarecidamente no instalar una gran cantidad de extensiones, ya que lo que conseguimos es aumentar el Fingerprint, ampliar la superficie de ataques y ralentizar el navegador.</p>
+<p><img alt="image" src="image-20260816180054-rc7gize.png" /></p>
+<p>‍</p>
+<h3 id="231-configuracion-de-ublock">2.3.1.- Configuración de uBlock</h3>
+<p>uBlock Origin ya viene con una configuración por defecto muy buena, pero vamos a ampliar la lista de filtros. Para ello, seleccionaremos la extensión y le daremos a "Abrir panel de control".</p>
+<p><img alt="image" src="image-20260816183440-43fiaiy.png" /></p>
+<p>‍</p>
+<p>En el apartado de "Lista de filtros" marcaremos las siguientes listas:</p>
+<ul>
+<li>
+<p>Privacidad:</p>
+</li>
+<li>
+<p>AdGuard Tracking Protection</p>
+</li>
+<li>AdGuard/uBO – URL Tracking Protection</li>
+<li>Block Outsider Intrusion into LAN</li>
+<li>
+<p>Protección de malware, seguridad</p>
+</li>
+<li>
+<p>Online Malicious URL Blocklist</p>
+</li>
+<li>Phishing URL Blocklist</li>
+<li>
+<p>Anuncios</p>
+</li>
+<li>
+<p>EasyList</p>
+</li>
+<li>AdGuard - Ads</li>
+<li>
+<p>Avisos de cookies</p>
+</li>
+<li>
+<p>EasyList/uBO</p>
+</li>
+<li>AdGuard/uBO</li>
+</ul>
+<p>Debería quedar como en la captura de pantalla:</p>
+<p><img alt="image" src="image-20260816184422-9z7rr3j.png" /></p>
+<p>‍</p>
+<h2 id="3-comprobacion-del-hardening">3.- Comprobación del Hardening</h2>
+<p>Para comprobar que todas las directivas que hemos aplicado en nuestro <code>user.js</code> y en uBlock Origin está haciendo su trabajo, os recomiendo visitar las siguientes páginas:</p>
+<ul>
+<li>Cover Your Tracks (EFF): Esta herramienta analizará nuestro navegador. Si todo está correcto, dirá que bloqueamos rastreadores y anuncios invisibles. También dirá si nuestra huella es única.</li>
+<li>Link: https://coveryourtracks.eff.org/</li>
+<li>Hacemos la comprobación y vemos que tenemos una protección fuerte, por lo que comprueba que nuestros filtros están funcionando.</li>
+</ul>
+<p><img alt="image" src="image-20260816185556-05elbos.png" /></p>
+<p>Otros links done podéis comprobar la configuración de privacidad y seguridad:</p>
+<p>https://browserleaks.com</p>
+<p>https://dnsleaktest.com</p>
+<p>‍</p>
+<h2 id="4-alternativas-y-proyectos-recomendados">4.- Alternativas y Proyectos Recomendados</h2>
+<p>Si leer esta guía te ha parecido interesante pero crees que mantener un archivo de configuración y auditarlo después de cada actualización es tedioso, existen proyectos de código abierto que ya hacen este hardening por ti desde el principio:</p>
+<ul>
+<li>
+<p><strong>LibreWolf</strong>: Es un fork directo de Firefox diseñado específicamente para maximizar la privacidad y la seguridad de fábrica. Viene con la telemetría eliminada desde el código fuente, uBlock preinstalado y configuraciones restrictivas por defecto. Es la mejor opción si te interesa el hardening pero no quieres pasar por el proceso.</p>
+</li>
+<li>
+<p>Link: https://librewolf.net/</p>
+</li>
+<li>
+<p><strong>Mullvad Browser</strong>: Desarrollado en colaboración con el Tor Project, este navegador mitiga el fingerprint al extremo. Está pensado para usarse junto a una VPN comercial y comparte la misma filosofía que Tor: hacer que todos sus usuarios parezcan exactamente el mismo.</p>
+</li>
+<li>
+<p>Link: https://mullvad.net/es/browser</p>
+</li>
+<li>
+<p><strong>Arkenfox user.js</strong>: Si prefieres seguir usando Firefox oficial pero quieres la plantilla de seguridad definitiva, el proyecto Arkenfox en GitHub mantiene el <code>user.js</code> más riguroso y actualizado de la comunidad.</p>
+</li>
+<li>
+<p>Link: https://github.com/arkenfox/user.js/</p>
+</li>
+</ul>
+<p>‍</p>
+<h3 id="funetes">Funetes:</h3>
+<p>https://brainfucksec.github.io/firefox-hardening-guide</p>
+<p>https://github.com/arkenfox/user.js</p>
+<p>https://www.privacyguides.org/es/desktop-browsers/</p>
+<p>https://wiki.archlinux.org/title/Firefox/Privacy</p>
+<p>https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-firefox</p>
+<p>https://restoreprivacy.com/firefox-privacy/</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
