@@ -330,23 +330,19 @@ uBlock Origin ya viene con una configuración por defecto muy buena, pero vamos 
 
 En el apartado de "Lista de filtros" marcaremos las siguientes listas:
 
-- Privacidad:
-
-  - AdGuard Tracking Protection
-  - AdGuard/uBO – URL Tracking Protection
-  - Block Outsider Intrusion into LAN
-- Protección de malware, seguridad
-
-  - Online Malicious URL Blocklist
-  - Phishing URL Blocklist
-- Anuncios
-
-  - EasyList
-  - AdGuard - Ads
-- Avisos de cookies
-
-  - EasyList/uBO
-  - AdGuard/uBO
+- **Privacidad:**
+    - AdGuard Tracking Protection
+    - AdGuard/uBO – URL Tracking Protection
+    - Block Outsider Intrusion into LAN
+- **Protección de malware, seguridad:**
+    - Online Malicious URL Blocklist
+    - Phishing URL Blocklist
+- **Anuncios:**
+    - EasyList
+    - AdGuard - Ads
+- **Avisos de cookies:**
+    - EasyList/uBO
+    - AdGuard/uBO
 
 Debería quedar como en la captura de pantalla:
 
@@ -401,3 +397,12 @@ https://wiki.archlinux.org/title/Firefox/Privacy
 https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-firefox
 
 https://restoreprivacy.com/firefox-privacy/
+
+<br>
+
+---
+<div align="center">
+  <small>
+    © 2026 David Veiga (D4vKry). Este trabajo está distribuido bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank">CC BY-NC-SA 4.0</a>.
+  </small>
+</div>
