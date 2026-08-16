@@ -146,7 +146,7 @@ O si lo prefieres puedes usar el DNS de Cloudflare que aunque no sea tan privado
 
 Este archivo es el que contiene toda la configuración de nuestro perfil, el cual se estructura en módulos. Para que no tengáis que modificar módulo por módulo cada configuración he preparado un user.js el cual podéis descargar desde el siguiente enlace:
 
-https://github.com/D4vKry/firefox-userjs/blob/main/user.js
+[https://github.com/D4vKry/firefox-userjs/blob/main/user.js](https://github.com/D4vKry/firefox-userjs/blob/main/user.js)
 
 Explicaremos punto por punto que configuración toca nuestro archivo:
 
@@ -310,7 +310,7 @@ NOTA: como firefox actualiza constantemente los widgets es probable que aparezca
 
 En esta sección, personalmente, solo recomendaré instalar uBlock Origin
 
-https://addons.mozilla.org/es-ES/firefox/addon/ublock-origin/
+[https://addons.mozilla.org/es-ES/firefox/addon/ublock-origin/](https://addons.mozilla.org/es-ES/firefox/addon/ublock-origin/)
 
 Esta extensión bloquea anuncios, cookies y scripts inneccesarios que recopila información.
 
@@ -355,16 +355,16 @@ Debería quedar como en la captura de pantalla:
 Para comprobar que todas las directivas que hemos aplicado en nuestro `user.js` y en uBlock Origin está haciendo su trabajo, os recomiendo visitar las siguientes páginas:
 
 - Cover Your Tracks (EFF): Esta herramienta analizará nuestro navegador. Si todo está correcto, dirá que bloqueamos rastreadores y anuncios invisibles. También dirá si nuestra huella es única.
-- Link: https://coveryourtracks.eff.org/
+- Link: [https://coveryourtracks.eff.org/](https://coveryourtracks.eff.org/)
 - Hacemos la comprobación y vemos que tenemos una protección fuerte, por lo que comprueba que nuestros filtros están funcionando.
 
 ![image](image-20260816185556-05elbos.png)
 
 Otros links done podéis comprobar la configuración de privacidad y seguridad:
 
-https://browserleaks.com
+[https://browserleaks.com](https://browserleaks.com)
 
-https://dnsleaktest.com
+[https://dnsleaktest.com](https://dnsleaktest.com)
 
 ‍
 
@@ -374,29 +374,29 @@ Si leer esta guía te ha parecido interesante pero crees que mantener un archivo
 
 - **LibreWolf**: Es un fork directo de Firefox diseñado específicamente para maximizar la privacidad y la seguridad de fábrica. Viene con la telemetría eliminada desde el código fuente, uBlock preinstalado y configuraciones restrictivas por defecto. Es la mejor opción si te interesa el hardening pero no quieres pasar por el proceso.
 
-  - Link: https://librewolf.net/
+  - Link: [https://librewolf.net/](https://librewolf.net/)
 - **Mullvad Browser**: Desarrollado en colaboración con el Tor Project, este navegador mitiga el fingerprint al extremo. Está pensado para usarse junto a una VPN comercial y comparte la misma filosofía que Tor: hacer que todos sus usuarios parezcan exactamente el mismo.
 
-  - Link: https://mullvad.net/es/browser
+  - Link: [https://mullvad.net/es/browser](https://mullvad.net/es/browser)
 - **Arkenfox user.js**: Si prefieres seguir usando Firefox oficial pero quieres la plantilla de seguridad definitiva, el proyecto Arkenfox en GitHub mantiene el `user.js` más riguroso y actualizado de la comunidad.
 
-  - Link: https://github.com/arkenfox/user.js/
+  - Link: [https://github.com/arkenfox/user.js/](https://github.com/arkenfox/user.js/)
 
 ‍
 
 ### Fuentes:
 
-https://brainfucksec.github.io/firefox-hardening-guide
+[https://brainfucksec.github.io/firefox-hardening-guide](https://brainfucksec.github.io/firefox-hardening-guide)
 
-https://github.com/arkenfox/user.js
+[https://github.com/arkenfox/user.js](https://github.com/arkenfox/user.js)
 
-https://www.privacyguides.org/es/desktop-browsers/
+[https://www.privacyguides.org/es/desktop-browsers/](https://www.privacyguides.org/es/desktop-browsers/)
 
-https://wiki.archlinux.org/title/Firefox/Privacy
+[https://wiki.archlinux.org/title/Firefox/Privacy](https://wiki.archlinux.org/title/Firefox/Privacy)
 
-https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-firefox
+[https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-firefox](https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-firefox)
 
-https://restoreprivacy.com/firefox-privacy/
+[https://restoreprivacy.com/firefox-privacy/](https://restoreprivacy.com/firefox-privacy/)
 
 <br>
 
