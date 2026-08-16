@@ -384,7 +384,7 @@ Si leer esta guía te ha parecido interesante pero crees que mantener un archivo
 
 ‍
 
-### Funetes:
+### Fuentes:
 
 https://brainfucksec.github.io/firefox-hardening-guide
 
