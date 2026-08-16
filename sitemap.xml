@@ -1,3 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://d4vKry.github.io/</loc>
+         <lastmod>2026-08-16</lastmod>
+    </url>
+    <url>
+         <loc>https://d4vKry.github.io/HTB/Easy/Connected/</loc>
+         <lastmod>2026-08-16</lastmod>
+    </url>
+    <url>
+         <loc>https://d4vKry.github.io/HTB/Easy/Enigma/</loc>
+         <lastmod>2026-08-16</lastmod>
+    </url>
+    <url>
+         <loc>https://d4vKry.github.io/HTB/Hard/Nimbus/</loc>
+         <lastmod>2026-08-16</lastmod>
+    </url>
+    <url>
+         <loc>https://d4vKry.github.io/HTB/Medium/Checkpoint/</loc>
+         <lastmod>2026-08-16</lastmod>
+    </url>
+    <url>
+         <loc>https://d4vKry.github.io/HTB/Medium/DevHub/</loc>
+         <lastmod>2026-08-16</lastmod>
+    </url>
+    <url>
+         <loc>https://d4vKry.github.io/guias/firefox-hardening/</loc>
+         <lastmod>2026-08-16</lastmod>
+    </url>
 </urlset>
