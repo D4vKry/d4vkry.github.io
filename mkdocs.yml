@@ -13,10 +13,10 @@ nav:
       - Firefox Hardening: guias/firefox-hardening/index.md
   - Hack The Box - WriteUps:
       - Easy:
-          - Connected - Linux: HTB/Easy/Connected/index.md
-          - Enigma - Linux: HTB/Easy/Enigma/index.md
+          - 🔒Connected - Linux: HTB/Easy/Connected/index.md
+          - 🔒Enigma - Linux: HTB/Easy/Enigma/index.md
       - Medium:
-          - Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
-          - DevHub - Linux: HTB/Medium/DevHub/index.md
+          - 🔒Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
+          - 🔒DevHub - Linux: HTB/Medium/DevHub/index.md
       - Hard:
-          - Nimbus - Linux: HTB/Hard/Nimbus/index.md
+          - 🔒Nimbus - Linux: HTB/Hard/Nimbus/index.md
