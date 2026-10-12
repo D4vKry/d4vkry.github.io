@@ -17,6 +17,6 @@ nav:
           - 🔒Enigma - Linux: HTB/Easy/Enigma/index.md
       - Medium:
           - 🔒Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
-          - 🔒DevHub - Linux: HTB/Medium/DevHub/index.md
+          - DevHub - Linux: HTB/Medium/DevHub/index.md
       - Hard:
           - 🔒Nimbus - Linux: HTB/Hard/Nimbus/index.md
