@@ -15,6 +15,7 @@ nav:
       - Easy:
           - 🔒Connected - Linux: HTB/Easy/Connected/index.md
           - 🔒Enigma - Linux: HTB/Easy/Enigma/index.md
+          - Nexus - Linux: HTB/Easy/Nexus/index.md
       - Medium:
           - 🔒Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
           - DevHub - Linux: HTB/Medium/DevHub/index.md
