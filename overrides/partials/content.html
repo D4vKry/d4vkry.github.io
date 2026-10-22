@@ -1,0 +1,15 @@
+{#-
+  Override of Material's partials/content.html: adds the machine card
+  for HTB write-ups (front matter key `machine`).
+-#}
+{% include "partials/actions.html" %}
+{% if "<h1" not in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+{% if page.meta.machine %}
+  {% include "partials/machine-card.html" %}
+{% endif %}
+{{ page.content }}
+{% include "partials/source-file.html" %}
+{% include "partials/feedback.html" %}
+{% include "partials/comments.html" %}

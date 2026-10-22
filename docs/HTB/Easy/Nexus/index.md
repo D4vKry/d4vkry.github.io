@@ -1,10 +1,14 @@
-# HTB | Nexus
+---
+title: Nexus
+icon: material/linux
+machine:
+  os: Linux
+  difficulty: Easy
+  ip: 10.129.175.212
+  date: 19/10/2026
+---
 
-**Machine** - Nexus
-**OS** - Linux
-**Difficulty** - Easy
-**IP** - 10.129.175.212
-**Fecha** - 19/10/2026
+# Nexus
 
 ![hecho](hecho.png)
 

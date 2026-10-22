@@ -1,0 +1,26 @@
+{% set m = page.meta.machine %}
+{% set diff = (m.difficulty or "") | lower %}
+<div class="dk-machine">
+  <div class="dk-machine__row">
+    <span class="dk-badge dk-badge--platform">Hack The Box</span>
+    <span class="dk-badge dk-badge--{{ diff }}">{{ m.difficulty }}</span>
+    <span class="dk-badge dk-badge--os">
+      {% if (m.os or "") | lower == "windows" %}
+        {% include ".icons/fontawesome/brands/windows.svg" %}
+      {% else %}
+        {% include ".icons/fontawesome/brands/linux.svg" %}
+      {% endif %}
+      {{ m.os }}
+    </span>
+    {% if m.status == "active" %}
+      <span class="dk-badge dk-badge--active">
+        {% include ".icons/material/lock-outline.svg" %} Activa
+      </span>
+    {% endif %}
+  </div>
+  <dl class="dk-machine__meta">
+    {% if m.ip %}<div><dt>IP</dt><dd><code>{{ m.ip }}</code></dd></div>{% endif %}
+    {% if m.date %}<div><dt>Fecha</dt><dd>{{ m.date }}</dd></div>{% endif %}
+    {% if m.creds %}<div><dt>Credenciales iniciales</dt><dd><code>{{ m.creds }}</code></dd></div>{% endif %}
+  </dl>
+</div>

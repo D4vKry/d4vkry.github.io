@@ -1,3 +1,8 @@
+---
+title: Firefox Hardening
+icon: material/firefox
+---
+
 # Firefox Hardening
 
 ## 1.- Introducción a Firefox y por qué es ideal para la privacidad

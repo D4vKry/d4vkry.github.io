@@ -1,23 +1,82 @@
-site_name: D4vKry's Portfolio
-site_url: https://d4vKry.github.io/
+site_name: D4vKry
+site_url: https://d4vkry.github.io/
+site_description: Write-ups de Hack The Box y guías de hardening
+site_author: D4vKry
+copyright: © 2026 D4vKry · Contenido con fines educativos en entornos controlados
+
 theme:
   name: material
+  custom_dir: overrides
+  language: es
+  logo: assets/images/logo.svg
+  favicon: assets/images/logo.svg
+  font:
+    text: Inter
+    code: Fira Code
   palette:
     scheme: slate
-    primary: black
-    accent: cyan
+    primary: custom
+    accent: custom
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/D4vKry
+      name: GitHub
+    - icon: simple/hackthebox
+      link: https://app.hackthebox.com/public/users/2410065
+      name: Hack The Box
+    - icon: fontawesome/brands/linkedin
+      link: https://es.linkedin.com/in/david-veiga-otero-160036257
+      name: LinkedIn
+
+plugins:
+  - search:
+      lang: es
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - def_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - Inicio: index.md
   - Guías:
       - Firefox Hardening: guias/firefox-hardening/index.md
-  - Hack The Box - WriteUps:
+  - Hack The Box:
       - Easy:
-          - 🔒Connected - Linux: HTB/Easy/Connected/index.md
-          - 🔒Enigma - Linux: HTB/Easy/Enigma/index.md
-          - Nexus - Linux: HTB/Easy/Nexus/index.md
+          - Connected: HTB/Easy/Connected/index.md
+          - Enigma: HTB/Easy/Enigma/index.md
+          - Nexus: HTB/Easy/Nexus/index.md
       - Medium:
-          - 🔒Checkpoint - Windows: HTB/Medium/Checkpoint/index.md
-          - DevHub - Linux: HTB/Medium/DevHub/index.md
+          - Checkpoint: HTB/Medium/Checkpoint/index.md
+          - DevHub: HTB/Medium/DevHub/index.md
       - Hard:
-          - 🔒Nimbus - Linux: HTB/Hard/Nimbus/index.md
+          - Nimbus: HTB/Hard/Nimbus/index.md

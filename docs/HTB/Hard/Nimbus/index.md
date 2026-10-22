@@ -1,21 +1,20 @@
-# 🔒 HTB | Nimbus (Write-Up Pendiente)
-
-**Machine** - Nimbus  
-**OS** - Linux  
-**Difficulty** - Hard  
-**Fecha** - 25/6/2026  
-
+---
+title: Nimbus
+icon: material/lock-outline
+machine:
+  os: Linux
+  difficulty: Hard
+  date: 25/06/2026
+  status: active
 ---
 
-### ⚠️ ¡Máquina Activa! ⚠️
+# Nimbus
 
-Para respetar estrictamente las normas de **Hack The Box**, no publico soluciones de máquinas que aún se encuentran activas en la plataforma.
+!!! warning "Máquina activa"
 
-El *write-up* completo ya está documentado en mi bóveda privada. Se publicará en esta URL de forma automática el mismo día que la máquina pase al estado **Retired**.
+    Para respetar las normas de **Hack The Box**, no publico soluciones de máquinas que aún están activas en la plataforma.
 
-¡Vuelve pronto! 💀
-
-<br>
+    El write-up completo ya está documentado en mi bóveda privada y se publicará en esta misma URL el día que la máquina pase a estado **Retired**.
 
 ---
 <div align="center">

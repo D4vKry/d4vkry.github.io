@@ -1,10 +1,14 @@
-# HTB | DevHub
+---
+title: DevHub
+icon: material/linux
+machine:
+  os: Linux
+  difficulty: Medium
+  ip: 10.129.3.242
+  date: 01/06/2026
+---
 
-**Machine** - DevHub
-**OS** - Linux
-**Difficulty** - Medium
-**IP** - 10.129.3.242
-**Fecha** - 1/6/2026
+# DevHub
 
 ![hecho](hecho.png)
 
