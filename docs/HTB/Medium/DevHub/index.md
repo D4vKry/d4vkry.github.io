@@ -490,11 +490,3 @@ root@devhub:~# cat root.txt
 ```
 
 ![Flag Root](cap7.png)
-
-
----
-<div align="center">
-  <small>
-    © 2026 David Veiga (D4vKry). Este trabajo está distribuido bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank">CC BY-NC-SA 4.0</a>.
-  </small>
-</div>

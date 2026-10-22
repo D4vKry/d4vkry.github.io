@@ -5,7 +5,7 @@ icon: material/firefox
 
 # Firefox Hardening
 
-## 1.- Introducción a Firefox y por qué es ideal para la privacidad
+## 1. Introducción a Firefox y por qué es ideal para la privacidad
 
 ![image](image-20260802215530-8vsbo9l.png)
 
@@ -88,7 +88,7 @@ Si después del hardening tenéis problemas con Firefox, basta con borrar toda l
 
 ‍
 
-## 2.- Hardening
+## 2. Hardening
 
 Para guiar el proceso, estaré usando una máquina virtual Debian recién instalada, el cual le instalaremos Firefox desde los paquetes APT para tener un perfil totalmente limpio. Este proceso es igual tanto en Lenux como en Windows.
 
@@ -355,7 +355,7 @@ Debería quedar como en la captura de pantalla:
 
 ‍
 
-## 3.- Comprobación del Hardening
+## 3. Comprobación del Hardening
 
 Para comprobar que todas las directivas que hemos aplicado en nuestro `user.js` y en uBlock Origin está haciendo su trabajo, os recomiendo visitar las siguientes páginas:
 
@@ -373,7 +373,7 @@ Otros links donde podéis comprobar la configuración de privacidad y seguridad:
 
 ‍
 
-## 4.- Alternativas y Proyectos Recomendados
+## 4. Alternativas y Proyectos Recomendados
 
 Si leer esta guía te ha parecido interesante pero crees que mantener un archivo de configuración y auditarlo después de cada actualización es tedioso, existen proyectos de código abierto que ya hacen este hardening por ti desde el principio:
 
@@ -402,12 +402,3 @@ Si leer esta guía te ha parecido interesante pero crees que mantener un archivo
 [https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-Firefox](https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-Firefox)
 
 [https://restoreprivacy.com/Firefox-privacy/](https://restoreprivacy.com/Firefox-privacy/)
-
-<br>
-
----
-<div align="center">
-  <small>
-    © 2026 David Veiga (D4vKry). Este trabajo está distribuido bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank">CC BY-NC-SA 4.0</a>.
-  </small>
-</div>

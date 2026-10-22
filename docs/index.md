@@ -1,5 +1,5 @@
 ---
-title: Inicio
+title: Sobre mí
 hide:
   - toc
 ---

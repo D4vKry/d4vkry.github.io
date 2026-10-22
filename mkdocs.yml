@@ -2,7 +2,10 @@ site_name: D4vKry
 site_url: https://d4vkry.github.io/
 site_description: Write-ups de Hack The Box y guías de hardening
 site_author: D4vKry
-copyright: © 2026 D4vKry · Contenido con fines educativos en entornos controlados
+copyright: >-
+  © 2026 David Veiga (D4vKry) ·
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a> ·
+  Contenido con fines educativos en entornos controlados
 
 theme:
   name: material
@@ -46,6 +49,10 @@ extra:
 plugins:
   - search:
       lang: es
+  - glightbox:
+      skip_classes:
+        - dk-avatar
+      draggable: false
 
 markdown_extensions:
   - admonition
@@ -68,9 +75,10 @@ markdown_extensions:
 
 hooks:
   - hooks/cards.py
+  - hooks/social.py
 
 nav:
-  - Inicio: index.md
+  - Sobre mí: index.md
   - Guías:
       - Firefox Hardening: guias/firefox-hardening/index.md
   - Hack The Box:
