@@ -49,33 +49,7 @@ Soy **David Veiga**, estudiante y apasionado de la ciberseguridad, el hacking é
 
 ## Últimos write-ups
 
-<div class="grid cards" markdown>
-
--   :material-linux: **[Nexus](HTB/Easy/Nexus/index.md)**
-
-    <span class="dk-card-diff easy">Easy</span> · Linux · 19/10/2026
-
--   :material-linux: **[DevHub](HTB/Medium/DevHub/index.md)**
-
-    <span class="dk-card-diff medium">Medium</span> · Linux · 01/06/2026
-
--   :material-lock-outline: **[Enigma](HTB/Easy/Enigma/index.md)**
-
-    <span class="dk-card-diff easy">Easy</span> · Linux · 30/06/2026 · <span class="dk-card-lock">Máquina activa</span>
-
--   :material-lock-outline: **[Nimbus](HTB/Hard/Nimbus/index.md)**
-
-    <span class="dk-card-diff hard">Hard</span> · Linux · 25/06/2026 · <span class="dk-card-lock">Máquina activa</span>
-
--   :material-lock-outline: **[Checkpoint](HTB/Medium/Checkpoint/index.md)**
-
-    <span class="dk-card-diff medium">Medium</span> · Windows · 17/06/2026 · <span class="dk-card-lock">Máquina activa</span>
-
--   :material-lock-outline: **[Connected](HTB/Easy/Connected/index.md)**
-
-    <span class="dk-card-diff easy">Easy</span> · Linux · 09/06/2026 · <span class="dk-card-lock">Máquina activa</span>
-
-</div>
+<!-- dk:ultimos-writeups -->
 
 ## Guías
 
