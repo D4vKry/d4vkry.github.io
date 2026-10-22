@@ -1,7 +1,4 @@
-
-<!doctype html>
-<html lang="es" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="es" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -49,8 +46,8 @@
       
         
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&amp;display=fallback">
         <style>:root{--md-text-font:"Inter";--md-code-font:"Fira Code"}</style>
       
     
@@ -63,7 +60,36 @@
 
     
     
-  </head>
+  
+  
+  
+    
+  
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="D4vKry">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Firefox Hardening · D4vKry">
+  <meta property="og:description" content="Write-ups de Hack The Box y guías de hardening">
+  <meta property="og:url" content="https://d4vkry.github.io/guias/firefox-hardening/">
+  <meta property="og:image" content="https://d4vkry.github.io/assets/images/social.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Firefox Hardening · D4vKry">
+  <meta name="twitter:description" content="Write-ups de Hack The Box y guías de hardening">
+  <meta name="twitter:image" content="https://d4vkry.github.io/assets/images/social.png">
+  
+
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
   
   
     
@@ -103,7 +129,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -131,24 +157,24 @@
       
         <label class="md-header__button md-icon" for="__search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         </label>
         <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="Buscar">
         
         <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
       </nav>
       
@@ -156,7 +182,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Inicializando búsqueda
@@ -186,7 +212,7 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -203,7 +229,7 @@
     D4vKry
   </label>
   
-  <ul class="md-nav__list" data-md-scrollfix>
+  <ul class="md-nav__list" data-md-scrollfix="">
     
       
       
@@ -219,7 +245,7 @@
   <span class="md-ellipsis">
     
   
-    Inicio
+    Sobre mí
   
 
     
@@ -254,7 +280,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -284,7 +310,7 @@
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+          <ul class="md-nav__list" data-md-scrollfix="">
             
               
                 
@@ -306,7 +332,7 @@
           
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.85 6.74q.015 0 0 0M21.28 8.6c-.43-1.05-1.32-2.18-2.01-2.54.56 1.11.89 2.22 1.02 3.04v.02c-1.13-2.82-3.05-3.96-4.62-6.44-.08-.12-.17-.25-.24-.38-.04-.07-.07-.14-.11-.21-.06-.13-.12-.26-.15-.4 0-.01-.01-.02-.02-.02h-.03c-2.22 1.3-3.15 3.59-3.38 5.04-.69.04-1.37.21-1.99.51-.12.05-.17.19-.13.31.05.14.21.21.34.15.54-.26 1.14-.41 1.74-.45h.05c.08-.01.17-.01.25-.01.5-.01.97.06 1.44.2l.06.02c.1.02.17.06.25.06.05.04.11.06.16.08l.14.06c.07.03.14.06.2.09.03.02.06.03.09.05.07.04.16.07.2.11.04.02.08.05.12.07.73.45 1.34 1.07 1.75 1.81-.53-.37-1.49-.74-2.41-.58 3.6 1.81 2.63 8-2.36 7.76-.44-.01-.88-.1-1.3-.25-.1-.03-.2-.07-.29-.12-.05-.02-.12-.05-.17-.08-1.23-.63-2.24-1.82-2.38-3.27 0 0 .5-1.73 3.33-1.73.31 0 1.17-.86 1.2-1.1 0-.09-1.74-.78-2.42-1.45-.37-.36-.54-.53-.69-.66-.08-.07-.17-.13-.26-.19a4.63 4.63 0 0 1-.03-2.45C7.6 6.12 6.8 6.86 6.22 7.5c-.4-.5-.37-2.15-.35-2.5-.01 0-.3.16-.33.18-.35.25-.68.53-.98.82-.35.37-.66.74-.94 1.14-.62.91-1.12 1.95-1.34 3.04 0 .01-.1.41-.17.92l-.03.23c-.02.17-.04.32-.08.58v.41c0 5.53 4.5 10.01 10 10.01 4.97 0 9.08-3.59 9.88-8.33.02-.11.03-.24.05-.37.2-1.72-.02-3.52-.65-5.03"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.85 6.74q.015 0 0 0M21.28 8.6c-.43-1.05-1.32-2.18-2.01-2.54.56 1.11.89 2.22 1.02 3.04v.02c-1.13-2.82-3.05-3.96-4.62-6.44-.08-.12-.17-.25-.24-.38-.04-.07-.07-.14-.11-.21-.06-.13-.12-.26-.15-.4 0-.01-.01-.02-.02-.02h-.03c-2.22 1.3-3.15 3.59-3.38 5.04-.69.04-1.37.21-1.99.51-.12.05-.17.19-.13.31.05.14.21.21.34.15.54-.26 1.14-.41 1.74-.45h.05c.08-.01.17-.01.25-.01.5-.01.97.06 1.44.2l.06.02c.1.02.17.06.25.06.05.04.11.06.16.08l.14.06c.07.03.14.06.2.09.03.02.06.03.09.05.07.04.16.07.2.11.04.02.08.05.12.07.73.45 1.34 1.07 1.75 1.81-.53-.37-1.49-.74-2.41-.58 3.6 1.81 2.63 8-2.36 7.76-.44-.01-.88-.1-1.3-.25-.1-.03-.2-.07-.29-.12-.05-.02-.12-.05-.17-.08-1.23-.63-2.24-1.82-2.38-3.27 0 0 .5-1.73 3.33-1.73.31 0 1.17-.86 1.2-1.1 0-.09-1.74-.78-2.42-1.45-.37-.36-.54-.53-.69-.66-.08-.07-.17-.13-.26-.19a4.63 4.63 0 0 1-.03-2.45C7.6 6.12 6.8 6.86 6.22 7.5c-.4-.5-.37-2.15-.35-2.5-.01 0-.3.16-.33.18-.35.25-.68.53-.98.82-.35.37-.66.74-.94 1.14-.62.91-1.12 1.95-1.34 3.04 0 .01-.1.41-.17.92l-.03.23c-.02.17-.04.32-.08.58v.41c0 5.53 4.5 10.01 10 10.01 4.97 0 9.08-3.59 9.88-8.33.02-.11.03-.24.05-.37.2-1.72-.02-3.52-.65-5.03"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -326,7 +352,7 @@
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.85 6.74q.015 0 0 0M21.28 8.6c-.43-1.05-1.32-2.18-2.01-2.54.56 1.11.89 2.22 1.02 3.04v.02c-1.13-2.82-3.05-3.96-4.62-6.44-.08-.12-.17-.25-.24-.38-.04-.07-.07-.14-.11-.21-.06-.13-.12-.26-.15-.4 0-.01-.01-.02-.02-.02h-.03c-2.22 1.3-3.15 3.59-3.38 5.04-.69.04-1.37.21-1.99.51-.12.05-.17.19-.13.31.05.14.21.21.34.15.54-.26 1.14-.41 1.74-.45h.05c.08-.01.17-.01.25-.01.5-.01.97.06 1.44.2l.06.02c.1.02.17.06.25.06.05.04.11.06.16.08l.14.06c.07.03.14.06.2.09.03.02.06.03.09.05.07.04.16.07.2.11.04.02.08.05.12.07.73.45 1.34 1.07 1.75 1.81-.53-.37-1.49-.74-2.41-.58 3.6 1.81 2.63 8-2.36 7.76-.44-.01-.88-.1-1.3-.25-.1-.03-.2-.07-.29-.12-.05-.02-.12-.05-.17-.08-1.23-.63-2.24-1.82-2.38-3.27 0 0 .5-1.73 3.33-1.73.31 0 1.17-.86 1.2-1.1 0-.09-1.74-.78-2.42-1.45-.37-.36-.54-.53-.69-.66-.08-.07-.17-.13-.26-.19a4.63 4.63 0 0 1-.03-2.45C7.6 6.12 6.8 6.86 6.22 7.5c-.4-.5-.37-2.15-.35-2.5-.01 0-.3.16-.33.18-.35.25-.68.53-.98.82-.35.37-.66.74-.94 1.14-.62.91-1.12 1.95-1.34 3.04 0 .01-.1.41-.17.92l-.03.23c-.02.17-.04.32-.08.58v.41c0 5.53 4.5 10.01 10 10.01 4.97 0 9.08-3.59 9.88-8.33.02-.11.03-.24.05-.37.2-1.72-.02-3.52-.65-5.03"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.85 6.74q.015 0 0 0M21.28 8.6c-.43-1.05-1.32-2.18-2.01-2.54.56 1.11.89 2.22 1.02 3.04v.02c-1.13-2.82-3.05-3.96-4.62-6.44-.08-.12-.17-.25-.24-.38-.04-.07-.07-.14-.11-.21-.06-.13-.12-.26-.15-.4 0-.01-.01-.02-.02-.02h-.03c-2.22 1.3-3.15 3.59-3.38 5.04-.69.04-1.37.21-1.99.51-.12.05-.17.19-.13.31.05.14.21.21.34.15.54-.26 1.14-.41 1.74-.45h.05c.08-.01.17-.01.25-.01.5-.01.97.06 1.44.2l.06.02c.1.02.17.06.25.06.05.04.11.06.16.08l.14.06c.07.03.14.06.2.09.03.02.06.03.09.05.07.04.16.07.2.11.04.02.08.05.12.07.73.45 1.34 1.07 1.75 1.81-.53-.37-1.49-.74-2.41-.58 3.6 1.81 2.63 8-2.36 7.76-.44-.01-.88-.1-1.3-.25-.1-.03-.2-.07-.29-.12-.05-.02-.12-.05-.17-.08-1.23-.63-2.24-1.82-2.38-3.27 0 0 .5-1.73 3.33-1.73.31 0 1.17-.86 1.2-1.1 0-.09-1.74-.78-2.42-1.45-.37-.36-.54-.53-.69-.66-.08-.07-.17-.13-.26-.19a4.63 4.63 0 0 1-.03-2.45C7.6 6.12 6.8 6.86 6.22 7.5c-.4-.5-.37-2.15-.35-2.5-.01 0-.3.16-.33.18-.35.25-.68.53-.98.82-.35.37-.66.74-.94 1.14-.62.91-1.12 1.95-1.34 3.04 0 .01-.1.41-.17.92l-.03.23c-.02.17-.04.32-.08.58v.41c0 5.53 4.5 10.01 10 10.01 4.97 0 9.08-3.59 9.88-8.33.02-.11.03-.24.05-.37.2-1.72-.02-3.52-.65-5.03"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -354,18 +380,18 @@
       <span class="md-nav__icon md-icon"></span>
       Tabla de contenidos
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
   <a href="#1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.- Introducción a Firefox y por qué es ideal para la privacidad
+        1. Introducción a Firefox y por qué es ideal para la privacidad
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.- Introducción a Firefox y por qué es ideal para la privacidad">
+    <nav class="md-nav" aria-label="1. Introducción a Firefox y por qué es ideal para la privacidad">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -427,12 +453,12 @@
   <a href="#2-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.- Hardening
+        2. Hardening
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.- Hardening">
+    <nav class="md-nav" aria-label="2. Hardening">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -599,7 +625,7 @@
   <a href="#3-comprobacion-del-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.- Comprobación del Hardening
+        3. Comprobación del Hardening
       
     </span>
   </a>
@@ -610,12 +636,12 @@
   <a href="#4-alternativas-y-proyectos-recomendados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.- Alternativas y Proyectos Recomendados
+        4. Alternativas y Proyectos Recomendados
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.- Alternativas y Proyectos Recomendados">
+    <nav class="md-nav" aria-label="4. Alternativas y Proyectos Recomendados">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -670,7 +696,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -700,7 +726,7 @@
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+          <ul class="md-nav__list" data-md-scrollfix="">
             
               
                 
@@ -719,7 +745,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1">
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -749,7 +775,7 @@
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+          <ul class="md-nav__list" data-md-scrollfix="">
             
               
                 
@@ -762,7 +788,7 @@
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -792,7 +818,7 @@
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -822,7 +848,7 @@
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -866,7 +892,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -896,7 +922,7 @@
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+          <ul class="md-nav__list" data-md-scrollfix="">
             
               
                 
@@ -909,7 +935,7 @@
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -939,7 +965,7 @@
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -983,7 +1009,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -1013,7 +1039,7 @@
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+          <ul class="md-nav__list" data-md-scrollfix="">
             
               
                 
@@ -1026,7 +1052,7 @@
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -1068,7 +1094,7 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1084,18 +1110,18 @@
       <span class="md-nav__icon md-icon"></span>
       Tabla de contenidos
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
   <a href="#1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.- Introducción a Firefox y por qué es ideal para la privacidad
+        1. Introducción a Firefox y por qué es ideal para la privacidad
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.- Introducción a Firefox y por qué es ideal para la privacidad">
+    <nav class="md-nav" aria-label="1. Introducción a Firefox y por qué es ideal para la privacidad">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1157,12 +1183,12 @@
   <a href="#2-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.- Hardening
+        2. Hardening
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.- Hardening">
+    <nav class="md-nav" aria-label="2. Hardening">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1329,7 +1355,7 @@
   <a href="#3-comprobacion-del-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.- Comprobación del Hardening
+        3. Comprobación del Hardening
       
     </span>
   </a>
@@ -1340,12 +1366,12 @@
   <a href="#4-alternativas-y-proyectos-recomendados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.- Alternativas y Proyectos Recomendados
+        4. Alternativas y Proyectos Recomendados
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.- Alternativas y Proyectos Recomendados">
+    <nav class="md-nav" aria-label="4. Alternativas y Proyectos Recomendados">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1380,9 +1406,9 @@
                   
 
 
-<h1 id="firefox-hardening">Firefox Hardening<a class="headerlink" href="#firefox-hardening" title="Permanent link">&para;</a></h1>
-<h2 id="1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad">1.- Introducción a Firefox y por qué es ideal para la privacidad<a class="headerlink" href="#1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad" title="Permanent link">&para;</a></h2>
-<p><img alt="image" src="image-20260802215530-8vsbo9l.png" /></p>
+<h1 id="firefox-hardening">Firefox Hardening<a class="headerlink" href="#firefox-hardening" title="Permanent link">¶</a></h1>
+<h2 id="1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad">1. Introducción a Firefox y por qué es ideal para la privacidad<a class="headerlink" href="#1-introduccion-a-firefox-y-por-que-es-ideal-para-la-privacidad" title="Permanent link">¶</a></h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260802215530-8vsbo9l.png" data-desc-position="bottom"><img alt="image" src="image-20260802215530-8vsbo9l.png"></a></p>
 <p>Firefox es uno de los mejores navegadores FOSS que existe por varios motivos:</p>
 <ul>
 <li><strong>Independencia de Chromium:</strong>  Firefox usa su propio motor llamado Gecko, lo cual es muy importante tener en cuenta para evitar el monopolio de Chromium. Además permite evitar imposiciones de estándares implantados por Google.</li>
@@ -1391,15 +1417,15 @@
 </ul>
 <p>‍</p>
 <p>Aun siendo muy buen navegador, este por defecto viene con una configuración de recolección de datos y telemetría que nos gustaría limitar y controlar al milímetro nosotros mismos desde las configuraciones de privacidad.</p>
-<h3 id="que-telemetria-envia-exactamente-firefox-por-defecto">¿Qué telemetría envía exactamente Firefox por defecto?<a class="headerlink" href="#que-telemetria-envia-exactamente-firefox-por-defecto" title="Permanent link">&para;</a></h3>
+<h3 id="que-telemetria-envia-exactamente-firefox-por-defecto">¿Qué telemetría envía exactamente Firefox por defecto?<a class="headerlink" href="#que-telemetria-envia-exactamente-firefox-por-defecto" title="Permanent link">¶</a></h3>
 <p>Al igual que la mayoría de navegadores, Firefox suele enviar el llamado "main ping", que se envía periódicamente y contiene varios datos de uso y entorno, entre ellos el Hardware, Sistema Operativo, métricas de sesión, ecosistema del navegador, motor de búsquedas y derivados.</p>
 <p>También existe el "event ping", registrando interacciones específicas del usuario con la interfaz del navegador. Esto incluye clics, cambios de preferencias, uso de las DevTools...</p>
 <p>Por otro lado tenemos "Crash ping" que hace un volcado de pila y el estado de la memoria cuando detecta que una pestaña se crashea.</p>
 <p>Por último, por defecto Firefox habilita la opción de instalar y ejecutar estudios de forma silenciosa para que contacte con los servidores regularmente para recibir configuraciones remotas y probar nuevas funciones. Aunque no es "telemetría" en el sentido estricto de analíticas, Firefox envía hashes de los sitios que visitas y de archivos que descargas a los servidores de Google Safe Browsing para comprobar si son maliciosos.</p>
 <p>‍</p>
-<h2 id="recomendaciones-antes-de-seguir-la-guia">⚠️ RECOMENDACIONES ANTES DE SEGUIR LA GUÍA<a class="headerlink" href="#recomendaciones-antes-de-seguir-la-guia" title="Permanent link">&para;</a></h2>
+<h2 id="recomendaciones-antes-de-seguir-la-guia">⚠️ RECOMENDACIONES ANTES DE SEGUIR LA GUÍA<a class="headerlink" href="#recomendaciones-antes-de-seguir-la-guia" title="Permanent link">¶</a></h2>
 <p>Si vas a proceder a seguir la guía del hardening teniendo un perfil de Firefox existente, recomiendo encarecidamente crear una copia de seguridad del perfil por si en algún momento el hardening falla y necesitamos el perfil de vuelta.</p>
-<h3 id="1-copia-en-linux">1.- Copia en Linux<a class="headerlink" href="#1-copia-en-linux" title="Permanent link">&para;</a></h3>
+<h3 id="1-copia-en-linux">1.- Copia en Linux<a class="headerlink" href="#1-copia-en-linux" title="Permanent link">¶</a></h3>
 <p>Dependiendo de cómo hayas instalado Firefox, la ruta del perfil junto a las configuraciones varía:</p>
 <ul>
 <li><strong>Nativo (apt/pacman...):</strong>  <code>~/.mozilla/Firefox/</code></li>
@@ -1416,7 +1442,7 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/.mozilla/Firefox/xxxxxx.default-release/<span class="w"> </span>~/copia_perfil_Firefox/
 </code></pre></div>
 <p>‍</p>
-<h3 id="2-copia-en-windows">2.- Copia en Windows<a class="headerlink" href="#2-copia-en-windows" title="Permanent link">&para;</a></h3>
+<h3 id="2-copia-en-windows">2.- Copia en Windows<a class="headerlink" href="#2-copia-en-windows" title="Permanent link">¶</a></h3>
 <p>Verificar primero que Firefox está cerrado completamente, esto se puede ver desde el administrador de tareas (Ctrl + shift + Esc).</p>
 <p>Ahora presionaremos la combinación Windows + R para abrir el cuadro de "Ejecutar".</p>
 <p>Introduciremos la siguiente variable:</p>
@@ -1426,179 +1452,179 @@
 <p>Localizaremos la carpeta de nuestro perfil (si no sabes cual es, podéis hacer lo mismo que expliqué en la copia de linux).</p>
 <p>Copia la carpeta entera y pégala en una ubicación segura.</p>
 <p>Aquí una alternativa rápida por PowerShell:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="s2">&quot;$env:APPDATA\Mozilla\Firefox\Profiles\*.default-release&quot;</span> <span class="n">-Destination</span> <span class="s2">&quot;$env:USERPROFILE\Desktop\Firefox_Backup&quot;</span> <span class="n">-Recurse</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="s2">"$env:APPDATA\Mozilla\Firefox\Profiles\*.default-release"</span> <span class="n">-Destination</span> <span class="s2">"$env:USERPROFILE\Desktop\Firefox_Backup"</span> <span class="n">-Recurse</span>
 </code></pre></div>
 <p>Si después del hardening tenéis problemas con Firefox, basta con borrar toda la carpeta de perfiles de Firefox y pegar la copia que hicimos.</p>
 <p>‍</p>
-<h2 id="2-hardening">2.- Hardening<a class="headerlink" href="#2-hardening" title="Permanent link">&para;</a></h2>
+<h2 id="2-hardening">2. Hardening<a class="headerlink" href="#2-hardening" title="Permanent link">¶</a></h2>
 <p>Para guiar el proceso, estaré usando una máquina virtual Debian recién instalada, el cual le instalaremos Firefox desde los paquetes APT para tener un perfil totalmente limpio. Este proceso es igual tanto en Lenux como en Windows.</p>
 <p>‍</p>
-<h3 id="21-configuracion-inicial-desde-la-gui">2.1.- Configuración inicial desde la GUI<a class="headerlink" href="#21-configuracion-inicial-desde-la-gui" title="Permanent link">&para;</a></h3>
+<h3 id="21-configuracion-inicial-desde-la-gui">2.1.- Configuración inicial desde la GUI<a class="headerlink" href="#21-configuracion-inicial-desde-la-gui" title="Permanent link">¶</a></h3>
 <p>Antes de tocar los archivos de configuración, estableceremos una configuración directamente desde los ajustes nativos de Firefox.</p>
-<h4 id="211-motor-de-busqueda">2.1.1.- Motor de búsqueda<a class="headerlink" href="#211-motor-de-busqueda" title="Permanent link">&para;</a></h4>
+<h4 id="211-motor-de-busqueda">2.1.1.- Motor de búsqueda<a class="headerlink" href="#211-motor-de-busqueda" title="Permanent link">¶</a></h4>
 <p>Empezaremos con el motor de búsqueda. En Firefox el buscador predeterminado es Google, así que haremos lo siguiente:</p>
 <ul>
 <li>Vamos a <strong>Ajustes &gt; Buscar</strong></li>
 <li>En el apartado de "Buscador predeterminado" seleccionaremos DuckDuckGo</li>
 <li>Como extra podéis desactivar el resto de buscadores que no uséis como Bing, Google, Ebay...</li>
 </ul>
-<p><img alt="image" src="image-20260815205734-9l409f6.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260815205734-9l409f6.png" data-desc-position="bottom"><img alt="image" src="image-20260815205734-9l409f6.png"></a></p>
 <p>‍</p>
 <p>(NOTA: si no deseáis usar duckduckgo por sus antiguas polémicas, Qwant es muy buen buscador privado sobre todo si eres de Europa, o Ecosia).</p>
 <p>‍</p>
-<h4 id="212-dns-sobre-https-doh">2.1.2.- DNS sobre HTTPS (DoH)<a class="headerlink" href="#212-dns-sobre-https-doh" title="Permanent link">&para;</a></h4>
+<h4 id="212-dns-sobre-https-doh">2.1.2.- DNS sobre HTTPS (DoH)<a class="headerlink" href="#212-dns-sobre-https-doh" title="Permanent link">¶</a></h4>
 <p>Por defecto, las peticiones DNS viajan en texto plano, permitiendo que tu ISP y cualquiera que esté en la red local pueda saber qué dominios visitas.</p>
 <ul>
 <li>Vamos a la pestaña de Privacidad y Seguridad</li>
 <li>Abajo de todo le damos a "DNS sobre HTTPS" y a ajustes avanzados</li>
 </ul>
-<p><img alt="image" src="image-20260815205845-e5a8bgi.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260815205845-e5a8bgi.png" data-desc-position="bottom"><img alt="image" src="image-20260815205845-e5a8bgi.png"></a></p>
 <ul>
 <li>Le damos a "Personalizado" y pondremos el siguiente proveedor: "<code>https://dns.quad9.net/dns-query</code>", así estaremos usando el proveedor de Quad9, el cual va cifrado.</li>
 </ul>
-<p><img alt="image" src="image-20260815210030-vbn0cng.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260815210030-vbn0cng.png" data-desc-position="bottom"><img alt="image" src="image-20260815210030-vbn0cng.png"></a></p>
 <p>Otro proveedor muy bueno es Mullvad, el cual es con el siguiente URL:</p>
 <p>"<code>https://dns.mullvad.net/dns-query</code>"</p>
 <p>O si lo prefieres puedes usar el DNS de Cloudflare que aunque no sea tan privado como estos, es bastante rápido y mejor que el de Google y el de tu ISP.</p>
 <p>‍</p>
-<h4 id="213-modo-solo-https">2.1.3.- Modo solo HTTPS<a class="headerlink" href="#213-modo-solo-https" title="Permanent link">&para;</a></h4>
+<h4 id="213-modo-solo-https">2.1.3.- Modo solo HTTPS<a class="headerlink" href="#213-modo-solo-https" title="Permanent link">¶</a></h4>
 <ul>
 <li>En <strong>Privacidad &amp; Seguridad</strong>, vamos al final y configuración avanzada.</li>
 </ul>
-<p><img alt="image" src="image-20260815210644-5o71upw.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260815210644-5o71upw.png" data-desc-position="bottom"><img alt="image" src="image-20260815210644-5o71upw.png"></a></p>
 <ul>
 <li>Le damos a "Activar el modo solo-HTTPS en todas las ventanas".</li>
 </ul>
-<p><img alt="image" src="image-20260815210722-t2dl3s3.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260815210722-t2dl3s3.png" data-desc-position="bottom"><img alt="image" src="image-20260815210722-t2dl3s3.png"></a></p>
 <p>‍</p>
-<h3 id="22-hardening-a-userjs">2.2 Hardening a user.js<a class="headerlink" href="#22-hardening-a-userjs" title="Permanent link">&para;</a></h3>
+<h3 id="22-hardening-a-userjs">2.2 Hardening a user.js<a class="headerlink" href="#22-hardening-a-userjs" title="Permanent link">¶</a></h3>
 <p>Este archivo es el que contiene toda la configuración de nuestro perfil, el cual se estructura en módulos. Para que no tengáis que modificar módulo por módulo cada configuración he preparado un user.js el cual podéis descargar desde el siguiente enlace:</p>
 <p><a href="https://github.com/D4vKry/Firefox-userjs/blob/main/user.js">https://github.com/D4vKry/Firefox-userjs/blob/main/user.js</a></p>
 <p>Explicaremos punto por punto que configuración toca nuestro archivo:</p>
 <p>‍</p>
-<h4 id="221-eliminar-la-telemetria">2.2.1.- Eliminar la Telemetría<a class="headerlink" href="#221-eliminar-la-telemetria" title="Permanent link">&para;</a></h4>
+<h4 id="221-eliminar-la-telemetria">2.2.1.- Eliminar la Telemetría<a class="headerlink" href="#221-eliminar-la-telemetria" title="Permanent link">¶</a></h4>
 <p>Mozilla usa "Normandy" para inyectar cambios de configuración remotos y "Shield" para estudios en segundo plano:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">// 1. TELEMETRÍA, ESTUDIOS Y RECOLECCIÓN DE DATOS</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">// Desactiva el envío de datos de salud y uso general</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;datareporting.policy.dataSubmissionEnabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;datareporting.healthreport.uploadEnabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;toolkit.telemetry.unified&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;toolkit.telemetry.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;toolkit.telemetry.server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;data:,&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Anula el endpoint de envío</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;toolkit.telemetry.archive.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;toolkit.telemetry.bhrPing.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;toolkit.telemetry.firstShutdownPing.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"datareporting.policy.dataSubmissionEnabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"datareporting.healthreport.uploadEnabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"toolkit.telemetry.unified"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"toolkit.telemetry.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"toolkit.telemetry.server"</span><span class="p">,</span><span class="w"> </span><span class="s2">"data:,"</span><span class="p">);</span><span class="w"> </span><span class="c1">// Anula el endpoint de envío</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"toolkit.telemetry.archive.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"toolkit.telemetry.bhrPing.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"toolkit.telemetry.firstShutdownPing.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1">// Bloquea los estudios de Normandy y Shield (Inyecciones remotas)</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;app.normandy.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;app.normandy.api_url&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;app.shield.optoutstudies.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"app.normandy.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"app.normandy.api_url"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">);</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"app.shield.optoutstudies.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1">// Desactiva los reportes de cuelgues (Crash Reports)</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;breakpad.reportURL&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.tabs.crashReporting.sendReport&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"breakpad.reportURL"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">);</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.tabs.crashReporting.sendReport"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 </code></pre></div>
-<h4 id="222-fugas-de-metadatos">2.2.2.- Fugas de metadatos<a class="headerlink" href="#222-fugas-de-metadatos" title="Permanent link">&para;</a></h4>
+<h4 id="222-fugas-de-metadatos">2.2.2.- Fugas de metadatos<a class="headerlink" href="#222-fugas-de-metadatos" title="Permanent link">¶</a></h4>
 <p>Con el fin de acelerar la navegación, Firefox intenta adivinar dónde vas a hacer clic, resolviendo peticiones DNS y precargando ciertos recursos. Esto al final significa que tu ip consulta con dominios que no solicitas, dejando un rastro en los servidores destino y en tu ISP:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">// 2. PREFETCHING Y CONEXIONES ESPECULATIVAS</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// ============================================================================</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;network.prefetch-next&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Evita descargar webs enteras anticipadamente</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;network.dns.disablePrefetch&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// Detiene la resolución DNS anticipada</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;network.predictor.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;network.http.speculative-parallel-limit&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.places.speculativeConnect.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Desactiva conexiones al pasar el ratón por encima de enlaces</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"network.prefetch-next"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Evita descargar webs enteras anticipadamente</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"network.dns.disablePrefetch"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// Detiene la resolución DNS anticipada</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"network.predictor.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"network.http.speculative-parallel-limit"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.places.speculativeConnect.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Desactiva conexiones al pasar el ratón por encima de enlaces</span>
 </code></pre></div>
 <p>‍</p>
-<h4 id="223-proteccion-de-identidad-de-red">2.2.3.- Protección de Identidad de Red<a class="headerlink" href="#223-proteccion-de-identidad-de-red" title="Permanent link">&para;</a></h4>
+<h4 id="223-proteccion-de-identidad-de-red">2.2.3.- Protección de Identidad de Red<a class="headerlink" href="#223-proteccion-de-identidad-de-red" title="Permanent link">¶</a></h4>
 <p>WebRTC es una tecnología que permite la comunicación en tiempo real de datos entre navegadores web y apps móviles. Es conocido por causar fugas de direcciones IP real incluso usando VPN, ya que usa UDP de forma directa. En el archivo dejo 2 opciones, la primera es deshabilitar completamente WebRTC, lo que puede llevar a romper cierto contenido en páginas, y la opción B que es la recomendada restringe cierta configuración para evitar filtraciones de red.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">// 3. WEBRTC Y FUGAS DE RED</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// OPCIÓN A: Deshabilitar WebRTC por completo (Rompe llamadas de voz/vídeo web)</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">// user_pref(&quot;media.peerconnection.enabled&quot;, false);</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">// user_pref("media.peerconnection.enabled", false);</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">// OPCIÓN B: Restringir WebRTC para que pase por el proxy/VPN y no filtre IPs locales</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;media.peerconnection.ice.default_address_only&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;media.peerconnection.ice.proxy_only_if_behind_proxy&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;media.peerconnection.ice.no_host&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"media.peerconnection.ice.default_address_only"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"media.peerconnection.ice.proxy_only_if_behind_proxy"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"media.peerconnection.ice.no_host"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1">// Prevenir bypass de proxys</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;network.proxy.socks_remote_dns&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// Fuerza a que las consultas DNS vayan por el túnel SOCKS</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"network.proxy.socks_remote_dns"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// Fuerza a que las consultas DNS vayan por el túnel SOCKS</span>
 </code></pre></div>
 <p>‍</p>
-<h4 id="224-mitigacion-de-fingerprinting">2.2.4.- Mitigación de Fingerprinting<a class="headerlink" href="#224-mitigacion-de-fingerprinting" title="Permanent link">&para;</a></h4>
+<h4 id="224-mitigacion-de-fingerprinting">2.2.4.- Mitigación de Fingerprinting<a class="headerlink" href="#224-mitigacion-de-fingerprinting" title="Permanent link">¶</a></h4>
 <p>En lugar de intentar bloquear todos los scripts de rastreo, la siguiente directiva estandariza nuestro navegador para que parezca idéntico al de miles de otros usuarios para evitar Fingerprinting.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1">// 4. RESISTENCIA AL FINGERPRINTING</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">// ============================================================================</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;privacy.resistFingerprinting&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"privacy.resistFingerprinting"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">// Fuerza el aislamiento dinámico de cookies y almacenamiento (dFPI)</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;network.cookie.cookieBehavior&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5 = Total Cookie Protection</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"network.cookie.cookieBehavior"</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5 = Total Cookie Protection</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1">// Previene el rastreo a través del estado de la batería o el tipo de conexión</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;dom.battery.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"dom.battery.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">// Desactiva la API de Gamepad (usada frecuentemente para fingerprinting de hardware)</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;dom.gamepad.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"dom.gamepad.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 </code></pre></div>
 <p>‍</p>
-<h4 id="225-reduccion-de-superficie-de-ataque">2.2.5.- Reducción de Superficie de Ataque<a class="headerlink" href="#225-reduccion-de-superficie-de-ataque" title="Permanent link">&para;</a></h4>
+<h4 id="225-reduccion-de-superficie-de-ataque">2.2.5.- Reducción de Superficie de Ataque<a class="headerlink" href="#225-reduccion-de-superficie-de-ataque" title="Permanent link">¶</a></h4>
 <p>Algunos Zero-Day suelen ocurrir en la compilación JIT del motor JavaScript o en las interacciones con los drivers de la tarjeta gráfica.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1">// 5. REDUCCIÓN DE SUPERFICIE DE ATAQUE</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">// Deshabilitar WebGL (Evita fingerprinting de GPU y vulnerabilidades de drivers gráficos)</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;webgl.disabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"webgl.disabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">// Evita que las páginas web manipulen el portapapeles de forma silenciosa</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;dom.event.clipboardevents.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"dom.event.clipboardevents.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1">// Bloquea el acceso a la geolocalización a nivel de núcleo del navegador</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;geo.enabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"geo.enabled"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
 <a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1">// --- SECCIÓN EXTREMA: Deshabilitar JIT (IonMonkey / Baseline) ---</span>
 <a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1">// ADVERTENCIA: Esto hace que Firefox sea significativamente más lento en sitios web pesados,</span>
 <a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1">// pero elimina clases enteras de vulnerabilidades de corrupción de memoria y ejecución de código.</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="c1">// user_pref(&quot;javascript.options.ion&quot;, false);</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="c1">// user_pref(&quot;javascript.options.baselinejit&quot;, false);</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="c1">// user_pref(&quot;javascript.options.wasm&quot;, false);</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="c1">// user_pref("javascript.options.ion", false);</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="c1">// user_pref("javascript.options.baselinejit", false);</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="c1">// user_pref("javascript.options.wasm", false);</span>
 </code></pre></div>
 <p>‍</p>
 <p>También he incluido una opción comentada sobre deshabilitar la compilación Just-In-Time, pero puede ralentizar bastante el navegador, por lo que solo lo recomiendo activar si se trata de casos específicos.</p>
 <p>‍</p>
-<h4 id="226-limpieza-de-la-pestana-home">2.2.6.- Limpieza de la pestaña Home<a class="headerlink" href="#226-limpieza-de-la-pestana-home" title="Permanent link">&para;</a></h4>
+<h4 id="226-limpieza-de-la-pestana-home">2.2.6.- Limpieza de la pestaña Home<a class="headerlink" href="#226-limpieza-de-la-pestana-home" title="Permanent link">¶</a></h4>
 <p>Por último configuramos la página principal para quitar todos los patrocinios y widgets los cuales no prestamos atención y consumen recursos.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1">// 6. LIMPIEZA DE LA PÁGINA DE NUEVA PESTAÑA (ACTIVITY STREAM)</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">// ============================================================================</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">// Desactiva los accesos directos patrocinados (Amazon, Temu, etc.)</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.newtabpage.activity-stream.showSponsored&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.newtabpage.activity-stream.showSponsoredTopSites&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.newtabpage.activity-stream.showSponsored"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.newtabpage.activity-stream.showSponsoredTopSites"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">// Desactiva la sección de Pocket, el clima y otros feeds que consumen red</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.newtabpage.activity-stream.feeds.section.topstories&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.newtabpage.activity-stream.feeds.topsites&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.newtabpage.activity-stream.feeds.weatherfeed&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.newtabpage.activity-stream.showWeather&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">&quot;browser.newtabpage.activity-stream.system.showWeather&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.newtabpage.activity-stream.feeds.section.topstories"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.newtabpage.activity-stream.feeds.topsites"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.newtabpage.activity-stream.feeds.weatherfeed"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.newtabpage.activity-stream.showWeather"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="nx">user_pref</span><span class="p">(</span><span class="s2">"browser.newtabpage.activity-stream.system.showWeather"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 </code></pre></div>
 <p>‍</p>
 <p>Ahora para meter el user.js, de nuevo, nos aseguraremos de que Firefox está 100% cerrado y entraremos a la carpeta de nuestro perfil el cual hicimos la copia, justo ahí pegaremos el user.js.</p>
-<p><img alt="image" src="image-20260816181103-z7qo4or.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260816181103-z7qo4or.png" data-desc-position="bottom"><img alt="image" src="image-20260816181103-z7qo4or.png"></a></p>
 <p>‍</p>
 <p>Abrimos Firefox y comprobamos que tenemos una interfaz mucha mas limpia sin pop-ups.</p>
-<p><img alt="image" src="image-20260816182655-h0ahmp0.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260816182655-h0ahmp0.png" data-desc-position="bottom"><img alt="image" src="image-20260816182655-h0ahmp0.png"></a></p>
 <p>‍</p>
 <p>NOTA: como Firefox actualiza constantemente los widgets es probable que aparezcan nuevos, por lo que es recomendable desactivarlo directamente desde el menú de abajo a la derecha como en la caputra.</p>
-<p><img alt="image" src="image-20260816183134-wo90loz.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260816183134-wo90loz.png" data-desc-position="bottom"><img alt="image" src="image-20260816183134-wo90loz.png"></a></p>
 <p>‍</p>
-<h3 id="23-extensiones">2.3 Extensiones<a class="headerlink" href="#23-extensiones" title="Permanent link">&para;</a></h3>
+<h3 id="23-extensiones">2.3 Extensiones<a class="headerlink" href="#23-extensiones" title="Permanent link">¶</a></h3>
 <p>En esta sección, personalmente, solo recomendaré instalar uBlock Origin</p>
 <p><a href="https://addons.mozilla.org/es-ES/Firefox/addon/ublock-origin/">https://addons.mozilla.org/es-ES/Firefox/addon/ublock-origin/</a></p>
 <p>Esta extensión bloquea anuncios, cookies y scripts innecesarios que recopilan información.</p>
 <p>También recomiendo encarecidamente no instalar una gran cantidad de extensiones, ya que lo que conseguimos es aumentar el Fingerprint, ampliar la superficie de ataques y ralentizar el navegador.</p>
-<p><img alt="image" src="image-20260816180054-rc7gize.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260816180054-rc7gize.png" data-desc-position="bottom"><img alt="image" src="image-20260816180054-rc7gize.png"></a></p>
 <p>‍</p>
-<h3 id="231-configuracion-de-ublock">2.3.1.- Configuración de uBlock<a class="headerlink" href="#231-configuracion-de-ublock" title="Permanent link">&para;</a></h3>
+<h3 id="231-configuracion-de-ublock">2.3.1.- Configuración de uBlock<a class="headerlink" href="#231-configuracion-de-ublock" title="Permanent link">¶</a></h3>
 <p>uBlock Origin ya viene con una configuración por defecto muy buena, pero vamos a ampliar la lista de filtros. Para ello, seleccionaremos la extensión y le daremos a "Abrir panel de control".</p>
-<p><img alt="image" src="image-20260816183440-43fiaiy.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260816183440-43fiaiy.png" data-desc-position="bottom"><img alt="image" src="image-20260816183440-43fiaiy.png"></a></p>
 <p>‍</p>
 <p>En el apartado de "Lista de filtros" marcaremos las siguientes listas:</p>
 <ul>
@@ -1625,21 +1651,21 @@
 </li>
 </ul>
 <p>Debería quedar como en la captura de pantalla:</p>
-<p><img alt="image" src="image-20260816184422-9z7rr3j.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260816184422-9z7rr3j.png" data-desc-position="bottom"><img alt="image" src="image-20260816184422-9z7rr3j.png"></a></p>
 <p>‍</p>
-<h2 id="3-comprobacion-del-hardening">3.- Comprobación del Hardening<a class="headerlink" href="#3-comprobacion-del-hardening" title="Permanent link">&para;</a></h2>
+<h2 id="3-comprobacion-del-hardening">3. Comprobación del Hardening<a class="headerlink" href="#3-comprobacion-del-hardening" title="Permanent link">¶</a></h2>
 <p>Para comprobar que todas las directivas que hemos aplicado en nuestro <code>user.js</code> y en uBlock Origin está haciendo su trabajo, os recomiendo visitar las siguientes páginas:</p>
 <ul>
 <li>Cover Your Tracks (EFF): Esta herramienta analizará nuestro navegador. Si todo está correcto, dirá que bloqueamos rastreadores y anuncios invisibles. También dirá si nuestra huella es única.</li>
 <li>Link: <a href="https://coveryourtracks.eff.org/">https://coveryourtracks.eff.org/</a></li>
 <li>Hacemos la comprobación y vemos que tenemos una protección fuerte, por lo que comprueba que nuestros filtros están funcionando.</li>
 </ul>
-<p><img alt="image" src="image-20260816185556-05elbos.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image-20260816185556-05elbos.png" data-desc-position="bottom"><img alt="image" src="image-20260816185556-05elbos.png"></a></p>
 <p>Otros links donde podéis comprobar la configuración de privacidad y seguridad:</p>
 <p><a href="https://browserleaks.com">https://browserleaks.com</a></p>
 <p><a href="https://dnsleaktest.com">https://dnsleaktest.com</a></p>
 <p>‍</p>
-<h2 id="4-alternativas-y-proyectos-recomendados">4.- Alternativas y Proyectos Recomendados<a class="headerlink" href="#4-alternativas-y-proyectos-recomendados" title="Permanent link">&para;</a></h2>
+<h2 id="4-alternativas-y-proyectos-recomendados">4. Alternativas y Proyectos Recomendados<a class="headerlink" href="#4-alternativas-y-proyectos-recomendados" title="Permanent link">¶</a></h2>
 <p>Si leer esta guía te ha parecido interesante pero crees que mantener un archivo de configuración y auditarlo después de cada actualización es tedioso, existen proyectos de código abierto que ya hacen este hardening por ti desde el principio:</p>
 <ul>
 <li>
@@ -1662,20 +1688,13 @@
 </li>
 </ul>
 <p>‍</p>
-<h3 id="fuentes">Fuentes:<a class="headerlink" href="#fuentes" title="Permanent link">&para;</a></h3>
+<h3 id="fuentes">Fuentes:<a class="headerlink" href="#fuentes" title="Permanent link">¶</a></h3>
 <p><a href="https://brainfucksec.github.io/Firefox-hardening-guide">https://brainfucksec.github.io/Firefox-hardening-guide</a></p>
 <p><a href="https://github.com/arkenfox/user.js">https://github.com/arkenfox/user.js</a></p>
 <p><a href="https://www.privacyguides.org/es/desktop-browsers/">https://www.privacyguides.org/es/desktop-browsers/</a></p>
 <p><a href="https://wiki.archlinux.org/title/Firefox/Privacy">https://wiki.archlinux.org/title/Firefox/Privacy</a></p>
 <p><a href="https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-Firefox">https://support.mozilla.org/es/kb/como-detener-las-conexiones-automaticas-de-Firefox</a></p>
 <p><a href="https://restoreprivacy.com/Firefox-privacy/">https://restoreprivacy.com/Firefox-privacy/</a></p>
-<p><br></p>
-<hr />
-<div align="center">
-  <small>
-    © 2026 David Veiga (D4vKry). Este trabajo está distribuido bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank">CC BY-NC-SA 4.0</a>.
-  </small>
-</div>
 
 
 
@@ -1699,9 +1718,9 @@
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   Volver al principio
 </button>
         
@@ -1711,20 +1730,20 @@
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+      <nav class="md-footer__inner md-grid" aria-label="Pie">
         
           
-          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Inicio">
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sobre mí">
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Inicio
+                Sobre mí
               </div>
             </div>
           </a>
@@ -1742,7 +1761,7 @@
             </div>
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
             </div>
           </a>
         
@@ -1754,7 +1773,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      © 2026 D4vKry · Contenido con fines educativos en entornos controlados
+      © 2026 David Veiga (D4vKry) · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a> · Contenido con fines educativos en entornos controlados
     </div>
   
   
@@ -1768,7 +1787,7 @@
     
     
     <a href="https://github.com/D4vKry" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
     </a>
   
     
@@ -1776,7 +1795,7 @@
     
     
     <a href="https://app.hackthebox.com/public/users/2410065" target="_blank" rel="noopener" title="Hack The Box" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.51 6.457.001-.013a.89.89 0 0 0-.271-.638l-.027-.024q-.028-.025-.057-.048-.03-.022-.06-.04l-.029-.02-9.61-5.547a.89.89 0 0 0-.922.004L1.933 5.674l-.03.02-.023.014-.02.015a1 1 0 0 0-.147.134l-.003.003a.9.9 0 0 0-.221.584v.014l-.001.027v11.07c0 .328.18.63.469.784l9.599 5.542.023.011a1 1 0 0 0 .166.07l.04.01.072.015q.018.004.035.006a.8.8 0 0 0 .216 0q.018-.002.035-.006l.072-.014.04-.012.064-.022a1 1 0 0 0 .102-.047l.023-.011 9.599-5.542a.89.89 0 0 0 .469-.784V6.478zM5.255 6.082l6.537-3.774a.42.42 0 0 1 .418 0l6.537 3.774a.418.418 0 0 1 0 .725l-6.537 3.774a.42.42 0 0 1-.418 0L5.254 6.807a.418.418 0 0 1 0-.725m5.614 14.345a.417.417 0 0 1-.626.361l-6.524-3.766a.42.42 0 0 1-.209-.361V9.127a.417.417 0 0 1 .626-.361l6.524 3.766a.42.42 0 0 1 .209.362zm9.623-3.766a.42.42 0 0 1-.209.36l-6.524 3.767a.417.417 0 0 1-.626-.36v-7.533c0-.15.08-.287.209-.362l6.524-3.766a.417.417 0 0 1 .626.36z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.51 6.457.001-.013a.89.89 0 0 0-.271-.638l-.027-.024q-.028-.025-.057-.048-.03-.022-.06-.04l-.029-.02-9.61-5.547a.89.89 0 0 0-.922.004L1.933 5.674l-.03.02-.023.014-.02.015a1 1 0 0 0-.147.134l-.003.003a.9.9 0 0 0-.221.584v.014l-.001.027v11.07c0 .328.18.63.469.784l9.599 5.542.023.011a1 1 0 0 0 .166.07l.04.01.072.015q.018.004.035.006a.8.8 0 0 0 .216 0q.018-.002.035-.006l.072-.014.04-.012.064-.022a1 1 0 0 0 .102-.047l.023-.011 9.599-5.542a.89.89 0 0 0 .469-.784V6.478zM5.255 6.082l6.537-3.774a.42.42 0 0 1 .418 0l6.537 3.774a.418.418 0 0 1 0 .725l-6.537 3.774a.42.42 0 0 1-.418 0L5.254 6.807a.418.418 0 0 1 0-.725m5.614 14.345a.417.417 0 0 1-.626.361l-6.524-3.766a.42.42 0 0 1-.209-.361V9.127a.417.417 0 0 1 .626-.361l6.524 3.766a.42.42 0 0 1 .209.362zm9.623-3.766a.42.42 0 0 1-.209.36l-6.524 3.767a.417.417 0 0 1-.626-.36v-7.533c0-.15.08-.287.209-.362l6.524-3.766a.417.417 0 0 1 .626.36z"></path></svg>
     </a>
   
     
@@ -1784,7 +1803,7 @@
     
     
     <a href="https://es.linkedin.com/in/david-veiga-otero-160036257" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
     </a>
   
 </div>
@@ -1808,5 +1827,7 @@
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
-  </body>
-</html>
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
