@@ -14,8 +14,8 @@ theme:
   logo: assets/images/logo.svg
   favicon: assets/images/logo.svg
   font:
-    text: Inter
-    code: Fira Code
+    text: IBM Plex Sans
+    code: IBM Plex Mono
   palette:
     scheme: slate
     primary: custom

@@ -25,27 +25,14 @@ hide:
 
 Soy **David Veiga**, estudiante y apasionado de la ciberseguridad, el hacking ético y el Red Team. Aquí documento mi aprendizaje continuo, mis investigaciones y mis resoluciones de máquinas en plataformas como Hack The Box.
 
-<div class="grid cards" markdown>
-
--   :material-console:{ .lg } **Write-ups detallados**
-
-    ---
-
-    Paso a paso desde la enumeración inicial hasta la escalada de privilegios a `root`.
-
--   :material-head-cog-outline:{ .lg } **Metodología**
-
-    ---
-
-    No solo el "cómo", sino el "por qué" detrás de cada vulnerabilidad y vector de ataque.
-
--   :material-bug-outline:{ .lg } **Análisis de vulnerabilidades**
-
-    ---
-
-    Desglose de código de exploits (PoCs) y scripts personalizados.
-
-</div>
+<dl class="dk-about">
+  <dt>Write-ups detallados</dt>
+  <dd>Paso a paso desde la enumeración inicial hasta la escalada de privilegios a <code>root</code>.</dd>
+  <dt>Metodología</dt>
+  <dd>No solo el "cómo", sino el "por qué" detrás de cada vulnerabilidad y vector de ataque.</dd>
+  <dt>Análisis de vulnerabilidades</dt>
+  <dd>Desglose de código de exploits (PoCs) y scripts personalizados.</dd>
+</dl>
 
 ## Últimos write-ups
 
